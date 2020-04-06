@@ -1,5 +1,5 @@
 # SkyEditGUI
-GUI for Editor for MiFare based figures
+GUI Editor for MiFare based figures
 
 I am trying to create an All-in-One Editor for a game that uses MiFar based Figures.
 

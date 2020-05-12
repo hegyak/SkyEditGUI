@@ -103,7 +103,7 @@ Partial Friend NotInheritable Class DeviceManagement
 	''' </returns>
 
 	Friend Function FindDeviceFromGuid _
-	 (ByVal myGuid As System.Guid, _
+	 (ByVal myGuid As Guid,
 	 ByRef devicePathName() As String) _
 	 As Boolean
 
@@ -114,7 +114,7 @@ Partial Friend NotInheritable Class DeviceManagement
 		Dim lastDevice As Boolean
 		Dim memberIndex As Int32
 		Dim myDeviceInterfaceData As SP_DEVICE_INTERFACE_DATA
-        Dim pdevicePathName As IntPtr
+		Dim pdevicePathName As IntPtr
 		Dim success As Boolean
 
 		Try
@@ -134,13 +134,13 @@ Partial Friend NotInheritable Class DeviceManagement
 
 			' Returns
 			' Handle to a device information set for the devices.
-            '*
+			'*
 
-            deviceInfoSet = SetupDiGetClassDevs _
-             (myGuid, _
-             IntPtr.Zero, _
-             IntPtr.Zero, _
-             DIGCF_PRESENT Or DIGCF_DEVICEINTERFACE)
+			deviceInfoSet = SetupDiGetClassDevs _
+			 (myGuid,
+			 IntPtr.Zero,
+			 IntPtr.Zero,
+			 DIGCF_PRESENT Or DIGCF_DEVICEINTERFACE)
 
 			deviceFound = False
 			memberIndex = 0
@@ -177,10 +177,10 @@ Partial Friend NotInheritable Class DeviceManagement
 				'***
 
 				success = SetupDiEnumDeviceInterfaces _
-				 (deviceInfoSet, _
-				 IntPtr.Zero, _
-				 myGuid, _
-				 memberIndex, _
+				 (deviceInfoSet,
+				 IntPtr.Zero,
+				 myGuid,
+				 memberIndex,
 				 myDeviceInterfaceData)
 
 				'Find out if a device information set was retrieved.
@@ -216,11 +216,11 @@ Partial Friend NotInheritable Class DeviceManagement
 					'***
 
 					SetupDiGetDeviceInterfaceDetail _
-					 (deviceInfoSet, _
-					 myDeviceInterfaceData, _
-					 IntPtr.Zero, _
-					 0, _
-					 bufferSize, _
+					 (deviceInfoSet,
+					 myDeviceInterfaceData,
+					 IntPtr.Zero,
+					 0,
+					 bufferSize,
 					 IntPtr.Zero)
 
 					'Allocate memory for the SP_DEVICE_INTERFACE_DETAIL_DATA structure using the returned buffer size.
@@ -236,11 +236,11 @@ Partial Friend NotInheritable Class DeviceManagement
 					'and the returned required buffer size.
 
 					success = SetupDiGetDeviceInterfaceDetail _
-					 (deviceInfoSet, _
-					 myDeviceInterfaceData, _
-					 detailDataBuffer, _
-					 bufferSize, _
-					 bufferSize, _
+					 (deviceInfoSet,
+					 myDeviceInterfaceData,
+					 detailDataBuffer,
+					 bufferSize,
+					 bufferSize,
 					 IntPtr.Zero)
 
 					'Skip over cbsize (4 bytes) to get the address of the devicePathName.
@@ -250,7 +250,7 @@ Partial Friend NotInheritable Class DeviceManagement
 					'Get the String containing the devicePathName.
 
 					devicePathName(memberIndex) = Marshal.PtrToStringAuto(pdevicePathName)
-					
+
 					deviceFound = True
 
 				End If

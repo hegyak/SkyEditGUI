@@ -67,12 +67,17 @@ Public Class frmMain
     Public Shared Area0 As Byte
     Public Shared Area1 As Byte
 
+    Public Shared blnTrap As Boolean = False
+    Public Shared BlnVehicle As Boolean = False
+
 #Region " File Read/Write "
     Sub Load_File()
         'AES.HexMath()
         'AES.Header()
         'Exit Sub
-
+        BlnVehicle = False
+        blnTrap = False
+        lblWebCode.Text = ""
         'Let's test Decryption
         Dim result As DialogResult = ofdSky.ShowDialog()
         If result = DialogResult.OK Then
@@ -86,7 +91,7 @@ Public Class frmMain
         Try
             fs = New FileStream(File, FileMode.Open)
         Catch ex As Exception
-            frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & "Unable to Open " & File
+            'frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & "Unable to Open " & File
             'frmLog.Show()
             Exit Sub
         End Try
@@ -95,11 +100,11 @@ Public Class frmMain
         ElseIf fs.Length = 2048 Then
             'SWAP
             'MessageBox.Show("Sorry, this program does not handle a Maxlander Swap Force Dump.")
-            frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & "Sorry, this program does not handle a Maxlander Swap Force Dump."
+            'frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & "Sorry, this program does not handle a Maxlander Swap Force Dump."
             'frmLog.Show()
             Exit Sub
         Else
-            frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & "The Figure must be 1 Kilobyte."
+            'frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & "The Figure must be 1 Kilobyte."
             'frmLog.Show()
             fs.Close()
             Exit Sub
@@ -125,13 +130,29 @@ Public Class frmMain
         'Calculate the Checksums
         CRC16CCITT.Checksums()
 
+        'Get Figure ID and Alter Ego/Variant
+        Figures.GetFigureID_AlterEgo_Variant()
+
         'Determine if we are going to use Area 0 or Area 1
         Figures.Area0orArea1()
 
+        'We break here if Vehicle, Crystal, Item or Trap
+
+        If blnVehicle = True Then
+            Dim frmVehicles As New frmVehicles
+            frmVehicles.Show()
+            Hide()
+            Exit Sub
+        End If
+        If blnTrap = True Then
+            Application.DoEvents()
+            Dim frmTraps As New frmTraps
+            frmTraps.Show()
+            Hide()
+            Exit Sub
+        End If
         'Get the Current Skill Path.
         Skills.GetSkillPath()
-
-
 
         'Get the Current Hero Points value for Areas A and B.  Show the Larger Value.
         Hero.GetHero()
@@ -145,9 +166,6 @@ Public Class frmMain
         'Get the Current Heroic Challenges value for Areas A and B.  Show the Larger Value.
         Challenges.GetChallenges()
 
-        'Get Figure ID and Alter Ego/Variant
-        Figures.GetFigureID_AlterEgo_Variant()
-
         'Show us what Figure we got.
         'Show us the Figures ID and Variant ID
         'Figures.ShowID()
@@ -159,6 +177,12 @@ Public Class frmMain
         Hats.ReadHats()
         'btnSaveAs.Enabled = True
         'btnWrite.Enabled = True
+
+        Web_Code.Load()
+        'btnSaveAs.Enabled = True
+        'btnWrite.Enabled = True
+
+        System_ID.ReadSystem_ID()
 
     End Sub
     Sub LoadData()
@@ -209,6 +233,9 @@ Public Class frmMain
         Hats.ReadHats()
         'btnSaveAs.Enabled = True
         'btnWrite.Enabled = True
+        Web_Code.Load()
+
+        System_ID.ReadSystem_ID()
     End Sub
     Sub ReEncrypt()
         'Get Header Bytes
@@ -462,22 +489,29 @@ Public Class frmMain
     End Sub
 
     Sub Write_Data()
-        'Set Data that changed.
-        Figures.EditCharacterIDVariant()
-        Challenges.WriteChallenges()
-        Exp.WriteEXP()
-        Gold.WriteGold()
-        Hero.WriteHero()
-        Nickname.SetNickname()
-        Hats.WriteHats()
-        Figures.Fixing_Bytes()
-        If numLevel.Value >= 10 Then
-            Skills.WriteSkillPath()
+        If BlnVehicle = False And blnTrap = False Then
+            'Set Data that changed.
+            Figures.EditCharacterIDVariant()
+            Challenges.WriteChallenges()
+            Exp.WriteEXP()
+            Gold.WriteGold()
+            Hero.WriteHero()
+            Nickname.SetNickname()
+            Hats.WriteHats()
+
+            If numLevel.Value >= 10 Then
+                Skills.WriteSkillPath()
+            End If
         End If
+        'Fix Read/Write Blocks
+        Figures.Fixing_Bytes()
         'In theory, this will fix any issues with the Edited Dumps.
         Figures.SetArea0AndArea1()
         'Fix the Checksums.
         CRC16CCITT.WriteCheckSums()
+    End Sub
+    Sub Write_Vehicle()
+
     End Sub
     Sub Write_File()
         Write_Data()
@@ -565,6 +599,7 @@ Public Class frmMain
         ' cmbHat.SelectedIndex = 0
         Dim frmLog As New frmLog
         Hats.cmbHatFill()
+        cmbSystem.SelectedIndex = 0
     End Sub
 #End Region
 
@@ -584,6 +619,7 @@ Public Class frmMain
         If (dialog.ShowDialog = DialogResult.OK) Then
             Dim NewFile As String = dialog.FileName
 
+
             'Figures.EditCharacterIDVariant()
             Figures.EditCharacterIDVariant()
             Challenges.WriteChallenges()
@@ -592,6 +628,7 @@ Public Class frmMain
             Hero.WriteHero()
             Nickname.SetNickname()
             Hats.WriteHats()
+            System_ID.WriteSystem()
             If numLevel.Value >= 10 Then
                 Skills.WriteSkillPath()
             End If
@@ -631,6 +668,7 @@ Public Class frmMain
             Hero.WriteHero()
             Nickname.SetNickname()
             Hats.WriteHats()
+            System_ID.WriteSystem()
             If numLevel.Value >= 10 Then
                 Skills.WriteSkillPath()
             End If
@@ -658,6 +696,7 @@ Public Class frmMain
     Dim outRepoBytes(32) As Byte
     Dim inRepoBytes(32) As Byte
     Public Shared blnAccess As Boolean = False
+    Public Shared BlnPortalUsed As Boolean = False
     Private Sub ReadSkylanderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReadSkylanderToolStripMenuItem.Click
         'reads skylander data from the portal
         Dim timeout As Integer
@@ -706,7 +745,7 @@ Public Class frmMain
         End If
         SaldeStatus.Text = "Figure Read from Portal"
         LoadData()
-
+        BlnPortalUsed = True
     End Sub
     Private Sub BgReadPortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgReadPortal.DoWork
 
@@ -718,6 +757,9 @@ Public Class frmMain
     End Sub
     Private Sub WriteSkylanderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WriteSkylanderToolStripMenuItem.Click
 
+        Portal_Write()
+    End Sub
+    Sub Portal_Write()
         If lstCharacters.SelectedIndex = -1 Then
             SaldeStatus.Text = "No figure Selected"
             Exit Sub
@@ -760,7 +802,7 @@ Public Class frmMain
 
 
     End Sub
-    Private Sub BgWritePortal_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles bgWritePortal.DoWork
+    Private Sub BgWritePortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgWritePortal.DoWork
         SaldeStatus.Text = "Writing to Portal"
         If bgWritePortal.IsBusy Then
             SaldeStatus.Text = "Still Writing to Portal"
@@ -943,6 +985,7 @@ Public Class frmMain
         numLevel.Value = 1
         radNone.Checked = True
         txtName.Text = ""
+        cmbSystem.SelectedIndex = 0
 
         picHeader.BackColor = Color.Yellow
         picSerial.BackColor = Color.Yellow
@@ -954,7 +997,7 @@ Public Class frmMain
         picArea1Type2.BackColor = Color.Yellow
         picArea1Type3.BackColor = Color.Yellow
         picArea1Type4.BackColor = Color.Yellow
-
+        lblWebCode.Text = ""
     End Sub
 
     Private Sub btnShowData_Click(sender As Object, e As EventArgs) Handles btnShowData.Click
@@ -1048,5 +1091,72 @@ Public Class frmMain
 
     Private Sub tmrSkyKey_Tick(sender As Object, e As EventArgs) Handles tmrSkyKey.Tick
         DisableControls()
+    End Sub
+
+    Private Sub btnWebCode_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub btnTraps_Click(sender As Object, e As EventArgs) Handles btnTraps.Click
+        Dim frmTraps As New frmTraps
+        frmTraps.Show()
+        Hide()
+    End Sub
+
+
+    Private Sub btnVehicles_Click(sender As Object, e As EventArgs) Handles btnVehicles.Click
+        Dim frmVehicles As New frmVehicles
+        Hide()
+        frmVehicles.Show()
+
+    End Sub
+
+    Private Sub btnRaw_Click(sender As Object, e As EventArgs) Handles btnRaw.Click
+        'Save As
+        Dim dialog As New SaveFileDialog With {
+                .Filter = "Dump File (*.bin)|*.bin|All files (*.*)|*.*",
+                .FilterIndex = 1,
+                .RestoreDirectory = True,
+                .Title = "Save Decrypted Dump",
+                .FileName = lstCharacters.SelectedItem
+            }
+        If (dialog.ShowDialog = DialogResult.OK) Then
+            Dim NewFile As String = dialog.FileName
+            fs = New FileStream(NewFile, FileMode.OpenOrCreate)
+            fs.Write(WholeFile, 0, WholeFile.Length)
+            fs.Flush()
+        End If
+    End Sub
+
+    Private Sub btnCode_Click(sender As Object, e As EventArgs) Handles btnCode.Click
+        Dim wri As New StreamWriter("Tri.txt")
+        Dim ree As New StreamReader("Ree.txt")
+        Dim str As String
+        'Dim Spliter(1) As String
+        Dim hat As Integer = 3
+        Do Until ree.Peek = -1
+            str = ree.ReadLine
+            If str.StartsWith("'") Then
+                wri.WriteLine("        ElseIf Hat_Index = " & hat & " Then")
+                hat += 1
+            Else
+                wri.WriteLine(str)
+            End If
+
+            'str = str.Remove(0, 1)
+            'MessageBox.Show(str)
+            'Case &H0
+            'cmbVillianTrinket1.SelectedItem = "(None)"
+            'Exit Select
+            'Spliter = str.Split(") '")
+            'MessageBox.Show(Spliter(0))
+            'MessageBox.Show(Spliter(1))
+            'wri.WriteLine("Case &H" & Spliter(1))
+            'wri.WriteLine("cmbVillian1.SelectedItem =  !" & Spliter(2) & "!")
+            'wri.WriteLine("Exit Select")
+            'wri.WriteLine(Spliter(0))
+        Loop
+        wri.Flush()
+        wri.Close()
     End Sub
 End Class

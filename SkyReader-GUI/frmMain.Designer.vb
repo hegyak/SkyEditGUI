@@ -89,6 +89,15 @@ Partial Class frmMain
         Me.lblData = New System.Windows.Forms.Label()
         Me.btnClearData = New System.Windows.Forms.Button()
         Me.tmrSkyKey = New System.Windows.Forms.Timer(Me.components)
+        Me.lblWebCode_Text = New System.Windows.Forms.Label()
+        Me.lblWebCode = New System.Windows.Forms.Label()
+        Me.lblSystem = New System.Windows.Forms.Label()
+        Me.cmbSystem = New System.Windows.Forms.ComboBox()
+        Me.btnTraps = New System.Windows.Forms.Button()
+        Me.btnVehicles = New System.Windows.Forms.Button()
+        Me.btnRaw = New System.Windows.Forms.Button()
+        Me.btnCode = New System.Windows.Forms.Button()
+        Me.grpDebug = New System.Windows.Forms.GroupBox()
         CType(Me.picHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpChecksums.SuspendLayout()
         CType(Me.picSerial, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,6 +116,7 @@ Partial Class frmMain
         CType(Me.numLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.mnuPurp.SuspendLayout()
         Me.StatusPurp.SuspendLayout()
+        Me.grpDebug.SuspendLayout()
         Me.SuspendLayout()
         '
         'ofdSky
@@ -520,7 +530,7 @@ Partial Class frmMain
         Me.mnuPurp.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.PortalToolStripMenuItem})
         Me.mnuPurp.Location = New System.Drawing.Point(0, 0)
         Me.mnuPurp.Name = "mnuPurp"
-        Me.mnuPurp.Size = New System.Drawing.Size(413, 24)
+        Me.mnuPurp.Size = New System.Drawing.Size(648, 24)
         Me.mnuPurp.TabIndex = 35
         Me.mnuPurp.Text = "MenuStrip1"
         '
@@ -534,31 +544,31 @@ Partial Class frmMain
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'Save_Enc_ToolStripMenuItem
         '
         Me.Save_Enc_ToolStripMenuItem.Name = "Save_Enc_ToolStripMenuItem"
-        Me.Save_Enc_ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.Save_Enc_ToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.Save_Enc_ToolStripMenuItem.Text = "&Save Encrypted"
         '
         'Save_Dec_ToolStripMenuItem
         '
         Me.Save_Dec_ToolStripMenuItem.Name = "Save_Dec_ToolStripMenuItem"
-        Me.Save_Dec_ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.Save_Dec_ToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.Save_Dec_ToolStripMenuItem.Text = "Save &Decrypted"
         '
         'ClearToolStripMenuItem
         '
         Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
-        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.ClearToolStripMenuItem.Text = "Clear"
         '
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.CloseToolStripMenuItem.Text = "&Close"
         '
         'PortalToolStripMenuItem
@@ -607,7 +617,7 @@ Partial Class frmMain
         Me.StatusPurp.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaldeStatus})
         Me.StatusPurp.Location = New System.Drawing.Point(0, 493)
         Me.StatusPurp.Name = "StatusPurp"
-        Me.StatusPurp.Size = New System.Drawing.Size(413, 22)
+        Me.StatusPurp.Size = New System.Drawing.Size(648, 22)
         Me.StatusPurp.TabIndex = 36
         Me.StatusPurp.Text = "StatusStrip1"
         '
@@ -639,7 +649,7 @@ Partial Class frmMain
         '
         'btnShowData
         '
-        Me.btnShowData.Location = New System.Drawing.Point(330, 438)
+        Me.btnShowData.Location = New System.Drawing.Point(355, 438)
         Me.btnShowData.Name = "btnShowData"
         Me.btnShowData.Size = New System.Drawing.Size(75, 23)
         Me.btnShowData.TabIndex = 38
@@ -667,7 +677,7 @@ Partial Class frmMain
         '
         'btnClearData
         '
-        Me.btnClearData.Location = New System.Drawing.Point(330, 467)
+        Me.btnClearData.Location = New System.Drawing.Point(355, 467)
         Me.btnClearData.Name = "btnClearData"
         Me.btnClearData.Size = New System.Drawing.Size(75, 23)
         Me.btnClearData.TabIndex = 44
@@ -678,11 +688,100 @@ Partial Class frmMain
         '
         Me.tmrSkyKey.Interval = 1500
         '
+        'lblWebCode_Text
+        '
+        Me.lblWebCode_Text.AutoSize = True
+        Me.lblWebCode_Text.Location = New System.Drawing.Point(16, 238)
+        Me.lblWebCode_Text.Name = "lblWebCode_Text"
+        Me.lblWebCode_Text.Size = New System.Drawing.Size(55, 13)
+        Me.lblWebCode_Text.TabIndex = 54
+        Me.lblWebCode_Text.Text = "WebCode"
+        '
+        'lblWebCode
+        '
+        Me.lblWebCode.AutoSize = True
+        Me.lblWebCode.Location = New System.Drawing.Point(16, 251)
+        Me.lblWebCode.Name = "lblWebCode"
+        Me.lblWebCode.Size = New System.Drawing.Size(0, 13)
+        Me.lblWebCode.TabIndex = 57
+        '
+        'lblSystem
+        '
+        Me.lblSystem.AutoSize = True
+        Me.lblSystem.Location = New System.Drawing.Point(9, 467)
+        Me.lblSystem.Name = "lblSystem"
+        Me.lblSystem.Size = New System.Drawing.Size(41, 13)
+        Me.lblSystem.TabIndex = 58
+        Me.lblSystem.Text = "System"
+        '
+        'cmbSystem
+        '
+        Me.cmbSystem.FormattingEnabled = True
+        Me.cmbSystem.Items.AddRange(New Object() {"Wii", "Xbox 360", "PS3", "PC", "3DS", "Wii U", "Xbox One", "PS4", "Tablet"})
+        Me.cmbSystem.Location = New System.Drawing.Point(54, 464)
+        Me.cmbSystem.Name = "cmbSystem"
+        Me.cmbSystem.Size = New System.Drawing.Size(121, 21)
+        Me.cmbSystem.TabIndex = 59
+        '
+        'btnTraps
+        '
+        Me.btnTraps.Location = New System.Drawing.Point(274, 467)
+        Me.btnTraps.Name = "btnTraps"
+        Me.btnTraps.Size = New System.Drawing.Size(75, 23)
+        Me.btnTraps.TabIndex = 60
+        Me.btnTraps.Text = "Traps"
+        Me.btnTraps.UseVisualStyleBackColor = True
+        '
+        'btnVehicles
+        '
+        Me.btnVehicles.Location = New System.Drawing.Point(274, 438)
+        Me.btnVehicles.Name = "btnVehicles"
+        Me.btnVehicles.Size = New System.Drawing.Size(75, 23)
+        Me.btnVehicles.TabIndex = 61
+        Me.btnVehicles.Text = "Vehicles"
+        Me.btnVehicles.UseVisualStyleBackColor = True
+        '
+        'btnRaw
+        '
+        Me.btnRaw.Location = New System.Drawing.Point(6, 34)
+        Me.btnRaw.Name = "btnRaw"
+        Me.btnRaw.Size = New System.Drawing.Size(75, 23)
+        Me.btnRaw.TabIndex = 62
+        Me.btnRaw.Text = "Raw Write"
+        Me.btnRaw.UseVisualStyleBackColor = True
+        '
+        'btnCode
+        '
+        Me.btnCode.Location = New System.Drawing.Point(6, 63)
+        Me.btnCode.Name = "btnCode"
+        Me.btnCode.Size = New System.Drawing.Size(75, 23)
+        Me.btnCode.TabIndex = 63
+        Me.btnCode.Text = "Code"
+        Me.btnCode.UseVisualStyleBackColor = True
+        '
+        'grpDebug
+        '
+        Me.grpDebug.Controls.Add(Me.btnRaw)
+        Me.grpDebug.Controls.Add(Me.btnCode)
+        Me.grpDebug.Location = New System.Drawing.Point(436, 36)
+        Me.grpDebug.Name = "grpDebug"
+        Me.grpDebug.Size = New System.Drawing.Size(200, 454)
+        Me.grpDebug.TabIndex = 64
+        Me.grpDebug.TabStop = False
+        Me.grpDebug.Text = "Debug"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(413, 515)
+        Me.ClientSize = New System.Drawing.Size(648, 515)
+        Me.Controls.Add(Me.grpDebug)
+        Me.Controls.Add(Me.btnVehicles)
+        Me.Controls.Add(Me.btnTraps)
+        Me.Controls.Add(Me.cmbSystem)
+        Me.Controls.Add(Me.lblSystem)
+        Me.Controls.Add(Me.lblWebCode)
+        Me.Controls.Add(Me.lblWebCode_Text)
         Me.Controls.Add(Me.btnClearData)
         Me.Controls.Add(Me.lblData)
         Me.Controls.Add(Me.chkSerial)
@@ -711,7 +810,7 @@ Partial Class frmMain
         Me.MainMenuStrip = Me.mnuPurp
         Me.MaximizeBox = False
         Me.Name = "frmMain"
-        Me.Text = "SkyReader-GUI ALPHA-1"
+        Me.Text = "SkyReader-GUI ALPHA-2"
         CType(Me.picHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpChecksums.ResumeLayout(False)
         Me.grpChecksums.PerformLayout()
@@ -734,6 +833,7 @@ Partial Class frmMain
         Me.mnuPurp.PerformLayout()
         Me.StatusPurp.ResumeLayout(False)
         Me.StatusPurp.PerformLayout()
+        Me.grpDebug.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -803,4 +903,13 @@ Partial Class frmMain
     Friend WithEvents lblData As Label
     Friend WithEvents btnClearData As Button
     Friend WithEvents tmrSkyKey As Timer
+    Friend WithEvents lblWebCode_Text As Label
+    Friend WithEvents lblWebCode As Label
+    Friend WithEvents lblSystem As Label
+    Friend WithEvents cmbSystem As ComboBox
+    Friend WithEvents btnTraps As Button
+    Friend WithEvents btnVehicles As Button
+	Friend WithEvents btnRaw As Button
+	Friend WithEvents btnCode As Button
+	Friend WithEvents grpDebug As GroupBox
 End Class

@@ -842,10 +842,10 @@ Public Class Figures
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Countdown" Then
                     'C20B
                     '0020
-                    CharacterID(0) = &H0
-                    CharacterID(1) = &H0
+                    CharacterID(0) = &HC2
+                    CharacterID(1) = &HB
                     CharacterVariant(0) = &H0
-                    CharacterVariant(1) = &H2
+                    CharacterVariant(1) = &H20
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Dark Blast Zone (Bottom)" Then
                     'Swap Character
                     'EC03
@@ -1008,7 +1008,7 @@ Public Class Figures
                     CharacterID(1) = &HB
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H20
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Grilla Drilla(Bottom)" Then
+                ElseIf frmMain.lstCharacters.SelectedItem Is "Grilla Drilla (Bottom)" Then
                     'Swap Character
                     'EF03
                     '0020
@@ -1020,7 +1020,7 @@ Public Class Figures
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Grilla Drilla (Top)" Then
                     'Swap Character
                     'D707
-                    '00 20
+                    '0020
                     CharacterID(0) = &HD7
                     CharacterID(1) = &H7
                     CharacterVariant(0) = &H0
@@ -1139,7 +1139,7 @@ Public Class Figures
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Legendary Night Shift (Bottom)" Then
                     'Swap Character
                     'F403
-                    '0324
+                    '0304
                     CharacterID(0) = &HF4
                     CharacterID(1) = &H3
                     CharacterVariant(0) = &H3
@@ -1197,7 +1197,7 @@ Public Class Figures
                 ElseIf frmMain.lstCharacters.SelectedItem Is "LightCore Star Strike" Then
                     'C10B
                     '0622
-                    CharacterID(0) = &H61
+                    CharacterID(0) = &HC1
                     CharacterID(1) = &HB
                     CharacterVariant(0) = &H6
                     CharacterVariant(1) = &H22
@@ -1228,7 +1228,7 @@ Public Class Figures
                     'DA07
                     '0020
                     CharacterID(0) = &HDA
-                    CharacterID(1) = &H0
+                    CharacterID(1) = &H7
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H20
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Mega Ram Spyro" Then
@@ -1515,8 +1515,8 @@ Public Class Figures
                     '0020
                     CharacterID(0) = &HDF
                     CharacterID(1) = &H7
-                    CharacterVariant(0) = &H20
-                    CharacterVariant(1) = &H0
+                    CharacterVariant(0) = &H0
+                    CharacterVariant(1) = &H20
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Wind-Up" Then
                     'C30B
                     '0020
@@ -2258,9 +2258,9 @@ Public Class Figures
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H41
                 ElseIf frmMain.lstCharacters.SelectedItem Is "E3 Hot Streak" Then
-                    '980C
+                    '970C
                     '0440
-                    CharacterID(0) = &H98
+                    CharacterID(0) = &H97
                     CharacterID(1) = &HC
                     CharacterVariant(0) = &H4
                     CharacterVariant(1) = &H40
@@ -2364,11 +2364,11 @@ Public Class Figures
                     CharacterVariant(1) = &H40
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Hurricane Jet-Vac" Then
                     '550D
-                    '0345
+                    '0041
                     CharacterID(0) = &H55
                     CharacterID(1) = &HD
-                    CharacterVariant(0) = &H3
-                    CharacterVariant(1) = &H45
+                    CharacterVariant(0) = &H0
+                    CharacterVariant(1) = &H41
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Instant Dive Bomber" Then
 
                     blnNoCode = True
@@ -2704,6 +2704,7 @@ Public Class Figures
                     CharacterID(0) = &H6A
                     CharacterID(1) = &H2
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Candy-Coated Chopscotch" Then
+                    '5B02
                     CharacterVariant(0) = &H15
                     CharacterVariant(1) = &H54
                     CharacterID(0) = &H5B
@@ -2714,7 +2715,8 @@ Public Class Figures
                     CharacterID(0) = &H72
                     CharacterID(1) = &H2
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Chompy Mage" Then
-                    'blnNoCode = True
+                    '6D02
+                    'Chompy Mage
                     CharacterID(0) = &H6D
                     CharacterID(1) = &H2
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Chopscotch" Then
@@ -2732,19 +2734,16 @@ Public Class Figures
                     CharacterVariant(1) = &H54
                     CharacterID(0) = &H65
                     CharacterID(1) = &H2
-                    ' blnNoCode = True
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Dark King Pen" Then
                     CharacterVariant(0) = &H2
                     CharacterVariant(1) = &H54
                     CharacterID(0) = &H59
                     CharacterID(1) = &H2
-                    'blnNoCode = True
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Dark Wolfgang" Then
                     CharacterVariant(0) = &H2
                     CharacterVariant(1) = &H54
                     CharacterID(0) = &H66
                     CharacterID(1) = &H2
-                    'blnNoCode = True
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Dr. Krankcase" Then
                     '6202
                     'Dr.Krankcase
@@ -2760,7 +2759,6 @@ Public Class Figures
                     CharacterVariant(1) = &H54
                     CharacterID(0) = &H5F
                     CharacterID(1) = &H2
-                    'blnNoCode = True
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Ember" Then
                     '6002
                     'Ember
@@ -2786,10 +2784,12 @@ Public Class Figures
                     CharacterVariant(1) = &H54
                     CharacterID(0) = &H6C
                     CharacterID(1) = &H2
-                    'blnNoCode = True
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Heartbreaker Buckshot" Then
-
-                    blnNoCode = True
+                    CharacterVariant(0) = &HD
+                    CharacterVariant(1) = &H54
+                    CharacterID(0) = &H6A
+                    CharacterID(1) = &H2
+                    frmMain.SaldeStatus.Text = "WARNING: Expermential"
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Hood Sickle" Then
                     '6302
                     'Hood Sickle
@@ -3331,18 +3331,18 @@ Public Class Figures
                     '--Light--
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Beam Scream (Yawn)" Then
                     '1B30
-                    'D800
-                    CharacterID(0) = &HD8
+                    'DB00
+                    CharacterID(0) = &HDB
                     CharacterID(1) = &H0
                     CharacterVariant(0) = &H1B
                     CharacterVariant(1) = &H30
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Heavenly Hawk (Hawk)" Then
                     '0F30
-                    'D800
-                    CharacterID(0) = &HD8
-                    CharacterID(1) = &H0
-                    CharacterVariant(0) = &HF
-                    CharacterVariant(1) = &H30
+                    'DB00
+                    CharacterID(0) = &HF
+                    CharacterID(1) = &H30
+                    CharacterVariant(0) = &HDB
+                    CharacterVariant(1) = &H0
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Shining Ship (Rocket)" Then
                     '1530
                     'DB00
@@ -3389,7 +3389,7 @@ Public Class Figures
                     CharacterVariant(1) = &H30
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Spell Slapper (Totem)" Then
                     '1230
-                    'D200
+                    'D100
                     CharacterID(0) = &HD1
                     CharacterID(1) = &H0
                     CharacterVariant(0) = &H12
@@ -3941,7 +3941,7 @@ Public Class Figures
                 Case "0100"
                     'Series 2 Sonic Boom
                     frmMain.lstCharacters.SelectedItem = "Series 2 Sonic Boom"
-                Case "0100"
+                Case "1000"
                     'Series 2 Spyro
                     frmMain.lstCharacters.SelectedItem = "Series 2 Spyro"
                 Case "1A00"
@@ -4191,8 +4191,11 @@ Public Class Figures
                     'Fryno
                     frmMain.lstCharacters.SelectedItem = "Fryno"
                 Case "EF03"
-                    'Grilla Drilla(Bottom)
-                    frmMain.lstCharacters.SelectedItem = "Grilla Drilla(Bottom)"
+                    'Grilla Drilla (Bottom)
+                    frmMain.lstCharacters.SelectedItem = "Grilla Drilla (Bottom)"
+                Case "D707"
+                    'Grilla Drilla (Bottom)
+                    frmMain.lstCharacters.SelectedItem = "Grilla Drilla (Top)"
                 Case "C50B"
                     'Grim Creeper
                     frmMain.lstCharacters.SelectedItem = "Grim Creeper"
@@ -4487,7 +4490,7 @@ Public Class Figures
                 Case "C50B"
                     'LightCore Grim Creeper
                     frmMain.lstCharacters.SelectedItem = "LightCore Grim Creeper"
-                Case "BD0B"
+                Case "DB0B"
                     'LightCore Smolderdash
                     frmMain.lstCharacters.SelectedItem = "LightCore Smolderdash"
                 Case "C10B"
@@ -4858,6 +4861,7 @@ Public Class Figures
             End Select
         ElseIf Var = "0040" Then
             frmMain.cmbGame.SelectedIndex = 4
+            frmMain.BlnVehicle = True
             Select Case Fig
                 Case "A80C"
                     frmMain.lstCharacters.SelectedItem = "Barrel Blaster"
@@ -4919,6 +4923,7 @@ Public Class Figures
             End Select
         ElseIf Var = "0244" Then
             frmMain.cmbGame.SelectedIndex = 4
+            frmMain.BlnVehicle = True
             Select Case Fig
                 Case "A80C"
                     frmMain.lstCharacters.SelectedItem = "Dark Barrel Blaster"
@@ -4959,6 +4964,7 @@ Public Class Figures
             End Select
         ElseIf Var = "0440" Then
             frmMain.cmbGame.SelectedIndex = 4
+            frmMain.BlnVehicle = True
             Select Case Fig
                 Case "970C"
                     frmMain.lstCharacters.SelectedItem = "E3 Hot Streak"
@@ -5015,6 +5021,7 @@ Public Class Figures
             End Select
         ElseIf Var = "0344" Then
             frmMain.cmbGame.SelectedIndex = 4
+            frmMain.BlnVehicle = True
             Select Case Fig
                 Case "A40C"
                     frmMain.lstCharacters.SelectedItem = "Legendary Sun Runner"
@@ -5130,6 +5137,7 @@ Public Class Figures
         ElseIf Var = "0330" Then
             'Toucan Trap Vars
             frmMain.cmbGame.SelectedIndex = 7
+            frmMain.blnTrap = True
             Select Case Fig
                 Case "D400"
                     frmMain.lstCharacters.SelectedItem = "Breezy Bird (Toucan)"
@@ -5140,6 +5148,7 @@ Public Class Figures
             End Select
         ElseIf Var = "1030" Then
             'Snake Trap Vars
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D400"
@@ -5150,6 +5159,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Spooky Snake (Snake)"
             End Select
         ElseIf Var = "1830" Then
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 'Sword Trap Vars
@@ -5163,6 +5173,7 @@ Public Class Figures
         ElseIf Var = "0630" Then
             frmMain.cmbGame.SelectedIndex = 7
             'Jughead Trap Vars
+            frmMain.blnTrap = True
             Select Case Fig
                 Case "D400"
                     frmMain.lstCharacters.SelectedItem = "Drafty Decanter (Jughead)"
@@ -5170,6 +5181,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Flood Flask (Jughead)"
             End Select
         ElseIf Var = "1130" Then
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             'Screamer Trap Vars
             Select Case Fig
@@ -5179,6 +5191,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Scorching Stopper (Screamer)"
             End Select
         ElseIf Var = "0E30" Then
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 'Hourglas Trap Vars
@@ -5191,6 +5204,7 @@ Public Class Figures
             End Select
         ElseIf Var = "1A30" Then
             'Handstand Trap Vars
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "DA00"
@@ -5202,6 +5216,7 @@ Public Class Figures
             End Select
         ElseIf Var = "1430" Then
             'Spider Trap Vars
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "DA00"
@@ -5209,6 +5224,7 @@ Public Class Figures
             End Select
         ElseIf Var = "0430" Then
             'Orb Trap Vars
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D800"
@@ -5217,12 +5233,14 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Spirit Sphere (Orb)"
             End Select
         ElseIf Var = "0434" Then
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
-                Case "D500"
+                Case "0434"
                     frmMain.lstCharacters.SelectedItem = "Legendary Spirit Sphere (Orb)"
             End Select
         ElseIf Var = "0A30" Then
+            frmMain.blnTrap = True
             'Hammer Trap Figures
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
@@ -5232,6 +5250,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Weed Whacker (Hammer)"
             End Select
         ElseIf Var = "1230" Then
+            frmMain.blnTrap = True
             'Totem Trap Figures
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
@@ -5239,12 +5258,15 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Spinning Sandstorm (Totem)"
                 Case "D700"
                     frmMain.lstCharacters.SelectedItem = "Searing Spinner (Totem)"
-                Case "D200"
+                Case "D100"
                     frmMain.lstCharacters.SelectedItem = "Spell Slapper (Totem)"
             End Select
         ElseIf Var = "1B30" Then
             'Yawn Trap Figures
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
+            Application.DoEvents()
+
             Select Case Fig
                 Case "D700"
                     frmMain.lstCharacters.SelectedItem = "Blazing Belch (Yawn)"
@@ -5255,6 +5277,7 @@ Public Class Figures
             End Select
         ElseIf Var = "0530" Then
             'Torch Trap Figures
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D700"
@@ -5264,6 +5287,7 @@ Public Class Figures
             End Select
         ElseIf Var = "0130" Then
             'Septer/Log Holder/Tiki Trap Figures
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D700"
@@ -5277,6 +5301,7 @@ Public Class Figures
             End Select
         ElseIf Var = "1730" Then
             'Captain's Hat Trap Figures
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D700"
@@ -5292,6 +5317,7 @@ Public Class Figures
             End Select
         ElseIf Var = "1530" Then
             'Rocket Trap Figures
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "DB00"
@@ -5301,6 +5327,7 @@ Public Class Figures
             End Select
         ElseIf Var = "0B30" Then
             'Axe Trap Figures
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D200"
@@ -5311,6 +5338,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Aqua Axe (Axe)"
             End Select
         ElseIf Var = "0830" Then
+            frmMain.blnTrap = True
             'Skull Trap Figures
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
@@ -5321,6 +5349,7 @@ Public Class Figures
             End Select
         ElseIf Var = "0C30" Then
             'Hand Trap Figures
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D600"
@@ -5330,6 +5359,7 @@ Public Class Figures
             End Select
         ElseIf Var = "1630" Then
             'Flying Helmet Trap Figures
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D600"
@@ -5338,6 +5368,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Frost Helm (Flying Helmet)"
             End Select
         ElseIf Var = "0730" Then
+            frmMain.blnTrap = True
             'Angel Trap Figures
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
@@ -5347,30 +5378,35 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Soaking Staff (Angel)"
             End Select
         ElseIf Var = "0230" Then
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D300"
                     frmMain.lstCharacters.SelectedItem = "Wet Walter (Log Holder)"
             End Select
         ElseIf Var = "0930" Then
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D600"
                     frmMain.lstCharacters.SelectedItem = "Factory Flower (Scepter)"
             End Select
         ElseIf Var = "0634" Then
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D300"
                     frmMain.lstCharacters.SelectedItem = "Legendary Flood Flask (Jughead)"
             End Select
         ElseIf Var = "0834" Then
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "D500"
                     frmMain.lstCharacters.SelectedItem = "Legendary Spectral Skull (Skull)"
             End Select
         ElseIf Var = "1E30" Then
+            frmMain.blnTrap = True
             frmMain.cmbGame.SelectedIndex = 7
             Select Case Fig
                 Case "DC00"
@@ -5378,9 +5414,19 @@ Public Class Figures
             End Select
         ElseIf Var = "1F35" Then
             frmMain.cmbGame.SelectedIndex = 7
+            frmMain.blnTrap = True
             Select Case Fig
                 Case "DC00"
                     frmMain.lstCharacters.SelectedItem = "Ultimate Kaos Trap"
+            End Select
+        ElseIf Var = "D800" Then
+            frmMain.cmbGame.SelectedIndex = 7
+            frmMain.blnTrap = True
+            Select Case Fig
+                Case "1B30"
+                    frmMain.lstCharacters.SelectedItem = "Beam Scream (Yawn)"
+                Case "0F30"
+                    frmMain.lstCharacters.SelectedItem = "Heavenly Hawk (Hawk)"
             End Select
         ElseIf Var = "1750" Then
             frmMain.cmbGame.SelectedIndex = 5
@@ -5399,6 +5445,19 @@ Public Class Figures
             Select Case Fig
                 Case "EB00"
                     frmMain.lstCharacters.SelectedItem = "Silver Mystery Chest"
+            End Select
+        ElseIf Var = "D400" Then
+            frmMain.cmbGame.SelectedIndex = 7
+            frmMain.blnTrap = True
+            Select Case Fig
+                Case "D400"
+                    frmMain.lstCharacters.SelectedItem = "Breezy Bird (Toucan)"
+            End Select
+        ElseIf Var = "0304" Then
+            frmMain.cmbGame.SelectedIndex = 2
+            Select Case Fig
+                Case "F403"
+                    frmMain.lstCharacters.SelectedItem = "Legendary Night Shift (Bottom)"
             End Select
         ElseIf Var = "0350" Then
             frmMain.cmbGame.SelectedIndex = 5

@@ -120,12 +120,12 @@ Partial Friend NotInheritable Class Hid
 		As Boolean
 	End Function
 
-    <DllImport("hid.dll", SetLastError:=True)> _
-    Shared Sub HidD_GetHidGuid _
-        (ByRef HidGuid As System.Guid)
-    End Sub
+	<DllImport("hid.dll", SetLastError:=True)>
+	Shared Sub HidD_GetHidGuid _
+		(ByRef HidGuid As Guid)
+	End Sub
 
-    <DllImport("hid.dll", SetLastError:=True)> _
+	<DllImport("hid.dll", SetLastError:=True)> _
     Shared Function HidD_GetNumInputBuffers _
         (ByVal HidDeviceObject As SafeFileHandle, _
         ByRef NumberBuffers As Int32) _

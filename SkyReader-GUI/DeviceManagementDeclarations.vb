@@ -58,7 +58,7 @@ Partial Friend NotInheritable Class DeviceManagement
 
 	Friend Structure SP_DEVICE_INTERFACE_DATA
 		Friend cbSize As Int32
-		Friend InterfaceClassGuid As System.Guid
+		Friend InterfaceClassGuid As Guid
 		Friend Flags As Int32
 		Friend Reserved As IntPtr
 	End Structure
@@ -70,20 +70,20 @@ Partial Friend NotInheritable Class DeviceManagement
 
 	Friend Structure SP_DEVINFO_DATA
 		Friend cbSize As Int32
-		Friend ClassGuid As System.Guid
+		Friend ClassGuid As Guid
 		Friend DevInst As Int32
 		Friend Reserved As Int32
 	End Structure
 
 	<DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)> Shared Function RegisterDeviceNotification _
-	 (ByVal hRecipient As IntPtr, _
-	 ByVal NotificationFilter As IntPtr, _
+	 (ByVal hRecipient As IntPtr,
+	 ByVal NotificationFilter As IntPtr,
 	 ByVal Flags As Int32) _
 	 As IntPtr
 	End Function
 
 	<DllImport("setupapi.dll", SetLastError:=True)> Shared Function SetupDiCreateDeviceInfoList _
-	 (ByRef ClassGuid As System.Guid, _
+	 (ByRef ClassGuid As Guid,
 	 ByVal hwndParent As Int32) _
 	 As Int32
 	End Function
@@ -94,18 +94,18 @@ Partial Friend NotInheritable Class DeviceManagement
 	End Function
 
 	<DllImport("setupapi.dll", SetLastError:=True)> Shared Function SetupDiEnumDeviceInterfaces _
-	 (ByVal DeviceInfoSet As IntPtr, _
-	 ByVal DeviceInfoData As IntPtr, _
-	 ByRef InterfaceClassGuid As System.Guid, _
-	 ByVal MemberIndex As Int32, _
+	 (ByVal DeviceInfoSet As IntPtr,
+	 ByVal DeviceInfoData As IntPtr,
+	 ByRef InterfaceClassGuid As Guid,
+	 ByVal MemberIndex As Int32,
 	 ByRef DeviceInterfaceData As SP_DEVICE_INTERFACE_DATA) _
 	 As Boolean
 	End Function
 
 	<DllImport("setupapi.dll", CharSet:=CharSet.Auto, SetLastError:=True)> Shared Function SetupDiGetClassDevs _
-	  (ByRef ClassGuid As System.Guid, _
-	  ByVal Enumerator As IntPtr, _
-	  ByVal hwndParent As IntPtr, _
+	  (ByRef ClassGuid As Guid,
+	  ByVal Enumerator As IntPtr,
+	  ByVal hwndParent As IntPtr,
 	  ByVal Flags As Int32) _
 	 As IntPtr
 	End Function

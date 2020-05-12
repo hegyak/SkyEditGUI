@@ -24,7 +24,7 @@ Module hidControl
 
         Dim deviceFound As Boolean
         Dim devicePathName(127) As String
-        Dim hidGuid As System.Guid
+        Dim hidGuid As Guid
         Dim memberIndex As Int32
         Dim myProductID As Int32
         Dim myVendorID As Int32

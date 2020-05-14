@@ -6,6 +6,9 @@ Public Class CRC16CCITT
 	Public Shared Bytes() As Byte = Nothing
 	Public Shared Counter As Integer = 0
 
+	Public Shared Area0TypeTrapCRC As String
+	Public Shared Area1TypeTrapCRC As String
+
 	Public Shared Area0Type4CRC As String
 	Public Shared Area1Type4CRC As String
 
@@ -156,7 +159,14 @@ Public Class CRC16CCITT
 		VerifyArea0Type4()
 		VerifyArea1Type4()
 	End Sub
+#Region " Traps "
+	Public Shared Function CalculateArea0TypeTrap() As String
 
+	End Function
+	Public Shared Function CalculateArea1TypeTrap() As String
+
+	End Function
+#End Region
 #Region " Type 4 "
 	Public Shared Function CalculateArea0Type4() As String
 		'Generate Type 1 Checksum
@@ -208,7 +218,6 @@ Public Class CRC16CCITT
 		ReDim Bytes(63)
 		Do Until LoopCounter = 32
 			Bytes(Counter) = Buffer.GetByte(WholeFile, &H2D0 + LoopCounter)
-
 			Counter += 1
 			LoopCounter += 1
 		Loop

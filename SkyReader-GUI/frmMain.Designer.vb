@@ -96,8 +96,8 @@ Partial Class frmMain
         Me.btnTraps = New System.Windows.Forms.Button()
         Me.btnVehicles = New System.Windows.Forms.Button()
         Me.btnRaw = New System.Windows.Forms.Button()
-        Me.btnCode = New System.Windows.Forms.Button()
         Me.grpDebug = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.picHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpChecksums.SuspendLayout()
         CType(Me.picSerial, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -734,7 +734,7 @@ Partial Class frmMain
         '
         'btnVehicles
         '
-        Me.btnVehicles.Location = New System.Drawing.Point(274, 438)
+        Me.btnVehicles.Location = New System.Drawing.Point(193, 467)
         Me.btnVehicles.Name = "btnVehicles"
         Me.btnVehicles.Size = New System.Drawing.Size(75, 23)
         Me.btnVehicles.TabIndex = 61
@@ -750,25 +750,25 @@ Partial Class frmMain
         Me.btnRaw.Text = "Raw Write"
         Me.btnRaw.UseVisualStyleBackColor = True
         '
-        'btnCode
-        '
-        Me.btnCode.Location = New System.Drawing.Point(6, 63)
-        Me.btnCode.Name = "btnCode"
-        Me.btnCode.Size = New System.Drawing.Size(75, 23)
-        Me.btnCode.TabIndex = 63
-        Me.btnCode.Text = "Code"
-        Me.btnCode.UseVisualStyleBackColor = True
-        '
         'grpDebug
         '
+        Me.grpDebug.Controls.Add(Me.Button1)
         Me.grpDebug.Controls.Add(Me.btnRaw)
-        Me.grpDebug.Controls.Add(Me.btnCode)
         Me.grpDebug.Location = New System.Drawing.Point(436, 36)
         Me.grpDebug.Name = "grpDebug"
         Me.grpDebug.Size = New System.Drawing.Size(200, 454)
         Me.grpDebug.TabIndex = 64
         Me.grpDebug.TabStop = False
         Me.grpDebug.Text = "Debug"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(79, 117)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 63
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'frmMain
         '
@@ -810,7 +810,7 @@ Partial Class frmMain
         Me.MainMenuStrip = Me.mnuPurp
         Me.MaximizeBox = False
         Me.Name = "frmMain"
-        Me.Text = "SkyReader-GUI ALPHA-2"
+        Me.Text = "SkyReader-GUI ALPHA-4"
         CType(Me.picHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpChecksums.ResumeLayout(False)
         Me.grpChecksums.PerformLayout()
@@ -909,7 +909,7 @@ Partial Class frmMain
     Friend WithEvents cmbSystem As ComboBox
     Friend WithEvents btnTraps As Button
     Friend WithEvents btnVehicles As Button
-	Friend WithEvents btnRaw As Button
-	Friend WithEvents btnCode As Button
-	Friend WithEvents grpDebug As GroupBox
+    Friend WithEvents btnRaw As Button
+    Friend WithEvents grpDebug As GroupBox
+    Friend WithEvents Button1 As Button
 End Class

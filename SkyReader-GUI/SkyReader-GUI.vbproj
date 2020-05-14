@@ -103,6 +103,12 @@
     <Compile Include="Exp.vb" />
     <Compile Include="Figures.vb" />
     <Compile Include="FileIODeclarations.vb" />
+    <Compile Include="frmCrystal.Designer.vb">
+      <DependentUpon>frmCrystal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCrystal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmLog.Designer.vb">
       <DependentUpon>frmLog.vb</DependentUpon>
     </Compile>
@@ -157,6 +163,9 @@
     <Compile Include="Web_Code.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmCrystal.resx">
+      <DependentUpon>frmCrystal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLog.resx">
       <DependentUpon>frmLog.vb</DependentUpon>
       <SubType>Designer</SubType>

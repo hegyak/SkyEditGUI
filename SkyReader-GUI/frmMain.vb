@@ -528,15 +528,15 @@ Public Class frmMain
     'NOTE:
     'This is missing all the Creation Crystals, Some of Imaginators, and a few other characters
     Private Sub lstCharacters_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstCharacters.SelectedIndexChanged
-        Try
-            If lstCharacters.SelectedItem.ToString.StartsWith("--") Then
-                lstCharacters.SelectedIndex += 1
-                Exit Sub
-            End If
-            Figures.SelectFigure()
-        Catch ex As Exception
-
-        End Try
+        If blnClear = True Then
+            blnClear = False
+            Exit Sub
+        End If
+        If lstCharacters.SelectedItem.ToString.StartsWith("--") Then
+            lstCharacters.SelectedIndex += 1
+            Exit Sub
+        End If
+        Figures.SelectFigure()
     End Sub
     'Set the Bytes here, whenever I figure it out.
     Private Sub cmbHat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbHat.SelectedIndexChanged
@@ -544,6 +544,10 @@ Public Class frmMain
     End Sub
     Private Sub cmbGame_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbGame.SelectedIndexChanged
         lstCharacters.Items.Clear()
+        chkSerial.Enabled = True
+        Enable_Controls()
+        lblArea1Type4.Text = "Area 0 Type 4"
+        lblArea2Type4.Text = "Area 1 Type 4"
         'cmbHat.Items.Clear()
         'btnWrite.Enabled = True
         If cmbGame.SelectedIndex = 0 Then
@@ -573,16 +577,24 @@ Public Class frmMain
             Figures.Imaginators()
             'Hats.TrapTeamHats()
             'btnWrite.Enabled = False
+            chkSerial.Checked = False
+            chkSerial.Enabled = False
             'Exit Sub
         ElseIf cmbGame.SelectedIndex = 6 Then
             'Items
             'We don't populate the Hats since items and Traps can't wear them.
             Figures.Items()
+            Disable_Controls()
         ElseIf cmbGame.SelectedIndex = 7 Then
             'Traps
+            Disable_Controls()
             Figures.Traps()
+            'Traps, do not use Type 4 CRC
+            lblArea1Type4.Text = "Area 0 Trap CRC"
+            lblArea2Type4.Text = "Area 1 Trap CRC"
         ElseIf cmbGame.SelectedIndex = 8 Then
             'Adventure Packs
+            Disable_Controls()
             Figures.AdventurePacks()
         End If
         'Only the main games get Hats.
@@ -591,6 +603,30 @@ Public Class frmMain
         End If
 
         'lstCharacters.SelectedIndex = 0
+    End Sub
+    'Hats don't need these Controls.
+    Sub Disable_Controls()
+        numGold.Enabled = False
+        numLevel.Enabled = False
+        numHeroicChallenges.Enabled = False
+        numHero.Enabled = False
+        radLeft.Enabled = False
+        radNone.Enabled = False
+        radRight.Enabled = False
+        cmbHat.Enabled = False
+        txtName.Text = ""
+        txtName.Enabled = False
+    End Sub
+    Sub Enable_Controls()
+        numGold.Enabled = True
+        numLevel.Enabled = True
+        numHeroicChallenges.Enabled = True
+        numHero.Enabled = True
+        radLeft.Enabled = True
+        radNone.Enabled = True
+        radRight.Enabled = True
+        cmbHat.Enabled = True
+        txtName.Enabled = True
     End Sub
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SaldeStatus.Text = "Ready"
@@ -619,23 +655,33 @@ Public Class frmMain
         If (dialog.ShowDialog = DialogResult.OK) Then
             Dim NewFile As String = dialog.FileName
 
-
-            'Figures.EditCharacterIDVariant()
-            Figures.EditCharacterIDVariant()
-            Challenges.WriteChallenges()
-            Exp.WriteEXP()
-            Gold.WriteGold()
-            Hero.WriteHero()
-            Nickname.SetNickname()
-            Hats.WriteHats()
-            System_ID.WriteSystem()
-            If numLevel.Value >= 10 Then
-                Skills.WriteSkillPath()
+            If chkSerial.Checked = True Then
+                CRC16CCITT.GenerateNewSerial()
             End If
+            Figures.EditCharacterIDVariant()
+            'We need to not break Traps if Saving a trap.
+            If blnTrap = False Then
+                Challenges.WriteChallenges()
+                Exp.WriteEXP()
+                Gold.WriteGold()
+                Hero.WriteHero()
+                Nickname.SetNickname()
+                Hats.WriteHats()
+                If numLevel.Value >= 10 Then
+                    Skills.WriteSkillPath()
+                End If
+            End If
+
+            System_ID.WriteSystem()
+
             'In theory, this will fix any issues with the Edited Dumps.
             Figures.SetArea0AndArea1()
+            'This corrects the Access Control Blocks and the Imaginator Byte checks
+            Figures.Fixing_Bytes()
             'Fix the Checksums.
             CRC16CCITT.WriteCheckSums()
+            'I need to Calculate Trap Checksums differently.
+            'And Gen 6 Crystals too.
             ReEncrypt()
             fs = New FileStream(NewFile, FileMode.OpenOrCreate)
             fs.Write(WholeFile, 0, WholeFile.Length)
@@ -660,18 +706,22 @@ Public Class frmMain
             If chkSerial.Checked = True Then
                 CRC16CCITT.GenerateNewSerial()
             End If
-            'Figures.EditCharacterIDVariant()
             Figures.EditCharacterIDVariant()
-            Challenges.WriteChallenges()
-            Exp.WriteEXP()
-            Gold.WriteGold()
-            Hero.WriteHero()
-            Nickname.SetNickname()
-            Hats.WriteHats()
-            System_ID.WriteSystem()
-            If numLevel.Value >= 10 Then
-                Skills.WriteSkillPath()
+            'We need to not break Traps if Saving a trap.
+            If blnTrap = False Then
+                Challenges.WriteChallenges()
+                Exp.WriteEXP()
+                Gold.WriteGold()
+                Hero.WriteHero()
+                Nickname.SetNickname()
+                Hats.WriteHats()
+                If numLevel.Value >= 10 Then
+                    Skills.WriteSkillPath()
+                End If
             End If
+
+            System_ID.WriteSystem()
+
             'In theory, this will fix any issues with the Edited Dumps.
             Figures.SetArea0AndArea1()
             'This corrects the Access Control Blocks and the Imaginator Byte checks
@@ -698,6 +748,9 @@ Public Class frmMain
     Public Shared blnAccess As Boolean = False
     Public Shared BlnPortalUsed As Boolean = False
     Private Sub ReadSkylanderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReadSkylanderToolStripMenuItem.Click
+        bgReadPortal.RunWorkerAsync()
+    End Sub
+    Private Sub BgReadPortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgReadPortal.DoWork
         'reads skylander data from the portal
         Dim timeout As Integer
         Dim readBlock As Integer
@@ -743,20 +796,25 @@ Public Class frmMain
             MessageBox.Show("Error.  Invalid Control Blocks found.")
             Exit Sub
         End If
-        SaldeStatus.Text = "Figure Read from Portal"
-        LoadData()
+
         BlnPortalUsed = True
     End Sub
-    Private Sub BgReadPortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgReadPortal.DoWork
-
-
-    End Sub
     Private Sub bgReadPortal_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgReadPortal.RunWorkerCompleted
-
-        'Decrypt()
+        SaldeStatus.Text = "Figure Read from Portal"
+        LoadData()
     End Sub
     Private Sub WriteSkylanderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WriteSkylanderToolStripMenuItem.Click
+        '
+        bgWritePortal.RunWorkerAsync()
+    End Sub
 
+    Private Sub BgWritePortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgWritePortal.DoWork
+        SaldeStatus.Text = "Writing to Portal"
+        If bgWritePortal.IsBusy Then
+            SaldeStatus.Text = "Still Writing to Portal"
+            Exit Sub
+        End If
+        'write data to skylander in portal
         Portal_Write()
     End Sub
     Sub Portal_Write()
@@ -766,13 +824,11 @@ Public Class frmMain
         End If
         'We actually need to SET Data here
         Write_Data()
+        'We need to Encrypt the Array Before we write
         ReEncrypt()
         'Magic.
         'write data to skylander in portal
         Dim writeBlock As Integer
-
-        'We need to Encrypt the Array Before we write
-
         'reset portal
         outRepoBytes(1) = &H52  'R
         outputReport(portalHandle, outRepoBytes)
@@ -792,29 +848,16 @@ Public Class frmMain
             'we get the bytes from the data array and put out the report, we need to wait a bit before sending another write report too
             Array.Copy(WholeFile, writeBlock * 16, outRepoBytes, 4, 16)
             outputReport(portalHandle, outRepoBytes)
-
             Thread.Sleep(100)
             writeBlock = writeBlock + 1
         Loop While writeBlock <= &H3F 'Last Block
-
-        ' Decrypt()
         SaldeStatus.Text = "Save Completed to portal"
-
-
-    End Sub
-    Private Sub BgWritePortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgWritePortal.DoWork
-        SaldeStatus.Text = "Writing to Portal"
-        If bgWritePortal.IsBusy Then
-            SaldeStatus.Text = "Still Writing to Portal"
-            Exit Sub
-        End If
-        'write data to skylander in portal
-        bgWritePortal.RunWorkerAsync()
     End Sub
 
     Private Sub bgWritePortal_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgWritePortal.RunWorkerCompleted
         SaldeStatus.Text = "Figure written to Portal"
-        ' Decrypt()
+        'We Decrypt the Figure's data again because it had to be written encrypted but we edit decrypted data.
+        Decrypt()
     End Sub
 
     'I may want see/check for a Swap Force Figure.
@@ -973,7 +1016,9 @@ Public Class frmMain
         End If
     End Sub
 
+    Dim blnClear As Boolean = False
     Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+        blnClear = True
         Array.Clear(WholeFile, 0, WholeFile.Length)
         'LoadData()
         lstCharacters.SelectedIndex = -1
@@ -1007,87 +1052,12 @@ Public Class frmMain
         lblData.Text = "Head: " & WholeFile(&H10).ToString("X2") + WholeFile(&H11).ToString("X2") & " Variant: " & WholeFile(&H1C).ToString("X2") + WholeFile(&H1D).ToString("X2")
     End Sub
 
-    Private Sub btnlstCount_Click(sender As Object, e As EventArgs)
-        MessageBox.Show(lstCharacters.Items.Count)
-    End Sub
 
-    Private Sub BtnSpeedSave_Click(sender As Object, e As EventArgs)
-        'MessageBox.Show("Var: " & Figures.Var)
-        'MessageBox.Show("Fig: " & Figures.Fig)
-
-        'Exit Sub
-        'If Figures.Var = "0000" Then
-        'MessageBox.Show("Var Error")
-        'Exit Sub
-        'End If
-        'If Figures.Fig = "0000" Then
-        'MessageBox.Show("Fig Error")
-        'Exit Sub
-        'End If
-        'Dim NewFile As String = "G:\Card\" & lstCharacters.SelectedItem & ".bin"
-        'DO NOT FORGET THIS
-        'If chkSerial.Checked = True Then
-        'CRC16CCITT.GenerateNewSerial()
-        'End If
-        'MessageBox.Show(Figures.)
-        'Figures.EditCharacterIDVariant()
-        'Figures.EditCharacterIDVariant()
-        'Challenges.WriteChallenges()
-        'Exp.WriteEXP()
-        'Gold.WriteGold()
-        'Hero.WriteHero()
-        'Nickname.SetNickname()
-        'Hats.WriteHats()
-        'If numLevel.Value >= 10 Then
-        ' Skills.WriteSkillPath()
-        'End If
-        'In theory, this will fix any issues with the Edited Dumps.
-        'Figures.SetArea0AndArea1()
-        'Fix the Checksums.
-        'CRC16CCITT.WriteCheckSums()
-        'ReEncrypt()
-        'fs = New FileStream(NewFile, FileMode.OpenOrCreate)
-        'fs.Write(WholeFile, 0, WholeFile.Length)
-        'fs.Flush()
-        'fs.Close()
-        'cmbHat.SelectedIndex = 0
-        'numGold.Value = 0
-        'numHero.Value = 0
-        'numHeroicChallenges.Value = 0
-        'numLevel.Value = 1
-        'radNone.Checked = True
-        'txtName.Text = ""
-
-
-        'Dim delme As FileInfo = New FileInfo(File)
-        'If delme.Exists = True Then
-        'delme.Delete()
-        'MessageBox.Show("Del.")
-        'End If
-    End Sub
-
-    Private Sub BtnListWrite_Click(sender As Object, e As EventArgs)
-        Dim writer As New StreamWriter("G:\Card\All Traps.txt")
-        For Each it As String In lstCharacters.Items
-            writer.WriteLine(it)
-        Next
-
-        writer.Flush()
-        writer.Close()
-    End Sub
-
-    Private Sub BtnGame_Click(sender As Object, e As EventArgs)
-        MessageBox.Show(cmbGame.SelectedIndex)
-    End Sub
 
     Private Sub btnClearData_Click(sender As Object, e As EventArgs) Handles btnClearData.Click
         lblData.Text = "Data: "
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        MessageBox.Show(AES.Magic.Length)
-        MessageBox.Show(AES.Magic(0))
-    End Sub
 
     Private Sub tmrSkyKey_Tick(sender As Object, e As EventArgs) Handles tmrSkyKey.Tick
         DisableControls()
@@ -1128,35 +1098,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub btnCode_Click(sender As Object, e As EventArgs) Handles btnCode.Click
-        Dim wri As New StreamWriter("Tri.txt")
-        Dim ree As New StreamReader("Ree.txt")
-        Dim str As String
-        'Dim Spliter(1) As String
-        Dim hat As Integer = 3
-        Do Until ree.Peek = -1
-            str = ree.ReadLine
-            If str.StartsWith("'") Then
-                wri.WriteLine("        ElseIf Hat_Index = " & hat & " Then")
-                hat += 1
-            Else
-                wri.WriteLine(str)
-            End If
-
-            'str = str.Remove(0, 1)
-            'MessageBox.Show(str)
-            'Case &H0
-            'cmbVillianTrinket1.SelectedItem = "(None)"
-            'Exit Select
-            'Spliter = str.Split(") '")
-            'MessageBox.Show(Spliter(0))
-            'MessageBox.Show(Spliter(1))
-            'wri.WriteLine("Case &H" & Spliter(1))
-            'wri.WriteLine("cmbVillian1.SelectedItem =  !" & Spliter(2) & "!")
-            'wri.WriteLine("Exit Select")
-            'wri.WriteLine(Spliter(0))
-        Loop
-        wri.Flush()
-        wri.Close()
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        MessageBox.Show(lstCharacters.SelectedIndex)
     End Sub
 End Class

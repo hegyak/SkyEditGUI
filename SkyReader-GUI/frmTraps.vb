@@ -5881,21 +5881,33 @@ Public Class frmTraps
 	End Function
 
 	Sub Save_Name(Offset As Integer, Villian_Name As String)
+		'We Define Offset as an integer because it doesn't handle Hex Values and the array can stil be refrenced fully through Integer Values
+		'Blank Array
 		Dim Full_VilianName(29) As Byte
 		Full_VilianName = Encoding.Unicode.GetBytes(Villian_Name)
+		'We ReDim the array because it gets Shortened if the name is not using all characters (15).
+		'Yes, it's 29 because Unicode uses Two Bytes.
+		ReDim Preserve Full_VilianName(29)
 		Dim adder As Integer = 0
-		Do Until adder = 28
-			WholeFile(Offset) = Full_VilianName(adder)
-			Offset = Offset + 1
-			adder += 1
-		Loop
-		'Skip MiFare Block
-		Offset += 16
-		Do Until adder = 30
-			WholeFile(Offset) = Full_VilianName(adder)
-			Offset = Offset + 1
-			adder += 1
-		Loop
+		Try
+			Do Until adder = 28
+				WholeFile(Offset) = Full_VilianName(adder)
+				Offset = Offset + 1
+				adder += 1
+			Loop
+			'Skip MiFare Block
+			Offset += &H16
+			Do Until adder = 30
+				WholeFile(Offset) = Full_VilianName(adder)
+				Offset = Offset + 1
+				adder += 1
+			Loop
+		Catch ex As Exception
+			MessageBox.Show("EX: " & ex.ToString)
+			MessageBox.Show("WholeFile Offset: " & Offset & " WholeFile Length: " & WholeFile.Length)
+			MessageBox.Show("FullVillanName Length: " & Full_VilianName.Length)
+		End Try
+
 	End Sub
 
 	'if 0x80 = 01 and 0x90 is the same as 0x87 then Variant Villain?
@@ -6066,10 +6078,5 @@ Public Class frmTraps
 		MessageBox.Show("Hat ID: " & Hex(WholeFile(&H92)))
 		MessageBox.Show("Trinket ID: " & Hex(WholeFile(&H93)))
 
-	End Sub
-
-	Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-		'MessageBox.Show("!" & cmbVillian4.SelectedItem & "!")
-		'MessageBox.Show(txtVillian1Name.Text.Length)
 	End Sub
 End Class

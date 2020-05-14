@@ -1064,6 +1064,17 @@ Public Class frmVehicles
     End Sub
 
     Private Sub btnGoBack_Click(sender As Object, e As EventArgs) Handles btnGoBack.Click
-
+        Dim result As DialogResult
+        result = MessageBox.Show("Do you want to apply any changes made to this figure?", "Apply Changes?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+            Save()
+            'I need a way to load back the Main Form.
+            frmMain.Show()
+            Dispose()
+        Else
+            'Go back anyway.
+            frmMain.Show()
+            Dispose()
+        End If
     End Sub
 End Class

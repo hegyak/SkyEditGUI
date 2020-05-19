@@ -97,7 +97,9 @@ Partial Class frmMain
         Me.btnVehicles = New System.Windows.Forms.Button()
         Me.btnRaw = New System.Windows.Forms.Button()
         Me.grpDebug = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnArea = New System.Windows.Forms.Button()
+        Me.bgReadPortalDuo = New System.ComponentModel.BackgroundWorker()
+        Me.bgWritePortalDuo = New System.ComponentModel.BackgroundWorker()
         CType(Me.picHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpChecksums.SuspendLayout()
         CType(Me.picSerial, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -752,7 +754,7 @@ Partial Class frmMain
         '
         'grpDebug
         '
-        Me.grpDebug.Controls.Add(Me.Button1)
+        Me.grpDebug.Controls.Add(Me.btnArea)
         Me.grpDebug.Controls.Add(Me.btnRaw)
         Me.grpDebug.Location = New System.Drawing.Point(436, 36)
         Me.grpDebug.Name = "grpDebug"
@@ -761,14 +763,20 @@ Partial Class frmMain
         Me.grpDebug.TabStop = False
         Me.grpDebug.Text = "Debug"
         '
-        'Button1
+        'btnArea
         '
-        Me.Button1.Location = New System.Drawing.Point(79, 117)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 63
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnArea.Location = New System.Drawing.Point(6, 64)
+        Me.btnArea.Name = "btnArea"
+        Me.btnArea.Size = New System.Drawing.Size(75, 23)
+        Me.btnArea.TabIndex = 63
+        Me.btnArea.Text = "Area"
+        Me.btnArea.UseVisualStyleBackColor = True
+        '
+        'bgReadPortalDuo
+        '
+        '
+        'bgWritePortalDuo
+        '
         '
         'frmMain
         '
@@ -810,7 +818,7 @@ Partial Class frmMain
         Me.MainMenuStrip = Me.mnuPurp
         Me.MaximizeBox = False
         Me.Name = "frmMain"
-        Me.Text = "SkyReader-GUI ALPHA-4"
+        Me.Text = "SkyReader-GUI ALPHA-5"
         CType(Me.picHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpChecksums.ResumeLayout(False)
         Me.grpChecksums.PerformLayout()
@@ -911,5 +919,7 @@ Partial Class frmMain
     Friend WithEvents btnVehicles As Button
     Friend WithEvents btnRaw As Button
     Friend WithEvents grpDebug As GroupBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnArea As Button
+    Friend WithEvents bgReadPortalDuo As System.ComponentModel.BackgroundWorker
+    Friend WithEvents bgWritePortalDuo As System.ComponentModel.BackgroundWorker
 End Class

@@ -179,32 +179,6 @@ Public Class Figures
         'Read/Write Bytes
         '7F0F0869
 
-        'Imaginators requires these bytes to be 0x00.
-        'This will not cause problems for non-Imaginator figures.
-        Do Until Counter = 16
-            'NameBytes(Counter) = WholeFile(&HA0 + Counter)
-            WholeFile(&H20 + Counter) = &H0
-            Counter += 1
-        Loop
-        Counter = 0
-        Do Until Counter = 16
-            'NameBytes(Counter) = WholeFile(&HA0 + Counter)
-            WholeFile(&H40 + Counter) = &H0
-            Counter += 1
-        Loop
-        Counter = 0
-        Do Until Counter = 16
-            'NameBytes(Counter) = WholeFile(&HA0 + Counter)
-            WholeFile(&H220 + Counter) = &H0
-            Counter += 1
-        Loop
-        Counter = 0
-        Do Until Counter = 16
-            'NameBytes(Counter) = WholeFile(&HA0 + Counter)
-            WholeFile(&H3E0 + Counter) = &H0
-            Counter += 1
-        Loop
-        'WholeFile(&H20) = &H0
 
 
 

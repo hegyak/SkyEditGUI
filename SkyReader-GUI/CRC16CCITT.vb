@@ -29,6 +29,7 @@ Public Class CRC16CCITT
 	'Type 3 Checksum is Like Type 2, but add 14 BLOCKS of Zero at the end of the Array.
 	'Type 4 Checksum is The NEXT Four Blocks, after Type 2's Block.  It is like Type 2 except that the Inital Two bytes must be set to 06 and 01 respectively.
 
+	'Traps and Crystals use their own Unique things.  Because of course they do.
 	'Yes, Type 3 and Type 2 must be done first before we can do Type 1
 
 	Public Shared Function GetCrc() As String
@@ -80,36 +81,60 @@ Public Class CRC16CCITT
 		Dim NewChecksumArea1Type4(1) As Byte
 
 
-        'Since we are getting back a String value, I use the Function to convert that String back to a Byte Array.
-        'Type 0
-
-        CalculateSerialXOR()
+		'Since we are getting back a String value, I use the Function to convert that String back to a Byte Array.
+		'Type 0
+		CalculateSerialXOR()
         NewChecksumType0 = AES.StringToByteArray(CalculateType0)
 
-		'Type 3
-		NewChecksumArea0Type3 = AES.StringToByteArray(CalculateArea0Type3)
-		NewChecksumArea1Type3 = AES.StringToByteArray(CalculateArea1Type3)
+		If blnTrap = False Then
+			'Type 3
+			NewChecksumArea0Type3 = AES.StringToByteArray(CalculateArea0Type3)
+			NewChecksumArea1Type3 = AES.StringToByteArray(CalculateArea1Type3)
+
+			'Type 3
+			WholeFile(&H8A) = NewChecksumArea0Type3(0)
+			WholeFile(&H8B) = NewChecksumArea0Type3(1)
+
+			WholeFile(&H24A) = NewChecksumArea1Type3(0)
+			WholeFile(&H24B) = NewChecksumArea1Type3(1)
+		Else
+			NewChecksumArea0Type3 = AES.StringToByteArray(CalculateArea0TypeTrap)
+			NewChecksumArea1Type3 = AES.StringToByteArray(CalculateArea1TypeTrap)
+
+			WholeFile(&H8A) = NewChecksumArea0Type3(0)
+			WholeFile(&H8B) = NewChecksumArea0Type3(1)
+
+			WholeFile(&H24A) = NewChecksumArea1Type3(0)
+			WholeFile(&H24B) = NewChecksumArea1Type3(1)
+		End If
+
 
 		'Type 2
 		NewChecksumArea0Type2 = AES.StringToByteArray(CalculateArea0Type2)
 		NewChecksumArea1Type2 = AES.StringToByteArray(CalculateArea1Type2)
 
-		'Type 4
-		NewChecksumArea0Type4 = AES.StringToByteArray(CalculateArea0Type4)
-		NewChecksumArea1Type4 = AES.StringToByteArray(CalculateArea1Type4)
+		If blnTrap = False Then
+			'Type 4
+			NewChecksumArea0Type4 = AES.StringToByteArray(CalculateArea0Type4)
+			NewChecksumArea1Type4 = AES.StringToByteArray(CalculateArea1Type4)
+			'Type 4
+			WholeFile(&H110) = NewChecksumArea0Type4(0)
+			WholeFile(&H111) = NewChecksumArea0Type4(1)
+
+
+			WholeFile(&H2D0) = NewChecksumArea1Type4(0)
+			WholeFile(&H2D1) = NewChecksumArea1Type4(1)
+		Else
+			'Don't do anything related to Type 4 if we are working with a Trap.
+			'It will mangle/break the Third Villian in the Trap.
+		End If
+
 		'We Seek after we Generate the Checksum to set our position
 		'We do this because we have been ALL over this file.
 
 		'Type 0
 		WholeFile(&H1E) = NewChecksumType0(0)
 		WholeFile(&H1F) = NewChecksumType0(1)
-
-		'Type 3
-		WholeFile(&H8A) = NewChecksumArea0Type3(0)
-		WholeFile(&H8B) = NewChecksumArea0Type3(1)
-
-		WholeFile(&H24A) = NewChecksumArea1Type3(0)
-		WholeFile(&H24B) = NewChecksumArea1Type3(1)
 
 		'Type 2
 		WholeFile(&H8C) = NewChecksumArea0Type2(0)
@@ -118,12 +143,7 @@ Public Class CRC16CCITT
 		WholeFile(&H24C) = NewChecksumArea1Type2(0)
 		WholeFile(&H24D) = NewChecksumArea1Type2(1)
 
-		'Type 4
-		WholeFile(&H110) = NewChecksumArea0Type4(0)
-		WholeFile(&H111) = NewChecksumArea0Type4(1)
 
-		WholeFile(&H2D0) = NewChecksumArea1Type4(0)
-		WholeFile(&H2D1) = NewChecksumArea1Type4(1)
 
 		'We calculate Type 1 last because of it's reliance on the other checksums
 		'Type 1
@@ -160,11 +180,57 @@ Public Class CRC16CCITT
 		VerifyArea1Type4()
 	End Sub
 #Region " Traps "
+	'These may be wrong.
 	Public Shared Function CalculateArea0TypeTrap() As String
+		'Trap CRC is Special
+		Counter = 0
+		Dim LoopCounter As Integer = 0
+		'We ReDim to Resize the Byte Array
+		'Is this offsize?
+		ReDim Bytes(33)
 
+		Do Until LoopCounter = 32 'Gets 32 Bytes.
+			Bytes(Counter) = Buffer.GetByte(WholeFile, &H8D + LoopCounter)
+			'Save As
+			Counter += 1
+			LoopCounter += 1
+		Loop
+		'Skipping the MiFare Block and getting the last two Bytes
+		Dim TwoByte As Integer = 0
+		Do Until LoopCounter = 34
+			Bytes(Counter) = Buffer.GetByte(WholeFile, &HC0 + TwoByte)
+			Counter += 1
+			LoopCounter += 1
+			TwoByte += 1
+		Loop
+		Area0TypeTrapCRC = GetCrc().ToUpper
+
+		Return Area0TypeTrapCRC
 	End Function
 	Public Shared Function CalculateArea1TypeTrap() As String
+		'Trap CRC is Special
+		Counter = 0
+		Dim LoopCounter As Integer = 0
+		'We ReDim to Resize the Byte Array
+		'Is this offsize?
+		ReDim Bytes(33)
 
+		Do Until LoopCounter = 32 'Gets 32 Bytes.
+			Bytes(Counter) = Buffer.GetByte(WholeFile, &H24D + LoopCounter)
+			'Save As
+			Counter += 1
+			LoopCounter += 1
+		Loop
+		'Skipping the MiFare Block and getting the last two Bytes
+		Dim TwoByte As Integer = 0
+		Do Until LoopCounter = 34
+			Bytes(Counter) = Buffer.GetByte(WholeFile, &H280 + TwoByte)
+			Counter += 1
+			LoopCounter += 1
+			TwoByte += 1
+		Loop
+		Area1TypeTrapCRC = GetCrc().ToUpper
+		Return Area1TypeTrapCRC
 	End Function
 #End Region
 #Region " Type 4 "

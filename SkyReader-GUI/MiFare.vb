@@ -124,67 +124,67 @@ Public Class MiFare
         Loop
         If AES.ByteArrayToString(AccessControl01) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 01 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl02) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 02 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl03) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 03 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl04) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 04 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl05) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 05 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl06) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 06 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl07) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 07 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl08) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 08 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl09) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 09 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl10) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 10 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl11) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 11 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl12) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 12 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl13) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 13 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl14) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 14 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl15) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 15 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
         If AES.ByteArrayToString(AccessControl16) = "000000000000" Then
             frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & " Data Access Block 16 Invalid" & vbNewLine
-            blnAccess = True
+            Portal.blnAccess = True
         End If
 
         'Be Tidy

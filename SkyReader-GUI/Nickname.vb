@@ -59,8 +59,8 @@ Public Class Nickname
 		BadName1 = IsUnicode(FullName1)
 
 		If BadName1 = True And BadName0 = True Then
-            'MessageBox.Show("Loaded Encrypted Figure")
-            blnEncrypted = True
+			MessageBox.Show("Loaded Encrypted Figure")
+			blnEncrypted = True
 		End If
 
         If Area0 > Area1 Then

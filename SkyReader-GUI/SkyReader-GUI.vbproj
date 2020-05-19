@@ -96,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AES.vb" />
+    <Compile Include="Area.Designer.vb">
+      <DependentUpon>Area.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Area.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Challenges.vb" />
     <Compile Include="CRC16CCITT.vb" />
     <Compile Include="DeviceManagement.vb" />
@@ -151,6 +157,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Nickname.vb" />
+    <Compile Include="Portal.vb" />
     <Compile Include="Skills.vb" />
     <Compile Include="System_ID.vb" />
     <Compile Include="Test.vb" />
@@ -163,6 +170,9 @@
     <Compile Include="Web_Code.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Area.resx">
+      <DependentUpon>Area.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCrystal.resx">
       <DependentUpon>frmCrystal.vb</DependentUpon>
     </EmbeddedResource>

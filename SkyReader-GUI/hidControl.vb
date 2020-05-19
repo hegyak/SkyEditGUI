@@ -213,12 +213,12 @@ Module hidControl
             HidD_FlushQueue(hidHandle)
             frmMain.unlockPortalControls()
             frmMain.SaldeStatus.Text = "Portal Connected!"
-            frmMain.blnPortal = True
+            Portal.blnPortal = True
         Else
             ' The device wasn't detected.
             frmMain.lockPortalControls()
             frmMain.SaldeStatus.Text = "Portal Not Found!"
-            frmMain.blnPortal = False
+            Portal.blnPortal = False
         End If
 
         Return hidHandle

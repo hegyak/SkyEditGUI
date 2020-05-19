@@ -1,8 +1,6 @@
-﻿Imports System.IO
-Imports System.Threading
-Imports Microsoft.Win32.SafeHandles
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports SkyReader_GUI.DeviceManagement
-Imports System.ComponentModel
 'TODO Chart
 'Determine how Traps are Different.
 'Edit Trap contents.
@@ -118,9 +116,18 @@ Public Class frmMain
         br.Close() 'close the Binary Reader
         fs.Close() ' close the FileStream
         blnEncrypted = False
-        'Get Nickname
-        'We also verify if Encrypted or not.
-        Nickname.GetNickname()
+
+        'We can get the Figure's ID and Variant ID without Needing Encryption/Decryption
+        'Get Figure ID and Alter Ego/Variant
+        Figures.GetFigureID_AlterEgo_Variant()
+
+        'Because traps are writing bytes to where the Nickname would normally show up, we Do NOT attempt to Decrypt here.
+        If blnTrap = False Then
+            'Get Nickname
+            'We also verify if Encrypted or not.
+            Nickname.GetNickname()
+        End If
+
 
 
         If blnEncrypted = True Then
@@ -130,15 +137,16 @@ Public Class frmMain
         'Calculate the Checksums
         CRC16CCITT.Checksums()
 
-        'Get Figure ID and Alter Ego/Variant
-        Figures.GetFigureID_AlterEgo_Variant()
+
 
         'Determine if we are going to use Area 0 or Area 1
         Figures.Area0orArea1()
 
+        frmArea.Area0_1()
+
         'We break here if Vehicle, Crystal, Item or Trap
 
-        If blnVehicle = True Then
+        If BlnVehicle = True Then
             Dim frmVehicles As New frmVehicles
             frmVehicles.Show()
             Hide()
@@ -202,6 +210,7 @@ Public Class frmMain
         'Determine if we are going to use Area 0 or Area 1
         Figures.Area0orArea1()
 
+        frmArea.Area0_1()
         'Get the Current Skill Path.
         Skills.GetSkillPath()
 
@@ -548,6 +557,10 @@ Public Class frmMain
         Enable_Controls()
         lblArea1Type4.Text = "Area 0 Type 4"
         lblArea2Type4.Text = "Area 1 Type 4"
+        lblArea1Type3.Visible = True
+        lblArea2Type3.Visible = True
+        picArea0Type3.Visible = True
+        picArea1Type3.Visible = True
         'cmbHat.Items.Clear()
         'btnWrite.Enabled = True
         If cmbGame.SelectedIndex = 0 Then
@@ -590,8 +603,13 @@ Public Class frmMain
             Disable_Controls()
             Figures.Traps()
             'Traps, do not use Type 4 CRC
+            'Traps, do not use Type 3 CRC
             lblArea1Type4.Text = "Area 0 Trap CRC"
             lblArea2Type4.Text = "Area 1 Trap CRC"
+            lblArea1Type3.Visible = False
+            lblArea2Type3.Visible = False
+            picArea0Type3.Visible = False
+            picArea1Type3.Visible = False
         ElseIf cmbGame.SelectedIndex = 8 Then
             'Adventure Packs
             Disable_Controls()
@@ -739,282 +757,41 @@ Public Class frmMain
     Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
         Close()
     End Sub
-#End Region
 
 
-#Region " Portal Handling "
-    Dim outRepoBytes(32) As Byte
-    Dim inRepoBytes(32) As Byte
-    Public Shared blnAccess As Boolean = False
-    Public Shared BlnPortalUsed As Boolean = False
     Private Sub ReadSkylanderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReadSkylanderToolStripMenuItem.Click
-        bgReadPortal.RunWorkerAsync()
-    End Sub
-    Private Sub BgReadPortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgReadPortal.DoWork
-        'reads skylander data from the portal
-        Dim timeout As Integer
-        Dim readBlock As Integer
-        blnAccess = False
-
-        'Reset portal
-        outRepoBytes(1) = &H52 'R
-        outputReport(portalHandle, outRepoBytes)
-        Thread.Sleep(50)
-
-        outRepoBytes(1) = &H41 'A
-        outRepoBytes(2) = 1
-        outputReport(portalHandle, outRepoBytes)
-        Thread.Sleep(500)
-
-        'set to "read first skylander" mode
-        outRepoBytes(1) = &H51 'Q
-        outRepoBytes(2) = &H20 'First Figure
-        readBlock = 0
-        Do
-            'send report and flush hid queue
-            outRepoBytes(3) = readBlock
-            outputReport(portalHandle, outRepoBytes)
-            flushHid(portalHandle)
-            timeout = 0
-            Do
-                'read the reply from the portal, the portal replies between 1 and 2 reports later
-                inputReport(portalHandle, inRepoBytes)
-                timeout = timeout + 1
-            Loop Until inRepoBytes(1) <> &H53 Or timeout = 4  '53 is S
-
-            If timeout <> 4 Then
-                'if we didn't time out we copy the the bytes into the array
-                Array.Copy(inRepoBytes, 4, WholeFile, readBlock * 16, 16)
-                readBlock = readBlock + 1
-            End If
-            'MessageBox.Show(AES.ByteArrayToString(inRepoBytes).ToUpper)
-        Loop While readBlock <= &H3F  'Last Block
-        Save_Enc_ToolStripMenuItem.Enabled = True
-        Save_Dec_ToolStripMenuItem.Enabled = True
-        MiFare.Detection()
-        If blnAccess = True Then
-            MessageBox.Show("Error.  Invalid Control Blocks found.")
+        If bgReadPortal.IsBusy = False Then
+            bgReadPortal.RunWorkerAsync()
+        Else
+            SaldeStatus.Text = "Reading from Portal.  Please Wait."
             Exit Sub
         End If
-
-        BlnPortalUsed = True
-    End Sub
-    Private Sub bgReadPortal_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgReadPortal.RunWorkerCompleted
-        SaldeStatus.Text = "Figure Read from Portal"
-        LoadData()
     End Sub
     Private Sub WriteSkylanderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WriteSkylanderToolStripMenuItem.Click
-        '
         bgWritePortal.RunWorkerAsync()
-    End Sub
-
-    Private Sub BgWritePortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgWritePortal.DoWork
-        SaldeStatus.Text = "Writing to Portal"
-        If bgWritePortal.IsBusy Then
-            SaldeStatus.Text = "Still Writing to Portal"
-            Exit Sub
-        End If
-        'write data to skylander in portal
-        Portal_Write()
-    End Sub
-    Sub Portal_Write()
-        If lstCharacters.SelectedIndex = -1 Then
-            SaldeStatus.Text = "No figure Selected"
-            Exit Sub
-        End If
-        'We actually need to SET Data here
-        Write_Data()
-        'We need to Encrypt the Array Before we write
-        ReEncrypt()
-        'Magic.
-        'write data to skylander in portal
-        Dim writeBlock As Integer
-        'reset portal
-        outRepoBytes(1) = &H52  'R
-        outputReport(portalHandle, outRepoBytes)
-        Thread.Sleep(50)
-
-        outRepoBytes(1) = &H41  'A
-        outRepoBytes(2) = 1
-        outputReport(portalHandle, outRepoBytes)
-        Thread.Sleep(500)
-
-        'set to "write first skylander" mode
-        outRepoBytes(1) = &H57 'W
-        outRepoBytes(2) = &H20 'First Figure
-        writeBlock = 5
-        Do
-            outRepoBytes(3) = writeBlock
-            'we get the bytes from the data array and put out the report, we need to wait a bit before sending another write report too
-            Array.Copy(WholeFile, writeBlock * 16, outRepoBytes, 4, 16)
-            outputReport(portalHandle, outRepoBytes)
-            Thread.Sleep(100)
-            writeBlock = writeBlock + 1
-        Loop While writeBlock <= &H3F 'Last Block
-        SaldeStatus.Text = "Save Completed to portal"
-    End Sub
-
-    Private Sub bgWritePortal_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgWritePortal.RunWorkerCompleted
-        SaldeStatus.Text = "Figure written to Portal"
-        'We Decrypt the Figure's data again because it had to be written encrypted but we edit decrypted data.
-        Decrypt()
     End Sub
 
     'I may want see/check for a Swap Force Figure.
     Private Sub ReadSwapperOtherHalfToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReadSwapperOtherHalfToolStripMenuItem.Click
-        'Same as read from portal, but reads the second position skylander (usually the Top half of a Swap Force)
-        Dim timeout As Integer
-        Dim readBlock As Integer
-
-        outRepoBytes(1) = &H52 'R
-        outputReport(portalHandle, outRepoBytes)
-        Thread.Sleep(50)
-
-        outRepoBytes(1) = &H41 'A
-        outRepoBytes(2) = 1
-        outputReport(portalHandle, outRepoBytes)
-        Thread.Sleep(500)
-
-        outRepoBytes(1) = &H51 'Q
-        outRepoBytes(2) = &H21 'Second Figure
-        readBlock = 0
-        Do
-            outRepoBytes(3) = readBlock
-            outputReport(portalHandle, outRepoBytes)
-            flushHid(portalHandle)
-            timeout = 0
-            Do
-                inputReport(portalHandle, inRepoBytes)
-                timeout = timeout + 1
-            Loop Until inRepoBytes(1) <> &H53 Or timeout = 4 '53 is S
-
-            If timeout <> 4 Then
-                Array.Copy(inRepoBytes, 4, WholeFile, readBlock * 16, 16)
-                readBlock = readBlock + 1
-            End If
-
-        Loop While readBlock <= &H3F 'Final Block
-        LoadData()
+        If bgReadPortalDuo.IsBusy = False Then
+            bgReadPortalDuo.RunWorkerAsync()
+        Else
+            SaldeStatus.Text = "Reading from Portal.  Please Wait."
+            Exit Sub
+        End If
     End Sub
     Private Sub WriteSwapperOtherHalfToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WriteSwapperOtherHalfToolStripMenuItem.Click
-        'write data to skylander in portal
-        Dim writeBlock As Integer
-        'We actually need to SET Data here
-        Write_Data()
-        'We need to Encrypt the Array Before we write
-        ReEncrypt()
-        'reset portal
-        outRepoBytes(1) = &H52  'R
-        outputReport(portalHandle, outRepoBytes)
-        Thread.Sleep(50)
-
-        outRepoBytes(1) = &H41  'A
-        outRepoBytes(2) = 1
-        outputReport(portalHandle, outRepoBytes)
-        Thread.Sleep(500)
-
-        'set to "write first skylander" mode
-        outRepoBytes(1) = &H57 'W
-        outRepoBytes(2) = &H21 'Second Figure
-        writeBlock = 5
-
-        'I need to look into this further
-        'I need to and Write ALL bytes/Blocks
-        Do
-            outRepoBytes(3) = writeBlock
-            'we get the bytes from the data array and put out the report, we need to wait a bit before sending another write report too
-
-            Array.Copy(WholeFile, writeBlock * 16, outRepoBytes, 4, 16)
-            outputReport(portalHandle, outRepoBytes)
-            Thread.Sleep(100)
-            writeBlock = writeBlock + 1
-        Loop While writeBlock <= &H3F 'Last Block
-
-        Decrypt()
-        SaldeStatus.Text = "Save Completed to portal"
+        bgWritePortalDuo.RunWorkerAsync()
     End Sub
-    Dim portalHandle As SafeFileHandle
-    'Connect to the Portal, using HID
+
     Private Sub ConnectToPortalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConnectToPortalToolStripMenuItem.Click
-        portalHandle = FindThePortal()
+        Portal.portalHandle = FindThePortal()
     End Sub
 
-    'Disable the Portal Menu Controls except for Connect.
-    'This is done when the Portal is Removed
-    Public Sub lockPortalControls()
-        DisablePortalControls()
-    End Sub
-    Sub DisableControls()
-        'btnClearData.Enabled = False
-        'btnReset.Enabled = False
-        Save_Enc_ToolStripMenuItem.Enabled = False
-        DisablePortalControls()
-    End Sub
-    Sub DisablePortalControls()
-        ReadSkylanderToolStripMenuItem.Enabled = False
-        WriteSkylanderToolStripMenuItem.Enabled = False
-        ReadSwapperOtherHalfToolStripMenuItem.Enabled = False
-        WriteSwapperOtherHalfToolStripMenuItem.Enabled = False
+    Private Sub tmrSkyKey_Tick(sender As Object, e As EventArgs) Handles tmrSkyKey.Tick
+        DisableControls()
     End Sub
 
-    Public Sub unlockPortalControls()
-        'SaldeStatus.Text = "Unlocked"
-        ReadSkylanderToolStripMenuItem.Enabled = True
-        WriteSkylanderToolStripMenuItem.Enabled = True
-        ReadSwapperOtherHalfToolStripMenuItem.Enabled = True
-        WriteSwapperOtherHalfToolStripMenuItem.Enabled = True
-    End Sub
-    Public Shared blnPortal As Boolean = False
-    'This is to catch if the portal is removed
-    Protected Overrides Sub WndProc(ByRef m As Message)
-
-        If m.Msg = WM_DEVICECHANGE Then
-            If (m.WParam.ToInt32 = DBT_DEVICEREMOVECOMPLETE) Then
-
-                ' If WParam contains DBT_DEVICEREMOVAL, a device has been removed.
-                ' Find out if it's the device we're communicating with.
-
-                If checkDevice(m) Then
-                    lockPortalControls()
-                    SaldeStatus.Text = "Portal Removed!"
-                    DisablePortalControls()
-                    blnPortal = False
-                    tmrPortal.Enabled = True
-                End If
-
-            End If
-        End If
-        MyBase.WndProc(m)
-    End Sub
-#End Region
-    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles btnReset.Click
-
-        Dim result As Integer = MessageBox.Show("Are you sure you want to Reset this Figure?", "Reset Figure?", MessageBoxButtons.YesNo)
-        If result = DialogResult.No Then
-            'Do nothing
-        ElseIf result = DialogResult.Yes Then
-            cmbHat.SelectedIndex = 0
-            numGold.Value = 0
-            numLevel.Value = 1
-            numHeroicChallenges.Value = 0
-            numHero.Value = 0
-            radNone.Checked = True
-            Write_Data()
-        End If
-    End Sub
-    Dim tmrFail As Integer = 0
-    Private Sub TmrPortal_Tick(sender As Object, e As EventArgs) Handles tmrPortal.Tick
-
-        If blnPortal = False Then
-            portalHandle = FindThePortal()
-        ElseIf blnPortal = True Then
-            tmrPortal.Enabled = False
-            tmrFail += 1
-        End If
-        If tmrFail = 10 Then
-            tmrPortal.Enabled = False
-        End If
-    End Sub
 
     Dim blnClear As Boolean = False
     Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
@@ -1043,6 +820,125 @@ Public Class frmMain
         picArea1Type3.BackColor = Color.Yellow
         picArea1Type4.BackColor = Color.Yellow
         lblWebCode.Text = ""
+        frmArea.Clear()
+    End Sub
+#End Region
+
+#Region "Portal Handling"
+    'This is to catch if the portal is removed
+    Protected Overrides Sub WndProc(ByRef m As Message)
+        If m.Msg = WM_DEVICECHANGE Then
+            If (m.WParam.ToInt32 = DBT_DEVICEREMOVECOMPLETE) Then
+                ' If WParam contains DBT_DEVICEREMOVAL, a device has been removed.
+                ' Find out if it's the device we're communicating with.
+                If checkDevice(m) Then
+                    lockPortalControls()
+                    SaldeStatus.Text = "Portal Removed!"
+                    DisablePortalControls()
+                    Portal.blnPortal = False
+                    tmrPortal.Enabled = True
+                End If
+            End If
+        End If
+        MyBase.WndProc(m)
+    End Sub
+
+    Private Sub BgReadPortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgReadPortal.DoWork
+        Portal.ReadPortal()
+    End Sub
+
+    Private Sub bgReadPortal_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgReadPortal.RunWorkerCompleted
+        SaldeStatus.Text = "Figure Read from Portal"
+        LoadData()
+    End Sub
+
+    Private Sub BgWritePortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgWritePortal.DoWork
+        SaldeStatus.Text = "Writing to Portal"
+        If bgWritePortal.IsBusy Then
+            SaldeStatus.Text = "Still Writing to Portal"
+            Exit Sub
+        End If
+        'write data to skylander in portal
+        Portal.Portal_Write()
+    End Sub
+
+    Private Sub bgWritePortal_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgWritePortal.RunWorkerCompleted
+        SaldeStatus.Text = "Figure written to Portal"
+        'We Decrypt the Figure's data again because it had to be written encrypted but we edit decrypted data.
+        Decrypt()
+    End Sub
+
+    Private Sub bgReadPortalDuo_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgReadPortalDuo.DoWork
+        Portal.Portal_Duo_Read()
+    End Sub
+    Private Sub bgReadPortalDuo_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgReadPortalDuo.RunWorkerCompleted
+        SaldeStatus.Text = "Figure Read from Portal"
+        LoadData()
+    End Sub
+
+    Private Sub bgWritePortalDuo_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgWritePortalDuo.DoWork
+        SaldeStatus.Text = "Writing to Portal"
+        If bgWritePortalDuo.IsBusy Then
+            SaldeStatus.Text = "Still Writing to Portal"
+            Exit Sub
+        End If
+        'write data to skylander in portal
+    End Sub
+    'Disable the Portal Menu Controls except for Connect.
+    'This is done when the Portal is Removed
+    Public Sub lockPortalControls()
+        DisablePortalControls()
+    End Sub
+    Sub DisableControls()
+        'btnClearData.Enabled = False
+        'btnReset.Enabled = False
+        Save_Enc_ToolStripMenuItem.Enabled = False
+        DisablePortalControls()
+    End Sub
+    Sub DisablePortalControls()
+        ReadSkylanderToolStripMenuItem.Enabled = False
+        WriteSkylanderToolStripMenuItem.Enabled = False
+        ReadSwapperOtherHalfToolStripMenuItem.Enabled = False
+        WriteSwapperOtherHalfToolStripMenuItem.Enabled = False
+    End Sub
+
+    Public Sub unlockPortalControls()
+        'SaldeStatus.Text = "Unlocked"
+        ReadSkylanderToolStripMenuItem.Enabled = True
+        WriteSkylanderToolStripMenuItem.Enabled = True
+        ReadSwapperOtherHalfToolStripMenuItem.Enabled = True
+        WriteSwapperOtherHalfToolStripMenuItem.Enabled = True
+    End Sub
+
+    Dim tmrFail As Integer = 0
+    Private Sub TmrPortal_Tick(sender As Object, e As EventArgs) Handles tmrPortal.Tick
+
+        If Portal.blnPortal = False Then
+            Portal.portalHandle = FindThePortal()
+        ElseIf Portal.blnPortal = True Then
+            tmrPortal.Enabled = False
+            tmrFail += 1
+        End If
+        If tmrFail = 10 Then
+            tmrPortal.Enabled = False
+        End If
+    End Sub
+#End Region
+
+    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles btnReset.Click
+
+        Dim result As Integer = MessageBox.Show("Are you sure you want to Reset this Figure?", "Reset Figure?", MessageBoxButtons.YesNo)
+        If result = DialogResult.No Then
+            'Do nothing
+        ElseIf result = DialogResult.Yes Then
+            cmbHat.SelectedIndex = 0
+            numGold.Value = 0
+            numLevel.Value = 1
+            numHeroicChallenges.Value = 0
+            numHero.Value = 0
+            radNone.Checked = True
+            Write_Data()
+        End If
     End Sub
 
     Private Sub btnShowData_Click(sender As Object, e As EventArgs) Handles btnShowData.Click
@@ -1056,15 +952,6 @@ Public Class frmMain
 
     Private Sub btnClearData_Click(sender As Object, e As EventArgs) Handles btnClearData.Click
         lblData.Text = "Data: "
-    End Sub
-
-
-    Private Sub tmrSkyKey_Tick(sender As Object, e As EventArgs) Handles tmrSkyKey.Tick
-        DisableControls()
-    End Sub
-
-    Private Sub btnWebCode_Click(sender As Object, e As EventArgs)
-
     End Sub
 
     Private Sub btnTraps_Click(sender As Object, e As EventArgs) Handles btnTraps.Click
@@ -1090,15 +977,19 @@ Public Class frmMain
                 .Title = "Save Decrypted Dump",
                 .FileName = lstCharacters.SelectedItem
             }
+
         If (dialog.ShowDialog = DialogResult.OK) Then
             Dim NewFile As String = dialog.FileName
             fs = New FileStream(NewFile, FileMode.OpenOrCreate)
             fs.Write(WholeFile, 0, WholeFile.Length)
             fs.Flush()
+            fs.Close()
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        MessageBox.Show(lstCharacters.SelectedIndex)
+    ReadOnly frmArea As New frmArea
+    Private Sub btnArea_Click(sender As Object, e As EventArgs) Handles btnArea.Click
+        frmArea.Visible = True
+        frmArea.Show()
     End Sub
 End Class

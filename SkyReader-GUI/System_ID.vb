@@ -48,8 +48,6 @@ Public Class System_ID
         End Select
     End Sub
     Shared Sub System2()
-        'We are using System 2's value
-        'MessageBox.Show("Two: " & System_Two(0))
         Select Case System_Two(0)
             Case 0
                 frmMain.cmbSystem.SelectedItem = "Wii U"
@@ -66,6 +64,10 @@ Public Class System_ID
         End Select
     End Sub
     Shared Sub WriteSystem()
+        If blnTrap = True Then
+            'Do NOT write Data for traps
+            Exit Sub
+        End If
         Select Case frmMain.cmbSystem.SelectedIndex
             Case 0
                 'Wii

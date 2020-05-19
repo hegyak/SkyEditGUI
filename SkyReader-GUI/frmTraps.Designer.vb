@@ -1,27 +1,27 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmTraps
-	Inherits System.Windows.Forms.Form
+    Inherits System.Windows.Forms.Form
 
-	'Form overrides dispose to clean up the component list.
-	<System.Diagnostics.DebuggerNonUserCode()>
-	Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-		Try
-			If disposing AndAlso components IsNot Nothing Then
-				components.Dispose()
-			End If
-		Finally
-			MyBase.Dispose(disposing)
-		End Try
-	End Sub
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()>
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
 
-	'Required by the Windows Form Designer
-	Private components As System.ComponentModel.IContainer
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
 
-	'NOTE: The following procedure is required by the Windows Form Designer
-	'It can be modified using the Windows Form Designer.  
-	'Do not modify it using the code editor.
-	<System.Diagnostics.DebuggerStepThrough()>
-	Private Sub InitializeComponent()
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()>
+    Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTraps))
         Me.grpVillian1 = New System.Windows.Forms.GroupBox()
         Me.lblQuanity1 = New System.Windows.Forms.Label()
@@ -34,59 +34,60 @@ Partial Class frmTraps
         Me.chkVillian1Evolved = New System.Windows.Forms.CheckBox()
         Me.lblVillian1Name = New System.Windows.Forms.Label()
         Me.txtVillian1Name = New System.Windows.Forms.TextBox()
-        Me.lblVillian = New System.Windows.Forms.Label()
+        Me.lblVillian1 = New System.Windows.Forms.Label()
         Me.cmbVillian1 = New System.Windows.Forms.ComboBox()
         Me.btnIDTrap = New System.Windows.Forms.Button()
         Me.grpVillian2 = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cmbVillian2Trinket = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblVillian2hat = New System.Windows.Forms.Label()
         Me.cmbVillian2Hat = New System.Windows.Forms.ComboBox()
         Me.chkVillian2Evolved = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtVillian2Name = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lblVillian2 = New System.Windows.Forms.Label()
         Me.cmbVillian2 = New System.Windows.Forms.ComboBox()
         Me.grpVillian3 = New System.Windows.Forms.GroupBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.cmbVillian3Trinket = New System.Windows.Forms.ComboBox()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.lblVillian3hat = New System.Windows.Forms.Label()
         Me.cmbVillian3Hat = New System.Windows.Forms.ComboBox()
         Me.chkVillian3Evolved = New System.Windows.Forms.CheckBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtVillian3Name = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
+        Me.lblVillian3 = New System.Windows.Forms.Label()
         Me.cmbVillian3 = New System.Windows.Forms.ComboBox()
         Me.grpVillian4 = New System.Windows.Forms.GroupBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.cmbVillian4Trinket = New System.Windows.Forms.ComboBox()
-        Me.Label13 = New System.Windows.Forms.Label()
+        Me.lblVillian4hat = New System.Windows.Forms.Label()
         Me.cmbVillian4Hat = New System.Windows.Forms.ComboBox()
         Me.chkVillian4Evolved = New System.Windows.Forms.CheckBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtVillian4Name = New System.Windows.Forms.TextBox()
-        Me.Label15 = New System.Windows.Forms.Label()
+        Me.lblVillian4 = New System.Windows.Forms.Label()
         Me.cmbVillian4 = New System.Windows.Forms.ComboBox()
         Me.grpVillan5 = New System.Windows.Forms.GroupBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.cmbVillian5Trinket = New System.Windows.Forms.ComboBox()
-        Me.Label18 = New System.Windows.Forms.Label()
+        Me.lblVillian5hat = New System.Windows.Forms.Label()
         Me.cmbVillian5Hat = New System.Windows.Forms.ComboBox()
         Me.chkVillian5Evolved = New System.Windows.Forms.CheckBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.txtVillian5Name = New System.Windows.Forms.TextBox()
-        Me.Label20 = New System.Windows.Forms.Label()
+        Me.lblVillian5 = New System.Windows.Forms.Label()
         Me.cmbVillian5 = New System.Windows.Forms.ComboBox()
         Me.grpVillian6 = New System.Windows.Forms.GroupBox()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.cmbVillian6Trinket = New System.Windows.Forms.ComboBox()
-        Me.Label23 = New System.Windows.Forms.Label()
+        Me.lblVillian6hat = New System.Windows.Forms.Label()
         Me.cmbVillian6Hat = New System.Windows.Forms.ComboBox()
         Me.chkVillian6Evolved = New System.Windows.Forms.CheckBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.txtVillian6Name = New System.Windows.Forms.TextBox()
-        Me.Label25 = New System.Windows.Forms.Label()
+        Me.lblVillian6 = New System.Windows.Forms.Label()
         Me.cmbVillian6 = New System.Windows.Forms.ComboBox()
+        Me.btnVil = New System.Windows.Forms.Button()
         Me.grpVillian1.SuspendLayout()
         CType(Me.numVillianCount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpVillian2.SuspendLayout()
@@ -108,7 +109,7 @@ Partial Class frmTraps
         Me.grpVillian1.Controls.Add(Me.chkVillian1Evolved)
         Me.grpVillian1.Controls.Add(Me.lblVillian1Name)
         Me.grpVillian1.Controls.Add(Me.txtVillian1Name)
-        Me.grpVillian1.Controls.Add(Me.lblVillian)
+        Me.grpVillian1.Controls.Add(Me.lblVillian1)
         Me.grpVillian1.Controls.Add(Me.cmbVillian1)
         Me.grpVillian1.Location = New System.Drawing.Point(12, 12)
         Me.grpVillian1.Name = "grpVillian1"
@@ -157,7 +158,7 @@ Partial Class frmTraps
         'cmbVillian1Trinket
         '
         Me.cmbVillian1Trinket.FormattingEnabled = True
-        Me.cmbVillian1Trinket.Items.AddRange(New Object() {"(None)", "T-Bone's Lucky Tie", "Batterson's Bubble", "Dark Water Daisy", "Vote For Cyclops", "Ramses' Dragon Horn", "Iris' Iris", "Kuckoo Kazoo", "Ramses' Rune", "Ullysses Uniclops", "Billy Bison", "Stealth Elf's Gift", "Lizard Lilly", "Pirate Pinwheel", "Bubble Blower", "Medal of Heroism", "Blobber's Medal of Courage", "Medal of Valliance", "Medal of Gallantry", "Medal of Mettle", "Winged Medal of Bravery", "Seadog Seashell", "Snuckles' Sunflower", "Teddy Cyclops", "Goo Factory Gear", "Elemental Opal", "Elemental Radiant", "Elemental Diamond", "Cyclops Spinner", "Wiliken Windmill", "Time Town Ticker", "Big Bow of Doom", "Mabu's Medallion", "Spyro's Shield"})
+        Me.cmbVillian1Trinket.Items.AddRange(New Object() {"(None)", "Batterson's Bubble", "Big Bow of Doom", "Billy Bison", "Blobber's Medal of Courage", "Bubble Blower", "Cyclops Spinner", "Dark Water Daisy", "Elemental Diamond", "Elemental Opal", "Elemental Radiant", "Goo Factory Gear", "Iris' Iris", "Kuckoo Kazoo", "Lizard Lilly", "Mabu's Medallion", "Medal of Gallantry", "Medal of Heroism", "Medal of Mettle", "Medal of Valliance", "Pirate Pinwheel", "Ramses' Dragon Horn", "Ramses' Rune", "Seadog Seashell", "Snuckles' Sunflower", "Spyro's Shield", "Stealth Elf's Gift", "T-Bone's Lucky Tie", "Teddy Cyclops", "Time Town Ticker", "Ullysses Uniclops", "Vote For Cyclops", "Wiliken Windmill", "Winged Medal of Bravery"})
         Me.cmbVillian1Trinket.Location = New System.Drawing.Point(146, 94)
         Me.cmbVillian1Trinket.Name = "cmbVillian1Trinket"
         Me.cmbVillian1Trinket.Size = New System.Drawing.Size(121, 21)
@@ -175,7 +176,7 @@ Partial Class frmTraps
         'cmbVillian1Hat
         '
         Me.cmbVillian1Hat.FormattingEnabled = True
-        Me.cmbVillian1Hat.Items.AddRange(New Object() {"(None)", "Alarm Clock Hat", "Bat Hat", "Batter Up Hat", "Beetle Hat", "Bellhop Hat", "Bobby", "Brain Hat", "Brainiac Hat", "Bronze Arkeyan Helm", "Bucket Hat", "Candle Hat", "Candy Cane Hat", "Carnival Hat", "Ceiling Fan Hat", "Classic Pot Hat", "Clown Bowler Hat", "Clown Classic Hat", "Coconut Hat", "Colander Hat", "Core Of Light Hat", "Cornucopia Hat", "Crazy Light Bulb Hat", "Croissant Hat", "Cubano Hat", "Cycling Hat", "Daisy Crown", "Dark Helm", "Desert Crown", "Dragon Skull", "Eggshell Hat", "Extreme Viking Hat", "Eye of Kaos Hat", "Firefly Jar", "Flight Attendant Hat", "Garrison Hat", "Generalissimo", "Gold Arkeyan Helm", "Gondolier Hat", "Hedgehog Hat", "Horns Be With You Hat", "Hunting Hat", "Imperial Hat", "Juicer Hat", "Kepi Hat", "Kokoshnik", "Light Bulb Hat", "Lighthouse Beacon Hat", "Lil' Elf Hat", "Medic Hat", "Melon Hat", "Metal Fin Hat", "Miniature Skylands Hat", "Molekin Mountain Hat", "Monday Hat", "Mountie Hat", "Night Cap", "Nurse Hat", "Octavius Cloptimus Hat", "Old-Time Movie Hat", "Outback Hat", "Palm Hat", "Paperboy Hat", "Parrot Nest", "Planet Hat", "Pork Pie Hat", "Pyramid Hat", "Radar Hat", "Rainbow Hat", "Rubber Glove Hat", "Rude Boy Hat", "Rugby Hat", "Scooter Hat", "Shadow Ghost Hat", "Sherpa Hat", "Shower Cap", "Silver Arkeyan Helm", "Skipper Hat", "Sleuth Hat", "Steampunk Hat", "Storm Hat", "Synchronized Swimming Cap", "Tin Foil Hat", "Toucan Hat", "Trash Lid", "Tribal Hat", "Turtle Hat", "Volcano Island Hat", "Weather Vane Hat", "William Tell Hat"})
+        Me.cmbVillian1Hat.Items.AddRange(New Object() {"(None)", "Alarm Clock Hat", "Bat Hat", "Batter Up Hat", "Beetle Hat", "Bellhop Hat", "Bobby", "Brain Hat", "Brainiac Hat", "Bronze Arkeyan Helm", "Bucket Hat", "Candle Hat", "Candy Cane Hat", "Carnival Hat", "Ceiling Fan Hat", "Classic Pot Hat", "Clown Bowler Hat", "Clown Classic Hat", "Coconut Hat", "Colander Hat", "Core Of Light Hat", "Cornucopia Hat", "Crazy Light Bulb Hat", "Croissant Hat", "Cubano Hat", "Cycling Hat", "Daisy Crown", "Dark Helm", "Desert Crown", "Dragon Skull", "Eggshell Hat", "Extreme Viking Hat", "Eye of Kaos Hat", "Firefly Jar", "Flight Attendant Hat", "Garrison Hat", "Generalissimo Hat", "Gold Arkeyan Helm", "Gondolier Hat", "Hedgehog Hat", "Horns Be With You Hat", "Hunting Hat", "Imperial Hat", "Juicer Hat", "Kepi Hat", "Kokoshnik", "Light Bulb Hat", "Lighthouse Beacon Hat", "Lil' Elf Hat", "Medic Hat", "Melon Hat", "Metal Fin Hat", "Miniature Skylands Hat", "Molekin Mountain Hat", "Monday Hat", "Mountie Hat", "Night Cap", "Nurse Hat", "Octavius Cloptimus Hat", "Old-Time Movie Hat", "Outback Hat", "Palm Hat", "Paperboy Hat", "Parrot Nest", "Planet Hat", "Pork Pie Hat", "Pyramid Hat", "Radar Hat", "Rainbow Hat", "Rubber Glove Hat", "Rude Boy Hat", "Rugby Hat", "Scooter Hat", "Shadow Ghost Hat", "Sherpa Hat", "Shower Cap", "Silver Arkeyan Helm", "Skipper Hat", "Sleuth Hat", "Steampunk Hat", "Storm Hat", "Synchronized Swimming Cap", "Tin Foil Hat", "Toucan Hat", "Trash Lid", "Tribal Hat", "Turtle Hat", "Volcano Island Hat", "Weather Vane Hat", "William Tell Hat"})
         Me.cmbVillian1Hat.Location = New System.Drawing.Point(146, 40)
         Me.cmbVillian1Hat.Name = "cmbVillian1Hat"
         Me.cmbVillian1Hat.Size = New System.Drawing.Size(121, 21)
@@ -208,19 +209,19 @@ Partial Class frmTraps
         Me.txtVillian1Name.Size = New System.Drawing.Size(121, 20)
         Me.txtVillian1Name.TabIndex = 2
         '
-        'lblVillian
+        'lblVillian1
         '
-        Me.lblVillian.AutoSize = True
-        Me.lblVillian.Location = New System.Drawing.Point(49, 24)
-        Me.lblVillian.Name = "lblVillian"
-        Me.lblVillian.Size = New System.Drawing.Size(34, 13)
-        Me.lblVillian.TabIndex = 1
-        Me.lblVillian.Text = "Villian"
+        Me.lblVillian1.AutoSize = True
+        Me.lblVillian1.Location = New System.Drawing.Point(49, 24)
+        Me.lblVillian1.Name = "lblVillian1"
+        Me.lblVillian1.Size = New System.Drawing.Size(34, 13)
+        Me.lblVillian1.TabIndex = 1
+        Me.lblVillian1.Text = "Villian"
         '
         'cmbVillian1
         '
         Me.cmbVillian1.FormattingEnabled = True
-        Me.cmbVillian1.Items.AddRange(New Object() {"(None)", "Chompy Mage", "Dr. Crankcase", "Wolfgang", "Chef Pepper Jack", "Nightshade", "Luminous", "Golden Queen", "Dreamcatcher", "Gulper", "Kaos", "Cuckoo Clocker", "Buzzer Beak", "Shield Shredder", "Cross Crow", "Bone Chompy", "Brawl and Chain", "Bomb Shell", "Masker Mind", "Chill Bill", "Sheep Creep", "Shrednaught", "Chomp Chest", "Broccoli Guy", "Rage Mage", "Lob Goblin", "Chompy", "Fisticuffs", "Trolling Thunder", "Hood Sickle", "Bruiser Cruiser", "Brawlrus", "Tussle Sprout", "Krankenstein", "Scrap Shooter", "Slobber Trap", "Grinnade", "Bad Juju", "Blaster-Tron", "Tae Kwon Crow", "Painyata", "Smoke Scream", "Eye Five", "Grave Clobber", "Threatpack", "Mab Lobs", "Eye Scream"})
+        Me.cmbVillian1.Items.AddRange(New Object() {"(None)", "Bad Juju", "Blaster-Tron", "Bomb Shell", "Bone Chompy", "Brawl and Chain", "Brawlrus", "Broccoli Guy", "Bruiser Cruiser", "Buzzer Beak", "Chef Pepper Jack", "Chill Bill", "Chomp Chest", "Chompy", "Chompy Mage", "Cross Crow", "Cuckoo Clocker", "Dr. Crankcase", "Dreamcatcher", "Eye Five", "Eye Scream", "Fisticuffs", "Golden Queen", "Grave Clobber", "Grinnade", "Gulper", "Hood Sickle", "Kaos", "Krankenstein", "Lob Goblin", "Luminous", "Mab Lobs", "Masker Mind", "Nightshade", "Painyata", "Rage Mage", "Scrap Shooter", "Sheep Creep", "Shield Shredder", "Shrednaught", "Slobber Trap", "Smoke Scream", "Tae Kwon Crow", "Threatpack", "Trolling Thunder", "Tussle Sprout", "Wolfgang"})
         Me.cmbVillian1.Location = New System.Drawing.Point(6, 40)
         Me.cmbVillian1.Name = "cmbVillian1"
         Me.cmbVillian1.Size = New System.Drawing.Size(121, 21)
@@ -239,12 +240,12 @@ Partial Class frmTraps
         '
         Me.grpVillian2.Controls.Add(Me.Label2)
         Me.grpVillian2.Controls.Add(Me.cmbVillian2Trinket)
-        Me.grpVillian2.Controls.Add(Me.Label3)
+        Me.grpVillian2.Controls.Add(Me.lblVillian2hat)
         Me.grpVillian2.Controls.Add(Me.cmbVillian2Hat)
         Me.grpVillian2.Controls.Add(Me.chkVillian2Evolved)
         Me.grpVillian2.Controls.Add(Me.Label4)
         Me.grpVillian2.Controls.Add(Me.txtVillian2Name)
-        Me.grpVillian2.Controls.Add(Me.Label5)
+        Me.grpVillian2.Controls.Add(Me.lblVillian2)
         Me.grpVillian2.Controls.Add(Me.cmbVillian2)
         Me.grpVillian2.Location = New System.Drawing.Point(325, 12)
         Me.grpVillian2.Name = "grpVillian2"
@@ -265,25 +266,25 @@ Partial Class frmTraps
         'cmbVillian2Trinket
         '
         Me.cmbVillian2Trinket.FormattingEnabled = True
-        Me.cmbVillian2Trinket.Items.AddRange(New Object() {"(None)", "T-Bone's Lucky Tie", "Batterson's Bubble", "Dark Water Daisy", "Vote For Cyclops", "Ramses' Dragon Horn", "Iris' Iris", "Kuckoo Kazoo", "Ramses' Rune", "Ullysses Uniclops", "Billy Bison", "Stealth Elf's Gift", "Lizard Lilly", "Pirate Pinwheel", "Bubble Blower", "Medal of Heroism", "Blobber's Medal of Courage", "Medal of Valliance", "Medal of Gallantry", "Medal of Mettle", "Winged Medal of Bravery", "Seadog Seashell", "Snuckles' Sunflower", "Teddy Cyclops", "Goo Factory Gear", "Elemental Opal", "Elemental Radiant", "Elemental Diamond", "Cyclops Spinner", "Wiliken Windmill", "Time Town Ticker", "Big Bow of Doom", "Mabu's Medallion", "Spyro's Shield"})
+        Me.cmbVillian2Trinket.Items.AddRange(New Object() {"(None)", "Batterson's Bubble", "Big Bow of Doom", "Billy Bison", "Blobber's Medal of Courage", "Bubble Blower", "Cyclops Spinner", "Dark Water Daisy", "Elemental Diamond", "Elemental Opal", "Elemental Radiant", "Goo Factory Gear", "Iris' Iris", "Kuckoo Kazoo", "Lizard Lilly", "Mabu's Medallion", "Medal of Gallantry", "Medal of Heroism", "Medal of Mettle", "Medal of Valliance", "Pirate Pinwheel", "Ramses' Dragon Horn", "Ramses' Rune", "Seadog Seashell", "Snuckles' Sunflower", "Spyro's Shield", "Stealth Elf's Gift", "T-Bone's Lucky Tie", "Teddy Cyclops", "Time Town Ticker", "Ullysses Uniclops", "Vote For Cyclops", "Wiliken Windmill", "Winged Medal of Bravery"})
         Me.cmbVillian2Trinket.Location = New System.Drawing.Point(146, 94)
         Me.cmbVillian2Trinket.Name = "cmbVillian2Trinket"
         Me.cmbVillian2Trinket.Size = New System.Drawing.Size(121, 21)
         Me.cmbVillian2Trinket.TabIndex = 6
         '
-        'Label3
+        'lblVillian2hat
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(194, 25)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(24, 13)
-        Me.Label3.TabIndex = 1
-        Me.Label3.Text = "Hat"
+        Me.lblVillian2hat.AutoSize = True
+        Me.lblVillian2hat.Location = New System.Drawing.Point(194, 25)
+        Me.lblVillian2hat.Name = "lblVillian2hat"
+        Me.lblVillian2hat.Size = New System.Drawing.Size(24, 13)
+        Me.lblVillian2hat.TabIndex = 1
+        Me.lblVillian2hat.Text = "Hat"
         '
         'cmbVillian2Hat
         '
         Me.cmbVillian2Hat.FormattingEnabled = True
-        Me.cmbVillian2Hat.Items.AddRange(New Object() {"(None)", "Alarm Clock Hat", "Bat Hat", "Batter Up Hat", "Beetle Hat", "Bellhop Hat", "Bobby", "Brain Hat", "Brainiac Hat", "Bronze Arkeyan Helm", "Bucket Hat", "Candle Hat", "Candy Cane Hat", "Carnival Hat", "Ceiling Fan Hat", "Classic Pot Hat", "Clown Bowler Hat", "Clown Classic Hat", "Coconut Hat", "Colander Hat", "Core Of Light Hat", "Cornucopia Hat", "Crazy Light Bulb Hat", "Croissant Hat", "Cubano Hat", "Cycling Hat", "Daisy Crown", "Dark Helm", "Desert Crown", "Dragon Skull", "Eggshell Hat", "Extreme Viking Hat", "Eye of Kaos Hat", "Firefly Jar", "Flight Attendant Hat", "Garrison Hat", "Generalissimo", "Gold Arkeyan Helm", "Gondolier Hat", "Hedgehog Hat", "Horns Be With You Hat", "Hunting Hat", "Imperial Hat", "Juicer Hat", "Kepi Hat", "Kokoshnik", "Light Bulb Hat", "Lighthouse Beacon Hat", "Lil' Elf Hat", "Medic Hat", "Melon Hat", "Metal Fin Hat", "Miniature Skylands Hat", "Molekin Mountain Hat", "Monday Hat", "Mountie Hat", "Night Cap", "Nurse Hat", "Octavius Cloptimus Hat", "Old-Time Movie Hat", "Outback Hat", "Palm Hat", "Paperboy Hat", "Parrot Nest", "Planet Hat", "Pork Pie Hat", "Pyramid Hat", "Radar Hat", "Rainbow Hat", "Rubber Glove Hat", "Rude Boy Hat", "Rugby Hat", "Scooter Hat", "Shadow Ghost Hat", "Sherpa Hat", "Shower Cap", "Silver Arkeyan Helm", "Skipper Hat", "Sleuth Hat", "Steampunk Hat", "Storm Hat", "Synchronized Swimming Cap", "Tin Foil Hat", "Toucan Hat", "Trash Lid", "Tribal Hat", "Turtle Hat", "Volcano Island Hat", "Weather Vane Hat", "William Tell Hat"})
+        Me.cmbVillian2Hat.Items.AddRange(New Object() {"(None)", "Alarm Clock Hat", "Bat Hat", "Batter Up Hat", "Beetle Hat", "Bellhop Hat", "Bobby", "Brain Hat", "Brainiac Hat", "Bronze Arkeyan Helm", "Bucket Hat", "Candle Hat", "Candy Cane Hat", "Carnival Hat", "Ceiling Fan Hat", "Classic Pot Hat", "Clown Bowler Hat", "Clown Classic Hat", "Coconut Hat", "Colander Hat", "Core Of Light Hat", "Cornucopia Hat", "Crazy Light Bulb Hat", "Croissant Hat", "Cubano Hat", "Cycling Hat", "Daisy Crown", "Dark Helm", "Desert Crown", "Dragon Skull", "Eggshell Hat", "Extreme Viking Hat", "Eye of Kaos Hat", "Firefly Jar", "Flight Attendant Hat", "Garrison Hat", "Generalissimo Hat", "Gold Arkeyan Helm", "Gondolier Hat", "Hedgehog Hat", "Horns Be With You Hat", "Hunting Hat", "Imperial Hat", "Juicer Hat", "Kepi Hat", "Kokoshnik", "Light Bulb Hat", "Lighthouse Beacon Hat", "Lil' Elf Hat", "Medic Hat", "Melon Hat", "Metal Fin Hat", "Miniature Skylands Hat", "Molekin Mountain Hat", "Monday Hat", "Mountie Hat", "Night Cap", "Nurse Hat", "Octavius Cloptimus Hat", "Old-Time Movie Hat", "Outback Hat", "Palm Hat", "Paperboy Hat", "Parrot Nest", "Planet Hat", "Pork Pie Hat", "Pyramid Hat", "Radar Hat", "Rainbow Hat", "Rubber Glove Hat", "Rude Boy Hat", "Rugby Hat", "Scooter Hat", "Shadow Ghost Hat", "Sherpa Hat", "Shower Cap", "Silver Arkeyan Helm", "Skipper Hat", "Sleuth Hat", "Steampunk Hat", "Storm Hat", "Synchronized Swimming Cap", "Tin Foil Hat", "Toucan Hat", "Trash Lid", "Tribal Hat", "Turtle Hat", "Volcano Island Hat", "Weather Vane Hat", "William Tell Hat"})
         Me.cmbVillian2Hat.Location = New System.Drawing.Point(146, 40)
         Me.cmbVillian2Hat.Name = "cmbVillian2Hat"
         Me.cmbVillian2Hat.Size = New System.Drawing.Size(121, 21)
@@ -316,19 +317,19 @@ Partial Class frmTraps
         Me.txtVillian2Name.Size = New System.Drawing.Size(121, 20)
         Me.txtVillian2Name.TabIndex = 2
         '
-        'Label5
+        'lblVillian2
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(52, 24)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(34, 13)
-        Me.Label5.TabIndex = 1
-        Me.Label5.Text = "Villian"
+        Me.lblVillian2.AutoSize = True
+        Me.lblVillian2.Location = New System.Drawing.Point(52, 24)
+        Me.lblVillian2.Name = "lblVillian2"
+        Me.lblVillian2.Size = New System.Drawing.Size(34, 13)
+        Me.lblVillian2.TabIndex = 1
+        Me.lblVillian2.Text = "Villian"
         '
         'cmbVillian2
         '
         Me.cmbVillian2.FormattingEnabled = True
-        Me.cmbVillian2.Items.AddRange(New Object() {"(None)", "Chompy Mage", "Dr. Crankcase", "Wolfgang", "Chef Pepper Jack", "Nightshade", "Luminous", "Golden Queen", "Dreamcatcher", "Gulper", "Kaos", "Cuckoo Clocker", "Buzzer Beak", "Shield Shredder", "Cross Crow", "Bone Chompy", "Brawl and Chain", "Bomb Shell", "Masker Mind", "Chill Bill", "Sheep Creep", "Shrednaught", "Chomp Chest", "Broccoli Guy", "Rage Mage", "Lob Goblin", "Chompy", "Fisticuffs", "Trolling Thunder", "Hood Sickle", "Bruiser Cruiser", "Brawlrus", "Tussle Sprout", "Krankenstein", "Scrap Shooter", "Slobber Trap", "Grinnade", "Bad Juju", "Blaster-Tron", "Tae Kwon Crow", "Painyata", "Smoke Scream", "Eye Five", "Grave Clobber", "Threatpack", "Mab Lobs", "Eye Scream"})
+        Me.cmbVillian2.Items.AddRange(New Object() {"(None)", "Bad Juju", "Blaster-Tron", "Bomb Shell", "Bone Chompy", "Brawl and Chain", "Brawlrus", "Broccoli Guy", "Bruiser Cruiser", "Buzzer Beak", "Chef Pepper Jack", "Chill Bill", "Chomp Chest", "Chompy", "Chompy Mage", "Cross Crow", "Cuckoo Clocker", "Dr. Crankcase", "Dreamcatcher", "Eye Five", "Eye Scream", "Fisticuffs", "Golden Queen", "Grave Clobber", "Grinnade", "Gulper", "Hood Sickle", "Kaos", "Krankenstein", "Lob Goblin", "Luminous", "Mab Lobs", "Masker Mind", "Nightshade", "Painyata", "Rage Mage", "Scrap Shooter", "Sheep Creep", "Shield Shredder", "Shrednaught", "Slobber Trap", "Smoke Scream", "Tae Kwon Crow", "Threatpack", "Trolling Thunder", "Tussle Sprout", "Wolfgang"})
         Me.cmbVillian2.Location = New System.Drawing.Point(9, 40)
         Me.cmbVillian2.Name = "cmbVillian2"
         Me.cmbVillian2.Size = New System.Drawing.Size(121, 21)
@@ -338,12 +339,12 @@ Partial Class frmTraps
         '
         Me.grpVillian3.Controls.Add(Me.Label7)
         Me.grpVillian3.Controls.Add(Me.cmbVillian3Trinket)
-        Me.grpVillian3.Controls.Add(Me.Label8)
+        Me.grpVillian3.Controls.Add(Me.lblVillian3hat)
         Me.grpVillian3.Controls.Add(Me.cmbVillian3Hat)
         Me.grpVillian3.Controls.Add(Me.chkVillian3Evolved)
         Me.grpVillian3.Controls.Add(Me.Label9)
         Me.grpVillian3.Controls.Add(Me.txtVillian3Name)
-        Me.grpVillian3.Controls.Add(Me.Label10)
+        Me.grpVillian3.Controls.Add(Me.lblVillian3)
         Me.grpVillian3.Controls.Add(Me.cmbVillian3)
         Me.grpVillian3.Location = New System.Drawing.Point(12, 200)
         Me.grpVillian3.Name = "grpVillian3"
@@ -364,20 +365,20 @@ Partial Class frmTraps
         'cmbVillian3Trinket
         '
         Me.cmbVillian3Trinket.FormattingEnabled = True
-        Me.cmbVillian3Trinket.Items.AddRange(New Object() {"(None)", "T-Bone's Lucky Tie", "Batterson's Bubble", "Dark Water Daisy", "Vote For Cyclops", "Ramses' Dragon Horn", "Iris' Iris", "Kuckoo Kazoo", "Ramses' Rune", "Ullysses Uniclops", "Billy Bison", "Stealth Elf's Gift", "Lizard Lilly", "Pirate Pinwheel", "Bubble Blower", "Medal of Heroism", "Blobber's Medal of Courage", "Medal of Valliance", "Medal of Gallantry", "Medal of Mettle", "Winged Medal of Bravery", "Seadog Seashell", "Snuckles' Sunflower", "Teddy Cyclops", "Goo Factory Gear", "Elemental Opal", "Elemental Radiant", "Elemental Diamond", "Cyclops Spinner", "Wiliken Windmill", "Time Town Ticker", "Big Bow of Doom", "Mabu's Medallion", "Spyro's Shield"})
+        Me.cmbVillian3Trinket.Items.AddRange(New Object() {"(None)", "Batterson's Bubble", "Big Bow of Doom", "Billy Bison", "Blobber's Medal of Courage", "Bubble Blower", "Cyclops Spinner", "Dark Water Daisy", "Elemental Diamond", "Elemental Opal", "Elemental Radiant", "Goo Factory Gear", "Iris' Iris", "Kuckoo Kazoo", "Lizard Lilly", "Mabu's Medallion", "Medal of Gallantry", "Medal of Heroism", "Medal of Mettle", "Medal of Valliance", "Pirate Pinwheel", "Ramses' Dragon Horn", "Ramses' Rune", "Seadog Seashell", "Snuckles' Sunflower", "Spyro's Shield", "Stealth Elf's Gift", "T-Bone's Lucky Tie", "Teddy Cyclops", "Time Town Ticker", "Ullysses Uniclops", "Vote For Cyclops", "Wiliken Windmill", "Winged Medal of Bravery"})
         Me.cmbVillian3Trinket.Location = New System.Drawing.Point(146, 94)
         Me.cmbVillian3Trinket.Name = "cmbVillian3Trinket"
         Me.cmbVillian3Trinket.Size = New System.Drawing.Size(121, 21)
         Me.cmbVillian3Trinket.TabIndex = 6
         '
-        'Label8
+        'lblVillian3hat
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(194, 25)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(24, 13)
-        Me.Label8.TabIndex = 1
-        Me.Label8.Text = "Hat"
+        Me.lblVillian3hat.AutoSize = True
+        Me.lblVillian3hat.Location = New System.Drawing.Point(194, 25)
+        Me.lblVillian3hat.Name = "lblVillian3hat"
+        Me.lblVillian3hat.Size = New System.Drawing.Size(24, 13)
+        Me.lblVillian3hat.TabIndex = 1
+        Me.lblVillian3hat.Text = "Hat"
         '
         'cmbVillian3Hat
         '
@@ -415,19 +416,19 @@ Partial Class frmTraps
         Me.txtVillian3Name.Size = New System.Drawing.Size(121, 20)
         Me.txtVillian3Name.TabIndex = 2
         '
-        'Label10
+        'lblVillian3
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(49, 25)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(34, 13)
-        Me.Label10.TabIndex = 1
-        Me.Label10.Text = "Villian"
+        Me.lblVillian3.AutoSize = True
+        Me.lblVillian3.Location = New System.Drawing.Point(49, 25)
+        Me.lblVillian3.Name = "lblVillian3"
+        Me.lblVillian3.Size = New System.Drawing.Size(34, 13)
+        Me.lblVillian3.TabIndex = 1
+        Me.lblVillian3.Text = "Villian"
         '
         'cmbVillian3
         '
         Me.cmbVillian3.FormattingEnabled = True
-        Me.cmbVillian3.Items.AddRange(New Object() {"(None)", "Chompy Mage", "Dr. Crankcase", "Wolfgang", "Chef Pepper Jack", "Nightshade", "Luminous", "Golden Queen", "Dreamcatcher", "Gulper", "Kaos", "Cuckoo Clocker", "Buzzer Beak", "Shield Shredder", "Cross Crow", "Bone Chompy", "Brawl and Chain", "Bomb Shell", "Masker Mind", "Chill Bill", "Sheep Creep", "Shrednaught", "Chomp Chest", "Broccoli Guy", "Rage Mage", "Lob Goblin", "Chompy", "Fisticuffs", "Trolling Thunder", "Hood Sickle", "Bruiser Cruiser", "Brawlrus", "Tussle Sprout", "Krankenstein", "Scrap Shooter", "Slobber Trap", "Grinnade", "Bad Juju", "Blaster-Tron", "Tae Kwon Crow", "Painyata", "Smoke Scream", "Eye Five", "Grave Clobber", "Threatpack", "Mab Lobs", "Eye Scream"})
+        Me.cmbVillian3.Items.AddRange(New Object() {"(None)", "Bad Juju", "Blaster-Tron", "Bomb Shell", "Bone Chompy", "Brawl and Chain", "Brawlrus", "Broccoli Guy", "Bruiser Cruiser", "Buzzer Beak", "Chef Pepper Jack", "Chill Bill", "Chomp Chest", "Chompy", "Chompy Mage", "Cross Crow", "Cuckoo Clocker", "Dr. Crankcase", "Dreamcatcher", "Eye Five", "Eye Scream", "Fisticuffs", "Golden Queen", "Grave Clobber", "Grinnade", "Gulper", "Hood Sickle", "Kaos", "Krankenstein", "Lob Goblin", "Luminous", "Mab Lobs", "Masker Mind", "Nightshade", "Painyata", "Rage Mage", "Scrap Shooter", "Sheep Creep", "Shield Shredder", "Shrednaught", "Slobber Trap", "Smoke Scream", "Tae Kwon Crow", "Threatpack", "Trolling Thunder", "Tussle Sprout", "Wolfgang"})
         Me.cmbVillian3.Location = New System.Drawing.Point(6, 41)
         Me.cmbVillian3.Name = "cmbVillian3"
         Me.cmbVillian3.Size = New System.Drawing.Size(121, 21)
@@ -437,12 +438,12 @@ Partial Class frmTraps
         '
         Me.grpVillian4.Controls.Add(Me.Label12)
         Me.grpVillian4.Controls.Add(Me.cmbVillian4Trinket)
-        Me.grpVillian4.Controls.Add(Me.Label13)
+        Me.grpVillian4.Controls.Add(Me.lblVillian4hat)
         Me.grpVillian4.Controls.Add(Me.cmbVillian4Hat)
         Me.grpVillian4.Controls.Add(Me.chkVillian4Evolved)
         Me.grpVillian4.Controls.Add(Me.Label14)
         Me.grpVillian4.Controls.Add(Me.txtVillian4Name)
-        Me.grpVillian4.Controls.Add(Me.Label15)
+        Me.grpVillian4.Controls.Add(Me.lblVillian4)
         Me.grpVillian4.Controls.Add(Me.cmbVillian4)
         Me.grpVillian4.Location = New System.Drawing.Point(325, 200)
         Me.grpVillian4.Name = "grpVillian4"
@@ -463,20 +464,20 @@ Partial Class frmTraps
         'cmbVillian4Trinket
         '
         Me.cmbVillian4Trinket.FormattingEnabled = True
-        Me.cmbVillian4Trinket.Items.AddRange(New Object() {"(None)", "T-Bone's Lucky Tie", "Batterson's Bubble", "Dark Water Daisy", "Vote For Cyclops", "Ramses' Dragon Horn", "Iris' Iris", "Kuckoo Kazoo", "Ramses' Rune", "Ullysses Uniclops", "Billy Bison", "Stealth Elf's Gift", "Lizard Lilly", "Pirate Pinwheel", "Bubble Blower", "Medal of Heroism", "Blobber's Medal of Courage", "Medal of Valliance", "Medal of Gallantry", "Medal of Mettle", "Winged Medal of Bravery", "Seadog Seashell", "Snuckles' Sunflower", "Teddy Cyclops", "Goo Factory Gear", "Elemental Opal", "Elemental Radiant", "Elemental Diamond", "Cyclops Spinner", "Wiliken Windmill", "Time Town Ticker", "Big Bow of Doom", "Mabu's Medallion", "Spyro's Shield"})
+        Me.cmbVillian4Trinket.Items.AddRange(New Object() {"(None)", "Batterson's Bubble", "Big Bow of Doom", "Billy Bison", "Blobber's Medal of Courage", "Bubble Blower", "Cyclops Spinner", "Dark Water Daisy", "Elemental Diamond", "Elemental Opal", "Elemental Radiant", "Goo Factory Gear", "Iris' Iris", "Kuckoo Kazoo", "Lizard Lilly", "Mabu's Medallion", "Medal of Gallantry", "Medal of Heroism", "Medal of Mettle", "Medal of Valliance", "Pirate Pinwheel", "Ramses' Dragon Horn", "Ramses' Rune", "Seadog Seashell", "Snuckles' Sunflower", "Spyro's Shield", "Stealth Elf's Gift", "T-Bone's Lucky Tie", "Teddy Cyclops", "Time Town Ticker", "Ullysses Uniclops", "Vote For Cyclops", "Wiliken Windmill", "Winged Medal of Bravery"})
         Me.cmbVillian4Trinket.Location = New System.Drawing.Point(146, 94)
         Me.cmbVillian4Trinket.Name = "cmbVillian4Trinket"
         Me.cmbVillian4Trinket.Size = New System.Drawing.Size(121, 21)
         Me.cmbVillian4Trinket.TabIndex = 6
         '
-        'Label13
+        'lblVillian4hat
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(194, 25)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(24, 13)
-        Me.Label13.TabIndex = 1
-        Me.Label13.Text = "Hat"
+        Me.lblVillian4hat.AutoSize = True
+        Me.lblVillian4hat.Location = New System.Drawing.Point(194, 25)
+        Me.lblVillian4hat.Name = "lblVillian4hat"
+        Me.lblVillian4hat.Size = New System.Drawing.Size(24, 13)
+        Me.lblVillian4hat.TabIndex = 1
+        Me.lblVillian4hat.Text = "Hat"
         '
         'cmbVillian4Hat
         '
@@ -514,19 +515,19 @@ Partial Class frmTraps
         Me.txtVillian4Name.Size = New System.Drawing.Size(121, 20)
         Me.txtVillian4Name.TabIndex = 2
         '
-        'Label15
+        'lblVillian4
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(52, 24)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(34, 13)
-        Me.Label15.TabIndex = 1
-        Me.Label15.Text = "Villian"
+        Me.lblVillian4.AutoSize = True
+        Me.lblVillian4.Location = New System.Drawing.Point(52, 24)
+        Me.lblVillian4.Name = "lblVillian4"
+        Me.lblVillian4.Size = New System.Drawing.Size(34, 13)
+        Me.lblVillian4.TabIndex = 1
+        Me.lblVillian4.Text = "Villian"
         '
         'cmbVillian4
         '
         Me.cmbVillian4.FormattingEnabled = True
-        Me.cmbVillian4.Items.AddRange(New Object() {"(None)", "Chompy Mage", "Dr. Crankcase", "Wolfgang", "Chef Pepper Jack", "Nightshade", "Luminous", "Golden Queen", "Dreamcatcher", "Gulper", "Kaos", "Cuckoo Clocker", "Buzzer Beak", "Shield Shredder", "Cross Crow", "Bone Chompy", "Brawl and Chain", "Bomb Shell", "Masker Mind", "Chill Bill", "Sheep Creep", "Shrednaught", "Chomp Chest", "Broccoli Guy", "Rage Mage", "Lob Goblin", "Chompy", "Fisticuffs", "Trolling Thunder", "Hood Sickle", "Bruiser Cruiser", "Brawlrus", "Tussle Sprout", "Krankenstein", "Scrap Shooter", "Slobber Trap", "Grinnade", "Bad Juju", "Blaster-Tron", "Tae Kwon Crow", "Painyata", "Smoke Scream", "Eye Five", "Grave Clobber", "Threatpack", "Mab Lobs", "Eye Scream"})
+        Me.cmbVillian4.Items.AddRange(New Object() {"(None)", "Bad Juju", "Blaster-Tron", "Bomb Shell", "Bone Chompy", "Brawl and Chain", "Brawlrus", "Broccoli Guy", "Bruiser Cruiser", "Buzzer Beak", "Chef Pepper Jack", "Chill Bill", "Chomp Chest", "Chompy", "Chompy Mage", "Cross Crow", "Cuckoo Clocker", "Dr. Crankcase", "Dreamcatcher", "Eye Five", "Eye Scream", "Fisticuffs", "Golden Queen", "Grave Clobber", "Grinnade", "Gulper", "Hood Sickle", "Kaos", "Krankenstein", "Lob Goblin", "Luminous", "Mab Lobs", "Masker Mind", "Nightshade", "Painyata", "Rage Mage", "Scrap Shooter", "Sheep Creep", "Shield Shredder", "Shrednaught", "Slobber Trap", "Smoke Scream", "Tae Kwon Crow", "Threatpack", "Trolling Thunder", "Tussle Sprout", "Wolfgang"})
         Me.cmbVillian4.Location = New System.Drawing.Point(9, 40)
         Me.cmbVillian4.Name = "cmbVillian4"
         Me.cmbVillian4.Size = New System.Drawing.Size(121, 21)
@@ -536,12 +537,12 @@ Partial Class frmTraps
         '
         Me.grpVillan5.Controls.Add(Me.Label17)
         Me.grpVillan5.Controls.Add(Me.cmbVillian5Trinket)
-        Me.grpVillan5.Controls.Add(Me.Label18)
+        Me.grpVillan5.Controls.Add(Me.lblVillian5hat)
         Me.grpVillan5.Controls.Add(Me.cmbVillian5Hat)
         Me.grpVillan5.Controls.Add(Me.chkVillian5Evolved)
         Me.grpVillan5.Controls.Add(Me.Label19)
         Me.grpVillan5.Controls.Add(Me.txtVillian5Name)
-        Me.grpVillan5.Controls.Add(Me.Label20)
+        Me.grpVillan5.Controls.Add(Me.lblVillian5)
         Me.grpVillan5.Controls.Add(Me.cmbVillian5)
         Me.grpVillan5.Location = New System.Drawing.Point(12, 362)
         Me.grpVillan5.Name = "grpVillan5"
@@ -562,20 +563,20 @@ Partial Class frmTraps
         'cmbVillian5Trinket
         '
         Me.cmbVillian5Trinket.FormattingEnabled = True
-        Me.cmbVillian5Trinket.Items.AddRange(New Object() {"(None)", "T-Bone's Lucky Tie", "Batterson's Bubble", "Dark Water Daisy", "Vote For Cyclops", "Ramses' Dragon Horn", "Iris' Iris", "Kuckoo Kazoo", "Ramses' Rune", "Ullysses Uniclops", "Billy Bison", "Stealth Elf's Gift", "Lizard Lilly", "Pirate Pinwheel", "Bubble Blower", "Medal of Heroism", "Blobber's Medal of Courage", "Medal of Valliance", "Medal of Gallantry", "Medal of Mettle", "Winged Medal of Bravery", "Seadog Seashell", "Snuckles' Sunflower", "Teddy Cyclops", "Goo Factory Gear", "Elemental Opal", "Elemental Radiant", "Elemental Diamond", "Cyclops Spinner", "Wiliken Windmill", "Time Town Ticker", "Big Bow of Doom", "Mabu's Medallion", "Spyro's Shield"})
+        Me.cmbVillian5Trinket.Items.AddRange(New Object() {"(None)", "Batterson's Bubble", "Big Bow of Doom", "Billy Bison", "Blobber's Medal of Courage", "Bubble Blower", "Cyclops Spinner", "Dark Water Daisy", "Elemental Diamond", "Elemental Opal", "Elemental Radiant", "Goo Factory Gear", "Iris' Iris", "Kuckoo Kazoo", "Lizard Lilly", "Mabu's Medallion", "Medal of Gallantry", "Medal of Heroism", "Medal of Mettle", "Medal of Valliance", "Pirate Pinwheel", "Ramses' Dragon Horn", "Ramses' Rune", "Seadog Seashell", "Snuckles' Sunflower", "Spyro's Shield", "Stealth Elf's Gift", "T-Bone's Lucky Tie", "Teddy Cyclops", "Time Town Ticker", "Ullysses Uniclops", "Vote For Cyclops", "Wiliken Windmill", "Winged Medal of Bravery"})
         Me.cmbVillian5Trinket.Location = New System.Drawing.Point(146, 94)
         Me.cmbVillian5Trinket.Name = "cmbVillian5Trinket"
         Me.cmbVillian5Trinket.Size = New System.Drawing.Size(121, 21)
         Me.cmbVillian5Trinket.TabIndex = 6
         '
-        'Label18
+        'lblVillian5hat
         '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(194, 25)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(24, 13)
-        Me.Label18.TabIndex = 1
-        Me.Label18.Text = "Hat"
+        Me.lblVillian5hat.AutoSize = True
+        Me.lblVillian5hat.Location = New System.Drawing.Point(194, 25)
+        Me.lblVillian5hat.Name = "lblVillian5hat"
+        Me.lblVillian5hat.Size = New System.Drawing.Size(24, 13)
+        Me.lblVillian5hat.TabIndex = 1
+        Me.lblVillian5hat.Text = "Hat"
         '
         'cmbVillian5Hat
         '
@@ -613,19 +614,19 @@ Partial Class frmTraps
         Me.txtVillian5Name.Size = New System.Drawing.Size(121, 20)
         Me.txtVillian5Name.TabIndex = 2
         '
-        'Label20
+        'lblVillian5
         '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(49, 24)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(34, 13)
-        Me.Label20.TabIndex = 1
-        Me.Label20.Text = "Villian"
+        Me.lblVillian5.AutoSize = True
+        Me.lblVillian5.Location = New System.Drawing.Point(49, 24)
+        Me.lblVillian5.Name = "lblVillian5"
+        Me.lblVillian5.Size = New System.Drawing.Size(34, 13)
+        Me.lblVillian5.TabIndex = 1
+        Me.lblVillian5.Text = "Villian"
         '
         'cmbVillian5
         '
         Me.cmbVillian5.FormattingEnabled = True
-        Me.cmbVillian5.Items.AddRange(New Object() {"(None)", "Chompy Mage", "Dr. Crankcase", "Wolfgang", "Chef Pepper Jack", "Nightshade", "Luminous", "Golden Queen", "Dreamcatcher", "Gulper", "Kaos", "Cuckoo Clocker", "Buzzer Beak", "Shield Shredder", "Cross Crow", "Bone Chompy", "Brawl and Chain", "Bomb Shell", "Masker Mind", "Chill Bill", "Sheep Creep", "Shrednaught", "Chomp Chest", "Broccoli Guy", "Rage Mage", "Lob Goblin", "Chompy", "Fisticuffs", "Trolling Thunder", "Hood Sickle", "Bruiser Cruiser", "Brawlrus", "Tussle Sprout", "Krankenstein", "Scrap Shooter", "Slobber Trap", "Grinnade", "Bad Juju", "Blaster-Tron", "Tae Kwon Crow", "Painyata", "Smoke Scream", "Eye Five", "Grave Clobber", "Threatpack", "Mab Lobs", "Eye Scream"})
+        Me.cmbVillian5.Items.AddRange(New Object() {"(None)", "Bad Juju", "Blaster-Tron", "Bomb Shell", "Bone Chompy", "Brawl and Chain", "Brawlrus", "Broccoli Guy", "Bruiser Cruiser", "Buzzer Beak", "Chef Pepper Jack", "Chill Bill", "Chomp Chest", "Chompy", "Chompy Mage", "Cross Crow", "Cuckoo Clocker", "Dr. Crankcase", "Dreamcatcher", "Eye Five", "Eye Scream", "Fisticuffs", "Golden Queen", "Grave Clobber", "Grinnade", "Gulper", "Hood Sickle", "Kaos", "Krankenstein", "Lob Goblin", "Luminous", "Mab Lobs", "Masker Mind", "Nightshade", "Painyata", "Rage Mage", "Scrap Shooter", "Sheep Creep", "Shield Shredder", "Shrednaught", "Slobber Trap", "Smoke Scream", "Tae Kwon Crow", "Threatpack", "Trolling Thunder", "Tussle Sprout", "Wolfgang"})
         Me.cmbVillian5.Location = New System.Drawing.Point(6, 40)
         Me.cmbVillian5.Name = "cmbVillian5"
         Me.cmbVillian5.Size = New System.Drawing.Size(121, 21)
@@ -635,12 +636,12 @@ Partial Class frmTraps
         '
         Me.grpVillian6.Controls.Add(Me.Label22)
         Me.grpVillian6.Controls.Add(Me.cmbVillian6Trinket)
-        Me.grpVillian6.Controls.Add(Me.Label23)
+        Me.grpVillian6.Controls.Add(Me.lblVillian6hat)
         Me.grpVillian6.Controls.Add(Me.cmbVillian6Hat)
         Me.grpVillian6.Controls.Add(Me.chkVillian6Evolved)
         Me.grpVillian6.Controls.Add(Me.Label24)
         Me.grpVillian6.Controls.Add(Me.txtVillian6Name)
-        Me.grpVillian6.Controls.Add(Me.Label25)
+        Me.grpVillian6.Controls.Add(Me.lblVillian6)
         Me.grpVillian6.Controls.Add(Me.cmbVillian6)
         Me.grpVillian6.Location = New System.Drawing.Point(325, 362)
         Me.grpVillian6.Name = "grpVillian6"
@@ -661,20 +662,20 @@ Partial Class frmTraps
         'cmbVillian6Trinket
         '
         Me.cmbVillian6Trinket.FormattingEnabled = True
-        Me.cmbVillian6Trinket.Items.AddRange(New Object() {"(None)", "T-Bone's Lucky Tie", "Batterson's Bubble", "Dark Water Daisy", "Vote For Cyclops", "Ramses' Dragon Horn", "Iris' Iris", "Kuckoo Kazoo", "Ramses' Rune", "Ullysses Uniclops", "Billy Bison", "Stealth Elf's Gift", "Lizard Lilly", "Pirate Pinwheel", "Bubble Blower", "Medal of Heroism", "Blobber's Medal of Courage", "Medal of Valliance", "Medal of Gallantry", "Medal of Mettle", "Winged Medal of Bravery", "Seadog Seashell", "Snuckles' Sunflower", "Teddy Cyclops", "Goo Factory Gear", "Elemental Opal", "Elemental Radiant", "Elemental Diamond", "Cyclops Spinner", "Wiliken Windmill", "Time Town Ticker", "Big Bow of Doom", "Mabu's Medallion", "Spyro's Shield"})
+        Me.cmbVillian6Trinket.Items.AddRange(New Object() {"(None)", "Batterson's Bubble", "Big Bow of Doom", "Billy Bison", "Blobber's Medal of Courage", "Bubble Blower", "Cyclops Spinner", "Dark Water Daisy", "Elemental Diamond", "Elemental Opal", "Elemental Radiant", "Goo Factory Gear", "Iris' Iris", "Kuckoo Kazoo", "Lizard Lilly", "Mabu's Medallion", "Medal of Gallantry", "Medal of Heroism", "Medal of Mettle", "Medal of Valliance", "Pirate Pinwheel", "Ramses' Dragon Horn", "Ramses' Rune", "Seadog Seashell", "Snuckles' Sunflower", "Spyro's Shield", "Stealth Elf's Gift", "T-Bone's Lucky Tie", "Teddy Cyclops", "Time Town Ticker", "Ullysses Uniclops", "Vote For Cyclops", "Wiliken Windmill", "Winged Medal of Bravery"})
         Me.cmbVillian6Trinket.Location = New System.Drawing.Point(146, 94)
         Me.cmbVillian6Trinket.Name = "cmbVillian6Trinket"
         Me.cmbVillian6Trinket.Size = New System.Drawing.Size(121, 21)
         Me.cmbVillian6Trinket.TabIndex = 6
         '
-        'Label23
+        'lblVillian6hat
         '
-        Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(194, 25)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(24, 13)
-        Me.Label23.TabIndex = 1
-        Me.Label23.Text = "Hat"
+        Me.lblVillian6hat.AutoSize = True
+        Me.lblVillian6hat.Location = New System.Drawing.Point(194, 25)
+        Me.lblVillian6hat.Name = "lblVillian6hat"
+        Me.lblVillian6hat.Size = New System.Drawing.Size(24, 13)
+        Me.lblVillian6hat.TabIndex = 1
+        Me.lblVillian6hat.Text = "Hat"
         '
         'cmbVillian6Hat
         '
@@ -712,29 +713,39 @@ Partial Class frmTraps
         Me.txtVillian6Name.Size = New System.Drawing.Size(121, 20)
         Me.txtVillian6Name.TabIndex = 2
         '
-        'Label25
+        'lblVillian6
         '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(54, 24)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(34, 13)
-        Me.Label25.TabIndex = 1
-        Me.Label25.Text = "Villian"
+        Me.lblVillian6.AutoSize = True
+        Me.lblVillian6.Location = New System.Drawing.Point(54, 24)
+        Me.lblVillian6.Name = "lblVillian6"
+        Me.lblVillian6.Size = New System.Drawing.Size(34, 13)
+        Me.lblVillian6.TabIndex = 1
+        Me.lblVillian6.Text = "Villian"
         '
         'cmbVillian6
         '
         Me.cmbVillian6.FormattingEnabled = True
-        Me.cmbVillian6.Items.AddRange(New Object() {"(None)", "Chompy Mage", "Dr. Crankcase", "Wolfgang", "Chef Pepper Jack", "Nightshade", "Luminous", "Golden Queen", "Dreamcatcher", "Gulper", "Kaos", "Cuckoo Clocker", "Buzzer Beak", "Shield Shredder", "Cross Crow", "Bone Chompy", "Brawl and Chain", "Bomb Shell", "Masker Mind", "Chill Bill", "Sheep Creep", "Shrednaught", "Chomp Chest", "Broccoli Guy", "Rage Mage", "Lob Goblin", "Chompy", "Fisticuffs", "Trolling Thunder", "Hood Sickle", "Bruiser Cruiser", "Brawlrus", "Tussle Sprout", "Krankenstein", "Scrap Shooter", "Slobber Trap", "Grinnade", "Bad Juju", "Blaster-Tron", "Tae Kwon Crow", "Painyata", "Smoke Scream", "Eye Five", "Grave Clobber", "Threatpack", "Mab Lobs", "Eye Scream"})
+        Me.cmbVillian6.Items.AddRange(New Object() {"(None)", "Bad Juju", "Blaster-Tron", "Bomb Shell", "Bone Chompy", "Brawl and Chain", "Brawlrus", "Broccoli Guy", "Bruiser Cruiser", "Buzzer Beak", "Chef Pepper Jack", "Chill Bill", "Chomp Chest", "Chompy", "Chompy Mage", "Cross Crow", "Cuckoo Clocker", "Dr. Crankcase", "Dreamcatcher", "Eye Five", "Eye Scream", "Fisticuffs", "Golden Queen", "Grave Clobber", "Grinnade", "Gulper", "Hood Sickle", "Kaos", "Krankenstein", "Lob Goblin", "Luminous", "Mab Lobs", "Masker Mind", "Nightshade", "Painyata", "Rage Mage", "Scrap Shooter", "Sheep Creep", "Shield Shredder", "Shrednaught", "Slobber Trap", "Smoke Scream", "Tae Kwon Crow", "Threatpack", "Trolling Thunder", "Tussle Sprout", "Wolfgang"})
         Me.cmbVillian6.Location = New System.Drawing.Point(11, 40)
         Me.cmbVillian6.Name = "cmbVillian6"
         Me.cmbVillian6.Size = New System.Drawing.Size(121, 21)
         Me.cmbVillian6.TabIndex = 0
+        '
+        'btnVil
+        '
+        Me.btnVil.Location = New System.Drawing.Point(619, 450)
+        Me.btnVil.Name = "btnVil"
+        Me.btnVil.Size = New System.Drawing.Size(75, 23)
+        Me.btnVil.TabIndex = 11
+        Me.btnVil.Text = "Selected Villian"
+        Me.btnVil.UseVisualStyleBackColor = True
         '
         'frmTraps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(708, 526)
+        Me.Controls.Add(Me.btnVil)
         Me.Controls.Add(Me.grpVillian6)
         Me.Controls.Add(Me.grpVillan5)
         Me.Controls.Add(Me.grpVillian4)
@@ -764,67 +775,68 @@ Partial Class frmTraps
     End Sub
 
     Friend WithEvents grpVillian1 As GroupBox
-	Friend WithEvents lblVillian As Label
-	Friend WithEvents cmbVillian1 As ComboBox
-	Friend WithEvents lblVillian1Name As Label
-	Friend WithEvents txtVillian1Name As TextBox
-	Friend WithEvents lblVillian1Hat As Label
-	Friend WithEvents cmbVillian1Hat As ComboBox
-	Friend WithEvents chkVillian1Evolved As CheckBox
-	Friend WithEvents lblVillian1Trinket As Label
-	Friend WithEvents cmbVillian1Trinket As ComboBox
-	Friend WithEvents chkVillian1Variant As CheckBox
-	Friend WithEvents btnIDTrap As Button
-	Friend WithEvents lblQuanity1 As Label
-	Friend WithEvents numVillianCount As NumericUpDown
-	Friend WithEvents grpVillian2 As GroupBox
-	Friend WithEvents Label2 As Label
-	Friend WithEvents cmbVillian2Trinket As ComboBox
-	Friend WithEvents Label3 As Label
-	Friend WithEvents cmbVillian2Hat As ComboBox
-	Friend WithEvents chkVillian2Evolved As CheckBox
-	Friend WithEvents Label4 As Label
-	Friend WithEvents txtVillian2Name As TextBox
-	Friend WithEvents Label5 As Label
-	Friend WithEvents cmbVillian2 As ComboBox
-	Friend WithEvents grpVillian3 As GroupBox
-	Friend WithEvents Label7 As Label
-	Friend WithEvents cmbVillian3Trinket As ComboBox
-	Friend WithEvents Label8 As Label
-	Friend WithEvents cmbVillian3Hat As ComboBox
-	Friend WithEvents chkVillian3Evolved As CheckBox
-	Friend WithEvents Label9 As Label
-	Friend WithEvents txtVillian3Name As TextBox
-	Friend WithEvents Label10 As Label
-	Friend WithEvents cmbVillian3 As ComboBox
-	Friend WithEvents grpVillian4 As GroupBox
-	Friend WithEvents Label12 As Label
-	Friend WithEvents cmbVillian4Trinket As ComboBox
-	Friend WithEvents Label13 As Label
-	Friend WithEvents cmbVillian4Hat As ComboBox
-	Friend WithEvents chkVillian4Evolved As CheckBox
-	Friend WithEvents Label14 As Label
-	Friend WithEvents txtVillian4Name As TextBox
-	Friend WithEvents Label15 As Label
-	Friend WithEvents cmbVillian4 As ComboBox
-	Friend WithEvents grpVillan5 As GroupBox
-	Friend WithEvents Label17 As Label
-	Friend WithEvents cmbVillian5Trinket As ComboBox
-	Friend WithEvents Label18 As Label
-	Friend WithEvents cmbVillian5Hat As ComboBox
-	Friend WithEvents chkVillian5Evolved As CheckBox
-	Friend WithEvents Label19 As Label
-	Friend WithEvents txtVillian5Name As TextBox
-	Friend WithEvents Label20 As Label
-	Friend WithEvents cmbVillian5 As ComboBox
-	Friend WithEvents grpVillian6 As GroupBox
-	Friend WithEvents Label22 As Label
-	Friend WithEvents cmbVillian6Trinket As ComboBox
-	Friend WithEvents Label23 As Label
-	Friend WithEvents cmbVillian6Hat As ComboBox
-	Friend WithEvents chkVillian6Evolved As CheckBox
-	Friend WithEvents Label24 As Label
-	Friend WithEvents txtVillian6Name As TextBox
-	Friend WithEvents Label25 As Label
-	Friend WithEvents cmbVillian6 As ComboBox
+    Friend WithEvents lblVillian1 As Label
+    Friend WithEvents cmbVillian1 As ComboBox
+    Friend WithEvents lblVillian1Name As Label
+    Friend WithEvents txtVillian1Name As TextBox
+    Friend WithEvents lblVillian1Hat As Label
+    Friend WithEvents cmbVillian1Hat As ComboBox
+    Friend WithEvents chkVillian1Evolved As CheckBox
+    Friend WithEvents lblVillian1Trinket As Label
+    Friend WithEvents cmbVillian1Trinket As ComboBox
+    Friend WithEvents chkVillian1Variant As CheckBox
+    Friend WithEvents btnIDTrap As Button
+    Friend WithEvents lblQuanity1 As Label
+    Friend WithEvents numVillianCount As NumericUpDown
+    Friend WithEvents grpVillian2 As GroupBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents cmbVillian2Trinket As ComboBox
+    Friend WithEvents lblVillian2hat As Label
+    Friend WithEvents cmbVillian2Hat As ComboBox
+    Friend WithEvents chkVillian2Evolved As CheckBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txtVillian2Name As TextBox
+    Friend WithEvents lblVillian2 As Label
+    Friend WithEvents cmbVillian2 As ComboBox
+    Friend WithEvents grpVillian3 As GroupBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents cmbVillian3Trinket As ComboBox
+    Friend WithEvents lblVillian3hat As Label
+    Friend WithEvents cmbVillian3Hat As ComboBox
+    Friend WithEvents chkVillian3Evolved As CheckBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtVillian3Name As TextBox
+    Friend WithEvents lblVillian3 As Label
+    Friend WithEvents cmbVillian3 As ComboBox
+    Friend WithEvents grpVillian4 As GroupBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents cmbVillian4Trinket As ComboBox
+    Friend WithEvents lblVillian4hat As Label
+    Friend WithEvents cmbVillian4Hat As ComboBox
+    Friend WithEvents chkVillian4Evolved As CheckBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents txtVillian4Name As TextBox
+    Friend WithEvents lblVillian4 As Label
+    Friend WithEvents cmbVillian4 As ComboBox
+    Friend WithEvents grpVillan5 As GroupBox
+    Friend WithEvents Label17 As Label
+    Friend WithEvents cmbVillian5Trinket As ComboBox
+    Friend WithEvents lblVillian5hat As Label
+    Friend WithEvents cmbVillian5Hat As ComboBox
+    Friend WithEvents chkVillian5Evolved As CheckBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents txtVillian5Name As TextBox
+    Friend WithEvents lblVillian5 As Label
+    Friend WithEvents cmbVillian5 As ComboBox
+    Friend WithEvents grpVillian6 As GroupBox
+    Friend WithEvents Label22 As Label
+    Friend WithEvents cmbVillian6Trinket As ComboBox
+    Friend WithEvents lblVillian6hat As Label
+    Friend WithEvents cmbVillian6Hat As ComboBox
+    Friend WithEvents chkVillian6Evolved As CheckBox
+    Friend WithEvents Label24 As Label
+    Friend WithEvents txtVillian6Name As TextBox
+    Friend WithEvents lblVillian6 As Label
+    Friend WithEvents cmbVillian6 As ComboBox
+    Friend WithEvents btnVil As Button
 End Class

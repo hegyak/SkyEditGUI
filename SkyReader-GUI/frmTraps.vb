@@ -1,4 +1,5 @@
 ﻿Imports System.Text
+Imports SkyReader_GUI.FigureIO
 Imports SkyReader_GUI.frmMain
 Public Class frmTraps
 	Private Sub cmbVillian1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbVillian1.SelectedIndexChanged
@@ -48,8 +49,6 @@ Public Class frmTraps
 
 	Sub Save_Area_A()
 		'Write Quanity Trapped
-
-
 		If cmbVillian1.SelectedItem = "(None)" Then
 			WholeFile(&H80) = &H0
 			WholeFile(&H81) = &H0
@@ -1194,7 +1193,6 @@ Public Class frmTraps
 		'Load Name from Byte 0x1D4
 		txtVillian6Name.Text = Load_Name(&H1D4)
 	End Sub
-
 	Sub Load_Area_1()
 		'Add 1C0
 		'This only gets applied to the first villian
@@ -1743,7 +1741,6 @@ Public Class frmTraps
 		Dim NameBytes(29) As Byte
 		Dim Adder As Integer = 0
 		Dim Full_Name As String
-		Dim Bad_Name As Boolean
 		Do Until Adder = 28
 			'MessageBox.Show(Hex(offset))
 			NameBytes(Adder) = WholeFile(offset)
@@ -1759,11 +1756,6 @@ Public Class frmTraps
 			Adder += 1
 		Loop
 		Full_Name = Encoding.Unicode.GetString(NameBytes)
-		Bad_Name = Nickname.IsUnicode(Full_Name)
-		If Bad_Name = True Then
-			MessageBox.Show("Did you load an Encrypted Trap?", "Unicode Name Detected")
-		End If
-		'MessageBox.Show(Encoding.BigEndianUnicode.GetString(NameBytes))
 		Return Encoding.Unicode.GetString(NameBytes)
 	End Function
 
@@ -1964,6 +1956,5 @@ Public Class frmTraps
 		MessageBox.Show("Evolved? " & Hex(WholeFile(&H91)))
 		MessageBox.Show("Hat ID: " & Hex(WholeFile(&H92)))
 		MessageBox.Show("Trinket ID: " & Hex(WholeFile(&H93)))
-
 	End Sub
 End Class

@@ -1,4 +1,5 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
+Imports SkyReader_GUI.frmMain
 Public Class Hero
 	Shared Sub GetHero()
 		Dim HeroArea0(1) As Byte

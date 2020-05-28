@@ -1,5 +1,5 @@
 ﻿Imports System.IO
-Imports SkyReader_GUI.frmMain
+Imports SkyReader_GUI.FigureIO
 Public Class MiFare
     Shared Sub Detection()
         'As such this will only work so far.

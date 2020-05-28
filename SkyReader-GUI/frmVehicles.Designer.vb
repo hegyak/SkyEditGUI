@@ -161,7 +161,7 @@ Partial Class frmVehicles
         'numGearbits
         '
         Me.numGearbits.Location = New System.Drawing.Point(13, 182)
-        Me.numGearbits.Maximum = New Decimal(New Integer() {255, 0, 0, 0})
+        Me.numGearbits.Maximum = New Decimal(New Integer() {65535, 0, 0, 0})
         Me.numGearbits.Name = "numGearbits"
         Me.numGearbits.Size = New System.Drawing.Size(120, 20)
         Me.numGearbits.TabIndex = 14

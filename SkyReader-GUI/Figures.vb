@@ -1,4 +1,5 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
+Imports SkyReader_GUI.frmMain
 Public Class Figures
     'This handles all the Figure data
     Public Shared Var As String
@@ -54,14 +55,16 @@ Public Class Figures
         frmMain.Save_Enc_ToolStripMenuItem.Enabled = False
         frmMain.Save_Dec_ToolStripMenuItem.Enabled = False
         frmMain.WriteSkylanderToolStripMenuItem.Enabled = False
-        frmMain.WriteSwapperOtherHalfToolStripMenuItem.Enabled = False
+        frmMain.WriteSecondFigureToolStripMenuItem.Enabled = False
     End Sub
     Shared Sub EnableWrite()
         frmMain.SaldeStatus.Text = "Ready"
         frmMain.Save_Enc_ToolStripMenuItem.Enabled = True
         frmMain.Save_Dec_ToolStripMenuItem.Enabled = True
-        frmMain.WriteSkylanderToolStripMenuItem.Enabled = True
-        frmMain.WriteSwapperOtherHalfToolStripMenuItem.Enabled = True
+        If Portal.blnPortal = True Then
+            frmMain.WriteSkylanderToolStripMenuItem.Enabled = True
+            frmMain.WriteSecondFigureToolStripMenuItem.Enabled = True
+        End If
     End Sub
 #Region " Write Methods "
     Shared Sub EditCharacterIDVariant()
@@ -3658,9 +3661,8 @@ Public Class Figures
     Public Shared Sub FigureItOut()
         'MessageBox.Show(Var & " " & Fig)
         If Var = "0000" Then
-            'Adventures
-            frmMain.cmbGame.SelectedIndex = 0
-            'Application.DoEvents()
+            frmMain.cmbGame.SelectedItem = "Spyro's Adventure"
+            ''Application.DoEvents()
             Select Case Fig
                 Case "0400"
                     'Bash
@@ -3774,73 +3776,72 @@ Public Class Figures
                     'Zook
                     frmMain.lstCharacters.SelectedIndex = 36
                 Case "2F01"
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     'Darklight Crypt
                     frmMain.lstCharacters.SelectedItem = "Darklight Crypt"
                 Case "2C01"
                     'Dragon's Peak
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Dragon's Peak"
                 Case "F901"
                     'Terrabite
-                    frmMain.cmbGame.SelectedIndex = 3
+                    frmMain.cmbGame.SelectedItem = "Trap Team"
                     frmMain.lstCharacters.SelectedItem = "Terrabite"
                 Case "0E02"
                     'Whisper Elf
-                    frmMain.cmbGame.SelectedIndex = 3
+                    frmMain.cmbGame.SelectedItem = "Trap Team"
                     frmMain.lstCharacters.SelectedItem = "Whisper Elf"
                 Case "0202"
                     'Gill Runt
-                    frmMain.cmbGame.SelectedIndex = 3
+                    frmMain.cmbGame.SelectedItem = "Trap Team"
                     frmMain.lstCharacters.SelectedItem = "Gill Runt"
                 Case "0702"
                     'Trigger Snappy
-                    frmMain.cmbGame.SelectedIndex = 3
+                    frmMain.cmbGame.SelectedItem = "Trap Team"
                     frmMain.lstCharacters.SelectedItem = "Trigger Snappy"
                 Case "E700"
                     'Piggy Bank
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Piggy Bank"
                 Case "E800"
                     'Rocket Ram
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Rocket Ram"
                 Case "E900"
                     'Tiki Speaky
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Tiki Speaky"
                 Case "E600"
                     'Hand of Fate
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Hand of Fate"
                 Case "C900"
                     'Hidden Treasure (Platinum)
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Platinum Hidden Treasure"
                 Case "CE00"
                     'Winged Boots
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Winged Boots"
                 Case "CA00"
                     'Healing Elixir
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Healing Elixir"
                 Case "CF00"
                     'Sparks the Dragonfly
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Sparx the Dragonfly"
                 Case "CC00"
                     'Time Twister
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Time Twister Hourglass"
             End Select
         ElseIf Var = "0010" Then
-            'Giants
-            frmMain.cmbGame.SelectedIndex = 1
+            frmMain.cmbGame.SelectedItem = "Giants"
             Select Case Fig
                 Case "1C02"
                     'Barkley
-                    frmMain.cmbGame.SelectedIndex = 3
+                    frmMain.cmbGame.SelectedItem = "Trap Team"
                     frmMain.lstCharacters.SelectedItem = "Barkley"
                 Case "6A00"
                     'Chill
@@ -3868,7 +3869,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Sprocket"
             End Select
         ElseIf Var = "0118" Then
-            frmMain.cmbGame.SelectedIndex = 1
+            frmMain.cmbGame.SelectedItem = "Giants"
             Select Case Fig
                 Case "0400"
                     'Series 2 Bash
@@ -3944,14 +3945,14 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Series 2 Zook"
             End Select
         ElseIf Var = "021C" Then
-            frmMain.cmbGame.SelectedIndex = 1
+            frmMain.cmbGame.SelectedItem = "Giants"
             Select Case Fig
                 Case "1200"
                     'Royal Double Trouble
                     frmMain.lstCharacters.SelectedItem = "Royal Double Trouble"
             End Select
         ElseIf Var = "0214" Then
-            frmMain.cmbGame.SelectedIndex = 1
+            frmMain.cmbGame.SelectedItem = "Giants"
             Select Case Fig
                 Case "6700"
                     'Jade Flashwing
@@ -3964,7 +3965,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Punch Pop Fizz"
             End Select
         ElseIf Var = "0216" Then
-            frmMain.cmbGame.SelectedIndex = 1
+            frmMain.cmbGame.SelectedItem = "Giants"
             Select Case Fig
                 Case "7000"
                     'Gnarly Tree Rex
@@ -3979,14 +3980,12 @@ Public Class Figures
                     'Scarlet Ninjini
                     frmMain.lstCharacters.SelectedItem = "Scarlet Ninjini"
                 Case "D000"
-                    ' MessageBox.Show("Figure D000")
                     'Golden Dragonfire Cannon
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Golden Dragonfire Cannon"
             End Select
         ElseIf Var = "0354" Then
-            'Imaginators
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "5D02"
                     frmMain.lstCharacters.SelectedItem = "Legendary Pit Boss"
@@ -3994,7 +3993,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Legendary Tri-Tip"
             End Select
         ElseIf Var = "031C" Then
-            frmMain.cmbGame.SelectedIndex = 1
+            frmMain.cmbGame.SelectedItem = "Giants"
             Select Case Fig
                 Case "0F00"
                     'Legendary Slam Bam
@@ -4004,14 +4003,14 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Legendary Stealth Elf"
             End Select
         ElseIf Var = "0314" Then
-            frmMain.cmbGame.SelectedIndex = 1
+            frmMain.cmbGame.SelectedItem = "Giants"
             Select Case Fig
                 Case "6400"
                     'Legendary Jet-Vac
                     frmMain.lstCharacters.SelectedItem = "Legendary Jet-Vac"
             End Select
         ElseIf Var = "0316" Then
-            frmMain.cmbGame.SelectedIndex = 1
+            frmMain.cmbGame.SelectedItem = "Giants"
             Select Case Fig
                 Case "6E00"
                     'Legendary Bouncer
@@ -4024,15 +4023,15 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Legendary Ignitor"
             End Select
         ElseIf Var = "0612" Then
-            frmMain.cmbGame.SelectedIndex = 1
+            frmMain.cmbGame.SelectedItem = "Giants"
             Select Case Fig
                 Case "D100"
                     'Scorpion Striker
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Scorpion Striker"
                 Case "D000"
                     'Dragonfire Cannon
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Dragonfire Cannon"
                 Case "6E00"
                     frmMain.lstCharacters.SelectedItem = "Bouncer"
@@ -4083,38 +4082,37 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Tree Rex"
             End Select
         ElseIf Var = "0020" Then
-            frmMain.cmbGame.SelectedIndex = 2
-            'Swap Force
+            frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "E40C"
                     'Sheep Wreck Island
-                    frmMain.cmbGame.SelectedIndex = 8
-                    Application.DoEvents()
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
+                    'Application.DoEvents()
                     frmMain.lstCharacters.SelectedItem = "Sheep Wreck Island"
                 Case "E50C"
                     'Tower of Time
-                    frmMain.cmbGame.SelectedIndex = 8
-                    Application.DoEvents()
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
+                    'Application.DoEvents()
                     frmMain.lstCharacters.SelectedItem = "Tower of Time"
                 Case "830C"
                     'Groove Machine
-                    frmMain.cmbGame.SelectedIndex = 6
-                    Application.DoEvents()
+                    frmMain.cmbGame.SelectedItem = "Items"
+                    'Application.DoEvents()
                     frmMain.lstCharacters.SelectedItem = "Groove Machine"
                 Case "820C"
                     'Platinum Sheep
-                    frmMain.cmbGame.SelectedIndex = 6
-                    Application.DoEvents()
+                    frmMain.cmbGame.SelectedItem = "Items"
+                    'Application.DoEvents()
                     frmMain.lstCharacters.SelectedItem = "Platinum Sheep"
                 Case "810C"
                     'Sky Diamond
-                    frmMain.cmbGame.SelectedIndex = 6
-                    Application.DoEvents()
+                    frmMain.cmbGame.SelectedItem = "Items"
+                    'Application.DoEvents()
                     frmMain.lstCharacters.SelectedItem = "Sky Diamond"
                 Case "840C"
                     'UFO Hat
-                    frmMain.cmbGame.SelectedIndex = 6
-                    Application.DoEvents()
+                    frmMain.cmbGame.SelectedItem = "Items"
+                    'Application.DoEvents()
                     frmMain.lstCharacters.SelectedItem = "UFO Hat"
                 Case "EC03"
                     'Blast Zone (Bottom)
@@ -4262,39 +4260,39 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Zoo Lou"
                 Case "2D01"
                     'Empire of Ice
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Empire of Ice"
                 Case "2E01"
                     'Pirate Seas
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Pirate Seas"
                 Case "C800"
                     'Anvil Rain
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Anvil Rain"
                 Case "3001"
                     'Volcanic Vault
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Volcanic Vault"
                 Case "800C"
                     'Battle Hammer
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Battle Hammer"
                 Case "C900"
                     'Hidden Treasure
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Hidden Treasure"
                 Case "CB00"
                     'Ghost Swords
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Ghost Pirate Swords"
                 Case "CD00"
                     'Sky Iron Shield
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Sky-Iron Shield"
             End Select
         ElseIf Var = "022C" Then
-            frmMain.cmbGame.SelectedIndex = 2
+            frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "1A00"
                     'Dark Stealth Elf
@@ -4307,7 +4305,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Volcanic Eruptor"
             End Select
         ElseIf Var = "0224" Then
-            frmMain.cmbGame.SelectedIndex = 2
+            frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "EC03"
                     'Dark Blast Zone (Bottom)
@@ -4362,14 +4360,14 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Quickdraw Rattle Shake (Top)"
             End Select
         ElseIf Var = "0226" Then
-            frmMain.cmbGame.SelectedIndex = 2
+            frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "C10B"
                     'Enchanted Star Strike
                     frmMain.lstCharacters.SelectedItem = "Enchanted Star Strike"
             End Select
         ElseIf Var = "0324" Then
-            frmMain.cmbGame.SelectedIndex = 2
+            frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "E903"
                     'Legendary Free Ranger (Bottom)
@@ -4388,14 +4386,14 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Legendary Zoo Lou"
             End Select
         ElseIf Var = "0326" Then
-            frmMain.cmbGame.SelectedIndex = 2
+            frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "C50B"
                     'Legendary Grim Creeper
                     frmMain.lstCharacters.SelectedItem = "Legendary Grim Creeper"
             End Select
         ElseIf Var = "0528" Then
-            frmMain.cmbGame.SelectedIndex = 2
+            frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "0E00"
                     'Anchors Away Gill Grunt
@@ -4450,7 +4448,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Twin Blade Chop Chop"
             End Select
         ElseIf Var = "0622" Then
-            frmMain.cmbGame.SelectedIndex = 2
+            frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "BE0B"
                     'LightCore Bumble Blast
@@ -4478,16 +4476,15 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "LightCore Wham-Shell"
                 Case "E70C"
                     'Arkeyan Crossbow
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Arkeyan Crossbow"
                 Case "E60C"
                     'Fiery Forge
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Fiery Forge"
             End Select
         ElseIf Var = "0030" Then
-            'Trap Team
-            frmMain.cmbGame.SelectedIndex = 3
+            frmMain.cmbGame.SelectedItem = "Trap Team"
             Select Case Fig
                 Case "1C02"
                     'Barkley
@@ -4646,13 +4643,13 @@ Public Class Figures
                     'Wildfire
                     frmMain.lstCharacters.SelectedItem = "Wildfire"
                 Case "3401"
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Midnight Museum"
                 Case "3101"
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Mirror of Mystery"
                 Case "3201"
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Nightmare Express"
             End Select
         ElseIf Var = "1D30" Then
@@ -4662,7 +4659,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Clear Thunderbolt"
             End Select
         ElseIf Var = "0138" Then
-            frmMain.cmbGame.SelectedIndex = 3
+            frmMain.cmbGame.SelectedItem = "Trap Team"
             Select Case Fig
                 Case "BC0B"
                     'Hog Wild Fryno
@@ -4672,14 +4669,14 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Sure Shot Shroomboom"
             End Select
         ElseIf Var = "023C" Then
-            frmMain.cmbGame.SelectedIndex = 3
+            frmMain.cmbGame.SelectedItem = "Trap Team"
             Select Case Fig
                 Case "6C00"
                     'Love Potion Pop Fizz
                     frmMain.lstCharacters.SelectedItem = "Love Potion Pop Fizz"
             End Select
         ElseIf Var = "0234" Then
-            frmMain.cmbGame.SelectedIndex = 3
+            frmMain.cmbGame.SelectedItem = "Trap Team"
             Select Case Fig
                 Case "DC01"
                     'Dark Food Fight
@@ -4713,7 +4710,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Winterfest Lob-Star"
             End Select
         ElseIf Var = "0334" Then
-            frmMain.cmbGame.SelectedIndex = 3
+            frmMain.cmbGame.SelectedItem = "Trap Team"
             Select Case Fig
                 Case "C501"
                     'Legendary Blades
@@ -4730,11 +4727,11 @@ Public Class Figures
                 Case "E600"
                     ' MessageBox.Show("L. Hand")
                     'Legendary Hand of Fate
-                    frmMain.cmbGame.SelectedIndex = 6
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Legendary Hand of Fate"
             End Select
         ElseIf Var = "0538" Then
-            frmMain.cmbGame.SelectedIndex = 3
+            frmMain.cmbGame.SelectedItem = "Trap Team"
             Select Case Fig
                 Case "6C00"
                     'Fizzy Frenzy Pop Fizz
@@ -4744,7 +4741,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Full Blast Jet-Vac"
             End Select
         ElseIf Var = "0632" Then
-            frmMain.cmbGame.SelectedIndex = 8
+            frmMain.cmbGame.SelectedItem = "Adventure Packs"
             Select Case Fig
                 Case "3401"
                     'Midnight Museum (Proper?)
@@ -4754,14 +4751,14 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Sunscraper Spire"
             End Select
         ElseIf Var = "0938" Then
-            frmMain.cmbGame.SelectedIndex = 3
+            frmMain.cmbGame.SelectedItem = "Trap Team"
             Select Case Fig
                 Case "0E00"
                     'Tidal Wave Gill Grunt
                     frmMain.lstCharacters.SelectedItem = "Tidal Wave Gill Grunt"
             End Select
         ElseIf Var = "1038" Then
-            frmMain.cmbGame.SelectedIndex = 3
+            frmMain.cmbGame.SelectedItem = "Trap Team"
             Select Case Fig
                 Case "1E00"
                     'Elite Chop Chop
@@ -4788,9 +4785,8 @@ Public Class Figures
                     'Elite Whirlwind
                     frmMain.lstCharacters.SelectedItem = "Elite Whirlwind"
             End Select
-            'SuperChargers
         ElseIf Var = "0041" Then
-            frmMain.cmbGame.SelectedIndex = 4
+            frmMain.cmbGame.SelectedItem = "SuperChargers"
             Select Case Fig
                 Case "620D"
                     frmMain.lstCharacters.SelectedItem = "Astroblast"
@@ -4834,8 +4830,8 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Turbo Charge Donkey Kong"
             End Select
         ElseIf Var = "0040" Then
-            frmMain.cmbGame.SelectedIndex = 4
-            frmMain.BlnVehicle = True
+            frmMain.cmbGame.SelectedItem = "Vehicles"
+            BlnVehicle = True
             Select Case Fig
                 Case "A80C"
                     frmMain.lstCharacters.SelectedItem = "Barrel Blaster"
@@ -4888,7 +4884,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Tomb Buggy"
             End Select
         ElseIf Var = "0E45" Then
-            frmMain.cmbGame.SelectedIndex = 4
+            frmMain.cmbGame.SelectedItem = "SuperChargers"
             Select Case Fig
                 Case "5C0D"
                     frmMain.lstCharacters.SelectedItem = "Birthday Bash Big Bubble Pop Fizz"
@@ -4896,8 +4892,8 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Missile-Tow Dive-Clops"
             End Select
         ElseIf Var = "0244" Then
-            frmMain.cmbGame.SelectedIndex = 4
-            frmMain.BlnVehicle = True
+            frmMain.cmbGame.SelectedItem = "SuperChargers"
+            BlnVehicle = True
             Select Case Fig
                 Case "A80C"
                     frmMain.lstCharacters.SelectedItem = "Dark Barrel Blaster"
@@ -4919,7 +4915,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Spring Ahead Dive Bomber"
             End Select
         ElseIf Var = "0245" Then
-            frmMain.cmbGame.SelectedIndex = 4
+            frmMain.cmbGame.SelectedItem = "SuperChargers"
             Select Case Fig
                 Case "600D"
                     frmMain.lstCharacters.SelectedItem = "Dark Hammer Slam Bowser"
@@ -4937,8 +4933,8 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Steel Plated Smash Hit"
             End Select
         ElseIf Var = "0440" Then
-            frmMain.cmbGame.SelectedIndex = 4
-            frmMain.BlnVehicle = True
+            frmMain.cmbGame.SelectedItem = "SuperChargers"
+            BlnVehicle = True
             Select Case Fig
                 Case "970C"
                     frmMain.lstCharacters.SelectedItem = "E3 Hot Streak"
@@ -4946,13 +4942,13 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Hot Streak"
             End Select
         ElseIf Var = "0D45" Then
-            frmMain.cmbGame.SelectedIndex = 4
+            frmMain.cmbGame.SelectedItem = "SuperChargers"
             Select Case Fig
                 Case "640D"
                     frmMain.lstCharacters.SelectedItem = "Eggcited Thrillipede"
             End Select
         ElseIf Var = "1048" Then
-            frmMain.cmbGame.SelectedIndex = 4
+            frmMain.cmbGame.SelectedItem = "SuperChargers"
             Select Case Fig
                 Case "1600"
                     frmMain.lstCharacters.SelectedItem = "Elite Boomer"
@@ -4966,25 +4962,26 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Elite Zook"
             End Select
         ElseIf Var = "1138" Then
-            frmMain.cmbGame.SelectedIndex = 4
+            frmMain.cmbGame.SelectedItem = "SuperChargers"
             Select Case Fig
                 Case "1100"
                     frmMain.lstCharacters.SelectedItem = "Elite Voodood"
             End Select
         ElseIf Var = "1545" Then
-            frmMain.cmbGame.SelectedIndex = 4
+            frmMain.cmbGame.SelectedItem = "SuperChargers"
             Select Case Fig
                 Case "480D"
                     frmMain.lstCharacters.SelectedItem = "Frightful Fiesta"
             End Select
         ElseIf Var = "1E44" Then
-            frmMain.cmbGame.SelectedIndex = 4
+            frmMain.cmbGame.SelectedItem = "Vehicle"
+            BlnVehicle = True
             Select Case Fig
                 Case "980C"
                     frmMain.lstCharacters.SelectedItem = "Golden Hot Streak"
             End Select
         ElseIf Var = "0345" Then
-            frmMain.cmbGame.SelectedIndex = 4
+            frmMain.cmbGame.SelectedItem = "SuperChargers"
             Select Case Fig
                 Case "620D"
                     frmMain.lstCharacters.SelectedItem = "Legendary Astroblast"
@@ -4994,15 +4991,15 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Legendary Hurricane Jet-Vac"
             End Select
         ElseIf Var = "0344" Then
-            frmMain.cmbGame.SelectedIndex = 4
-            frmMain.BlnVehicle = True
+            frmMain.cmbGame.SelectedItem = "Vehicle"
+            BlnVehicle = True
             Select Case Fig
                 Case "A40C"
                     frmMain.lstCharacters.SelectedItem = "Legendary Sun Runner"
             End Select
             'Imaginators
         ElseIf Var = "0050" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "5F02"
                     frmMain.lstCharacters.SelectedItem = "Air Strike"
@@ -5102,16 +5099,16 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Wolfgang"
 
                 Case "3601"
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Gryphon Park Observatory"
                 Case "3701"
-                    frmMain.cmbGame.SelectedIndex = 8
+                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Enchanted Elven Forest"
             End Select
         ElseIf Var = "0330" Then
             'Toucan Trap Vars
-            frmMain.cmbGame.SelectedIndex = 7
-            frmMain.blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+            blnTrap = True
             Select Case Fig
                 Case "D400"
                     frmMain.lstCharacters.SelectedItem = "Breezy Bird (Toucan)"
@@ -5122,8 +5119,9 @@ Public Class Figures
             End Select
         ElseIf Var = "1030" Then
             'Snake Trap Vars
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D400"
                     frmMain.lstCharacters.SelectedItem = "Cloudy Cobra (Snake)"
@@ -5133,8 +5131,9 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Spooky Snake (Snake)"
             End Select
         ElseIf Var = "1830" Then
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 'Sword Trap Vars
                 Case "D400"
@@ -5145,9 +5144,9 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Jade Blade (Sword)"
             End Select
         ElseIf Var = "0630" Then
-            frmMain.cmbGame.SelectedIndex = 7
+            frmMain.cmbGame.SelectedItem = "Traps"
             'Jughead Trap Vars
-            frmMain.blnTrap = True
+            blnTrap = True
             Select Case Fig
                 Case "D400"
                     frmMain.lstCharacters.SelectedItem = "Drafty Decanter (Jughead)"
@@ -5155,8 +5154,8 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Flood Flask (Jughead)"
             End Select
         ElseIf Var = "1130" Then
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
             'Screamer Trap Vars
             Select Case Fig
                 Case "D400"
@@ -5165,8 +5164,9 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Scorching Stopper (Screamer)"
             End Select
         ElseIf Var = "0E30" Then
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 'Hourglas Trap Vars
                 Case "D400"
@@ -5178,8 +5178,9 @@ Public Class Figures
             End Select
         ElseIf Var = "1A30" Then
             'Handstand Trap Vars
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "DA00"
                     frmMain.lstCharacters.SelectedItem = "Ghastly Grimace (Handstand)"
@@ -5190,16 +5191,18 @@ Public Class Figures
             End Select
         ElseIf Var = "1430" Then
             'Spider Trap Vars
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "DA00"
                     frmMain.lstCharacters.SelectedItem = "Shadow Spider (Spider)"
             End Select
         ElseIf Var = "0430" Then
             'Orb Trap Vars
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D800"
                     frmMain.lstCharacters.SelectedItem = "Banded Boulder (Orb)"
@@ -5207,16 +5210,18 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Spirit Sphere (Orb)"
             End Select
         ElseIf Var = "0434" Then
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "0434"
                     frmMain.lstCharacters.SelectedItem = "Legendary Spirit Sphere (Orb)"
             End Select
         ElseIf Var = "0A30" Then
-            frmMain.blnTrap = True
+            blnTrap = True
             'Hammer Trap Figures
-            frmMain.cmbGame.SelectedIndex = 7
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D800"
                     frmMain.lstCharacters.SelectedItem = "Slag Hammer (Hammer)"
@@ -5224,9 +5229,10 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Weed Whacker (Hammer)"
             End Select
         ElseIf Var = "1230" Then
-            frmMain.blnTrap = True
+            blnTrap = True
             'Totem Trap Figures
-            frmMain.cmbGame.SelectedIndex = 7
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D800"
                     frmMain.lstCharacters.SelectedItem = "Spinning Sandstorm (Totem)"
@@ -5237,9 +5243,9 @@ Public Class Figures
             End Select
         ElseIf Var = "1B30" Then
             'Yawn Trap Figures
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
-            Application.DoEvents()
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+            'Application.DoEvents()
 
             Select Case Fig
                 Case "D700"
@@ -5251,8 +5257,9 @@ Public Class Figures
             End Select
         ElseIf Var = "0530" Then
             'Torch Trap Figures
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D700"
                     frmMain.lstCharacters.SelectedItem = "Eternal Flame (Torch)"
@@ -5261,8 +5268,9 @@ Public Class Figures
             End Select
         ElseIf Var = "0130" Then
             'Septer/Log Holder/Tiki Trap Figures
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D700"
                     frmMain.lstCharacters.SelectedItem = "Fire Flower (Scepter)"
@@ -5275,8 +5283,9 @@ Public Class Figures
             End Select
         ElseIf Var = "1730" Then
             'Captain's Hat Trap Figures
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D700"
                     frmMain.lstCharacters.SelectedItem = "Spark Spear (Captain's Hat)"
@@ -5284,15 +5293,17 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Dream Piercer (Captain's Hat)"
             End Select
         ElseIf Var = "0F30" Then
-            frmMain.cmbGame.SelectedIndex = 7
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "DB00"
                     frmMain.lstCharacters.SelectedItem = "Heavenly Hawk (Hawk)"
             End Select
         ElseIf Var = "1530" Then
             'Rocket Trap Figures
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "DB00"
                     frmMain.lstCharacters.SelectedItem = "Shining Ship (Rocket)"
@@ -5301,8 +5312,9 @@ Public Class Figures
             End Select
         ElseIf Var = "0B30" Then
             'Axe Trap Figures
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D200"
                     frmMain.lstCharacters.SelectedItem = "Axe of Illusion (Axe)"
@@ -5312,9 +5324,10 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Aqua Axe (Axe)"
             End Select
         ElseIf Var = "0830" Then
-            frmMain.blnTrap = True
+            blnTrap = True
             'Skull Trap Figures
-            frmMain.cmbGame.SelectedIndex = 7
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D200"
                     frmMain.lstCharacters.SelectedItem = "Sorcerous Skull (Skull)"
@@ -5323,8 +5336,9 @@ Public Class Figures
             End Select
         ElseIf Var = "0C30" Then
             'Hand Trap Figures
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D600"
                     frmMain.lstCharacters.SelectedItem = "Grabbing Gadget (Hand)"
@@ -5333,8 +5347,9 @@ Public Class Figures
             End Select
         ElseIf Var = "1630" Then
             'Flying Helmet Trap Figures
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D600"
                     frmMain.lstCharacters.SelectedItem = "Makers Mana (Flying Helmet)"
@@ -5342,9 +5357,10 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Frost Helm (Flying Helmet)"
             End Select
         ElseIf Var = "0730" Then
-            frmMain.blnTrap = True
+            blnTrap = True
             'Angel Trap Figures
-            frmMain.cmbGame.SelectedIndex = 7
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D600"
                     frmMain.lstCharacters.SelectedItem = "Automatic Angel (Angel)"
@@ -5352,50 +5368,55 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Soaking Staff (Angel)"
             End Select
         ElseIf Var = "0230" Then
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D300"
                     frmMain.lstCharacters.SelectedItem = "Wet Walter (Log Holder)"
             End Select
         ElseIf Var = "0930" Then
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D600"
                     frmMain.lstCharacters.SelectedItem = "Factory Flower (Scepter)"
             End Select
         ElseIf Var = "0634" Then
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D300"
                     frmMain.lstCharacters.SelectedItem = "Legendary Flood Flask (Jughead)"
             End Select
         ElseIf Var = "0834" Then
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "D500"
                     frmMain.lstCharacters.SelectedItem = "Legendary Spectral Skull (Skull)"
             End Select
         ElseIf Var = "1E30" Then
-            frmMain.blnTrap = True
-            frmMain.cmbGame.SelectedIndex = 7
+            blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+
             Select Case Fig
                 Case "DC00"
                     frmMain.lstCharacters.SelectedItem = "The Kaos Trap"
             End Select
         ElseIf Var = "1F35" Then
-            frmMain.cmbGame.SelectedIndex = 7
-            frmMain.blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+            blnTrap = True
             Select Case Fig
                 Case "DC00"
                     frmMain.lstCharacters.SelectedItem = "Ultimate Kaos Trap"
             End Select
         ElseIf Var = "D800" Then
-            frmMain.cmbGame.SelectedIndex = 7
-            frmMain.blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+            blnTrap = True
             Select Case Fig
                 Case "1B30"
                     frmMain.lstCharacters.SelectedItem = "Beam Scream (Yawn)"
@@ -5403,116 +5424,126 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Heavenly Hawk (Hawk)"
             End Select
         ElseIf Var = "1750" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "EB00"
                     frmMain.lstCharacters.SelectedItem = "Blue Mystery Chest"
             End Select
         ElseIf Var = "0150" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "EB00"
                     frmMain.lstCharacters.SelectedItem = "Bronze Mystery Chest"
             End Select
         ElseIf Var = "0250" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "EB00"
                     frmMain.lstCharacters.SelectedItem = "Silver Mystery Chest"
             End Select
         ElseIf Var = "D400" Then
-            frmMain.cmbGame.SelectedIndex = 7
-            frmMain.blnTrap = True
+            frmMain.cmbGame.SelectedItem = "Traps"
+            blnTrap = True
             Select Case Fig
                 Case "D400"
                     frmMain.lstCharacters.SelectedItem = "Breezy Bird (Toucan)"
             End Select
         ElseIf Var = "0304" Then
-            frmMain.cmbGame.SelectedIndex = 2
+            frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "F403"
                     frmMain.lstCharacters.SelectedItem = "Legendary Night Shift (Bottom)"
             End Select
         ElseIf Var = "0350" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "EB00"
                     frmMain.lstCharacters.SelectedItem = "Gold Mystery Chest"
             End Select
         ElseIf Var = "1950" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "EB00"
                     frmMain.lstCharacters.SelectedItem = "Platnium Mystery Chest"
             End Select
         ElseIf Var = "0752" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
+            blnCrystal = True
             Select Case Fig
                 Case "AA02"
                     frmMain.lstCharacters.SelectedItem = "Air Crystal"
             End Select
         ElseIf Var = "0652" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators Crystals"
+            blnCrystal = True
             Select Case Fig
                 Case "B002"
                     frmMain.lstCharacters.SelectedItem = "Dark Crystal"
             End Select
         ElseIf Var = "1D52" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators Crystals"
+            blnCrystal = True
             Select Case Fig
                 Case "AE02"
                     frmMain.lstCharacters.SelectedItem = "Earth Crystal"
             End Select
         ElseIf Var = "0F52" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators Crystals"
+            blnCrystal = True
             Select Case Fig
                 Case "AD02"
                     frmMain.lstCharacters.SelectedItem = "Fire Crystal"
             End Select
         ElseIf Var = "1E52" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators Crystals"
+            blnCrystal = True
             Select Case Fig
                 Case "AF02"
                     frmMain.lstCharacters.SelectedItem = "Life Crystal"
             End Select
         ElseIf Var = "0B52" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators Crystals"
+            blnCrystal = True
             Select Case Fig
                 Case "B102"
                     frmMain.lstCharacters.SelectedItem = "Light Crystal"
             End Select
         ElseIf Var = "0852" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators Crystals"
+            blnCrystal = True
             Select Case Fig
                 Case "A802"
                     frmMain.lstCharacters.SelectedItem = "Magic Crystal"
             End Select
         ElseIf Var = "1552" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators Crystals"
+            blnCrystal = True
             Select Case Fig
                 Case "AC02"
                     frmMain.lstCharacters.SelectedItem = "Tech Crystal"
             End Select
         ElseIf Var = "0952" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators Crystals"
+            blnCrystal = True
             Select Case Fig
                 Case "AB02"
                     frmMain.lstCharacters.SelectedItem = "Undead Crystal"
             End Select
         ElseIf Var = "1C52" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators Crystals"
+            blnCrystal = True
             Select Case Fig
                 Case "A902"
                     frmMain.lstCharacters.SelectedItem = "Water Crystal"
             End Select
         ElseIf Var = "1554" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "5B02"
                     frmMain.lstCharacters.SelectedItem = "Candy-Coated Chopscotch"
             End Select
         ElseIf Var = "0254" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "6502"
                     frmMain.lstCharacters.SelectedItem = "Dark Golden Queen"
@@ -5532,7 +5563,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "WolfGang Dark"
             End Select
         ElseIf Var = "0D54" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "5F02"
                     frmMain.lstCharacters.SelectedItem = "Egg Bomber Air Strike"
@@ -5540,7 +5571,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Hard-Boiled Flarewolf"
             End Select
         ElseIf Var = "0E54" Then
-            frmMain.cmbGame.SelectedIndex = 5
+            frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "6D02"
                     frmMain.lstCharacters.SelectedItem = "Jingle Bell Chompy Mage"
@@ -5899,44 +5930,6 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Thrillipede")
         frmMain.lstCharacters.Items.Add("Turbo Charge Donkey Kong")
 
-        frmMain.lstCharacters.Items.Add("--Land Vehicles--")
-        frmMain.lstCharacters.Items.Add("Barrel Blaster")
-        frmMain.lstCharacters.Items.Add("Burn-Cycle")
-        frmMain.lstCharacters.Items.Add("Crypt Crusher")
-        frmMain.lstCharacters.Items.Add("Dark Barrel Blaster")
-        frmMain.lstCharacters.Items.Add("Dark Hot Streak")
-        frmMain.lstCharacters.Items.Add("E3 Hot Streak")
-        frmMain.lstCharacters.Items.Add("Gold Rusher")
-        frmMain.lstCharacters.Items.Add("Golden Hot Streak")
-        frmMain.lstCharacters.Items.Add("Hot Streak")
-        frmMain.lstCharacters.Items.Add("Power Blue Gold Rusher")
-        frmMain.lstCharacters.Items.Add("Shark Tank")
-        frmMain.lstCharacters.Items.Add("Shield Striker")
-        frmMain.lstCharacters.Items.Add("Thump Truck")
-        frmMain.lstCharacters.Items.Add("Tomb Buggy")
-
-        frmMain.lstCharacters.Items.Add("--Sea Vehicles--")
-        frmMain.lstCharacters.Items.Add("Dark Sea Shadow")
-        frmMain.lstCharacters.Items.Add("Dive Bomber")
-        frmMain.lstCharacters.Items.Add("Nitro Soda Skimmer")
-        frmMain.lstCharacters.Items.Add("Power Blue Splatter Splasher")
-        frmMain.lstCharacters.Items.Add("Reef Ripper")
-        frmMain.lstCharacters.Items.Add("Sea Shadow")
-        frmMain.lstCharacters.Items.Add("Soda Skimmer")
-        frmMain.lstCharacters.Items.Add("Splatter Splasher")
-        frmMain.lstCharacters.Items.Add("Spring Ahead Dive Bomber")
-
-        frmMain.lstCharacters.Items.Add("--Sky Vehicles--")
-        frmMain.lstCharacters.Items.Add("Buzz Wing")
-        frmMain.lstCharacters.Items.Add("Clown Cruiser")
-        frmMain.lstCharacters.Items.Add("Dark Clown Cruiser")
-        frmMain.lstCharacters.Items.Add("Jet Stream")
-        frmMain.lstCharacters.Items.Add("Nitro Stealth Stinger")
-        frmMain.lstCharacters.Items.Add("Sky Slicer")
-        frmMain.lstCharacters.Items.Add("Stealth Stinger")
-        frmMain.lstCharacters.Items.Add("Sun Runner")
-
-
         'frmMain.lstCharacters.Items.Add("--Villain Vehicles--")
         'frmMain.lstCharacters.Items.Add("--Pandergast Vehicles--")
         frmMain.lstCharacters.Items.Add("--Trophies--")
@@ -5997,56 +5990,6 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Tri-Tip")
         frmMain.lstCharacters.Items.Add("Wild Storm")
         frmMain.lstCharacters.Items.Add("Wolfgang")
-
-        frmMain.lstCharacters.Items.Add("--Crystals--")
-        'NOTE:
-        'Apparently these Figures ARE Unique Variant but I have NO information on them.  :(
-        frmMain.lstCharacters.Items.Add("Air Crystal")
-        'frmMain.lstCharacters.Items.Add("Air Acorn")
-        'frmMain.lstCharacters.Items.Add("Air Angel")
-        'frmMain.lstCharacters.Items.Add("Air Lantern")
-        frmMain.lstCharacters.Items.Add("Dark Crystal")
-        'frmMain.lstCharacters.Items.Add("Dark Pyramid")
-        'frmMain.lstCharacters.Items.Add("Dark Reactor")
-        'frmMain.lstCharacters.Items.Add("Dark Rune")
-        frmMain.lstCharacters.Items.Add("Earth Crystal")
-        'frmMain.lstCharacters.Items.Add("Earth Armor")
-        'frmMain.lstCharacters.Items.Add("Earth Rocket")
-        'frmMain.lstCharacters.Items.Add("Earth Rune")
-        frmMain.lstCharacters.Items.Add("Fire Crystal")
-        'frmMain.lstCharacters.Items.Add("Fire Acorn")
-        'frmMain.lstCharacters.Items.Add("Fire Angel")
-        'frmMain.lstCharacters.Items.Add("Fire Reactor")
-        frmMain.lstCharacters.Items.Add("Life Crystal")
-        'frmMain.lstCharacters.Items.Add("Life Acorn")
-        'frmMain.lstCharacters.Items.Add("Life Claw")
-        'frmMain.lstCharacters.Items.Add("Life Rocket")
-        'frmMain.lstCharacters.Items.Add("Life Rune")
-        frmMain.lstCharacters.Items.Add("Light Crystal")
-        'frmMain.lstCharacters.Items.Add("Light Angel")
-        'frmMain.lstCharacters.Items.Add("Light Fanged")
-        'frmMain.lstCharacters.Items.Add("Light Rune")
-        frmMain.lstCharacters.Items.Add("Magic Crystal")
-        'frmMain.lstCharacters.Items.Add("Magic Claw")
-        'frmMain.lstCharacters.Items.Add("Magic Lantern")
-        'frmMain.lstCharacters.Items.Add("Magic Pyramid")
-        frmMain.lstCharacters.Items.Add("Tech Crystal")
-        'frmMain.lstCharacters.Items.Add("Tech Armor")
-        'frmMain.lstCharacters.Items.Add("Tech Pyramid")
-        'frmMain.lstCharacters.Items.Add("Tech Reactor")
-        frmMain.lstCharacters.Items.Add("Undead Crystal")
-        'frmMain.lstCharacters.Items.Add("Undead Claw")
-        'frmMain.lstCharacters.Items.Add("Undead Fanged")
-        'frmMain.lstCharacters.Items.Add("Undead Lantern")
-        frmMain.lstCharacters.Items.Add("Water Crystal")
-        'frmMain.lstCharacters.Items.Add("Water Armor")
-        'frmMain.lstCharacters.Items.Add("Water Fanged")
-        'frmMain.lstCharacters.Items.Add("Water Rocket")
-        'frmMain.lstCharacters.Items.Add("Legendary Life Acorn")
-        'frmMain.lstCharacters.Items.Add("Legendary Light Fanged")
-        'frmMain.lstCharacters.Items.Add("Legendary Magic Lantern")
-
-
     End Sub
 
     Shared Sub Traps()
@@ -6121,10 +6064,94 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("The Kaos Trap")
         frmMain.lstCharacters.Items.Add("Ultimate Kaos Trap")
     End Sub
+    Shared Sub Vehicles()
+        frmMain.lstCharacters.Items.Add("--Land Vehicles--")
+        frmMain.lstCharacters.Items.Add("Barrel Blaster")
+        frmMain.lstCharacters.Items.Add("Burn-Cycle")
+        frmMain.lstCharacters.Items.Add("Crypt Crusher")
+        frmMain.lstCharacters.Items.Add("Dark Barrel Blaster")
+        frmMain.lstCharacters.Items.Add("Dark Hot Streak")
+        frmMain.lstCharacters.Items.Add("E3 Hot Streak")
+        frmMain.lstCharacters.Items.Add("Gold Rusher")
+        frmMain.lstCharacters.Items.Add("Golden Hot Streak")
+        frmMain.lstCharacters.Items.Add("Hot Streak")
+        frmMain.lstCharacters.Items.Add("Power Blue Gold Rusher")
+        frmMain.lstCharacters.Items.Add("Shark Tank")
+        frmMain.lstCharacters.Items.Add("Shield Striker")
+        frmMain.lstCharacters.Items.Add("Thump Truck")
+        frmMain.lstCharacters.Items.Add("Tomb Buggy")
+
+        frmMain.lstCharacters.Items.Add("--Sea Vehicles--")
+        frmMain.lstCharacters.Items.Add("Dark Sea Shadow")
+        frmMain.lstCharacters.Items.Add("Dive Bomber")
+        frmMain.lstCharacters.Items.Add("Nitro Soda Skimmer")
+        frmMain.lstCharacters.Items.Add("Power Blue Splatter Splasher")
+        frmMain.lstCharacters.Items.Add("Reef Ripper")
+        frmMain.lstCharacters.Items.Add("Sea Shadow")
+        frmMain.lstCharacters.Items.Add("Soda Skimmer")
+        frmMain.lstCharacters.Items.Add("Splatter Splasher")
+        frmMain.lstCharacters.Items.Add("Spring Ahead Dive Bomber")
+
+        frmMain.lstCharacters.Items.Add("--Sky Vehicles--")
+        frmMain.lstCharacters.Items.Add("Buzz Wing")
+        frmMain.lstCharacters.Items.Add("Clown Cruiser")
+        frmMain.lstCharacters.Items.Add("Dark Clown Cruiser")
+        frmMain.lstCharacters.Items.Add("Jet Stream")
+        frmMain.lstCharacters.Items.Add("Nitro Stealth Stinger")
+        frmMain.lstCharacters.Items.Add("Sky Slicer")
+        frmMain.lstCharacters.Items.Add("Stealth Stinger")
+        frmMain.lstCharacters.Items.Add("Sun Runner")
+    End Sub
+    Shared Sub Crystals()
+        'Apparently these Figures ARE Unique Variant but I have NO information on them.  :(
+        frmMain.lstCharacters.Items.Add("Air Crystal")
+        'frmMain.lstCharacters.Items.Add("Air Acorn")
+        'frmMain.lstCharacters.Items.Add("Air Angel")
+        'frmMain.lstCharacters.Items.Add("Air Lantern")
+        frmMain.lstCharacters.Items.Add("Dark Crystal")
+        'frmMain.lstCharacters.Items.Add("Dark Pyramid")
+        'frmMain.lstCharacters.Items.Add("Dark Reactor")
+        'frmMain.lstCharacters.Items.Add("Dark Rune")
+        frmMain.lstCharacters.Items.Add("Earth Crystal")
+        'frmMain.lstCharacters.Items.Add("Earth Armor")
+        'frmMain.lstCharacters.Items.Add("Earth Rocket")
+        'frmMain.lstCharacters.Items.Add("Earth Rune")
+        frmMain.lstCharacters.Items.Add("Fire Crystal")
+        'frmMain.lstCharacters.Items.Add("Fire Acorn")
+        'frmMain.lstCharacters.Items.Add("Fire Angel")
+        'frmMain.lstCharacters.Items.Add("Fire Reactor")
+        frmMain.lstCharacters.Items.Add("Life Crystal")
+        'frmMain.lstCharacters.Items.Add("Life Acorn")
+        'frmMain.lstCharacters.Items.Add("Life Claw")
+        'frmMain.lstCharacters.Items.Add("Life Rocket")
+        'frmMain.lstCharacters.Items.Add("Life Rune")
+        frmMain.lstCharacters.Items.Add("Light Crystal")
+        'frmMain.lstCharacters.Items.Add("Light Angel")
+        'frmMain.lstCharacters.Items.Add("Light Fanged")
+        'frmMain.lstCharacters.Items.Add("Light Rune")
+        frmMain.lstCharacters.Items.Add("Magic Crystal")
+        'frmMain.lstCharacters.Items.Add("Magic Claw")
+        'frmMain.lstCharacters.Items.Add("Magic Lantern")
+        'frmMain.lstCharacters.Items.Add("Magic Pyramid")
+        frmMain.lstCharacters.Items.Add("Tech Crystal")
+        'frmMain.lstCharacters.Items.Add("Tech Armor")
+        'frmMain.lstCharacters.Items.Add("Tech Pyramid")
+        'frmMain.lstCharacters.Items.Add("Tech Reactor")
+        frmMain.lstCharacters.Items.Add("Undead Crystal")
+        'frmMain.lstCharacters.Items.Add("Undead Claw")
+        'frmMain.lstCharacters.Items.Add("Undead Fanged")
+        'frmMain.lstCharacters.Items.Add("Undead Lantern")
+        frmMain.lstCharacters.Items.Add("Water Crystal")
+        'frmMain.lstCharacters.Items.Add("Water Armor")
+        'frmMain.lstCharacters.Items.Add("Water Fanged")
+        'frmMain.lstCharacters.Items.Add("Water Rocket")
+        'frmMain.lstCharacters.Items.Add("Legendary Life Acorn")
+        'frmMain.lstCharacters.Items.Add("Legendary Light Fanged")
+        'frmMain.lstCharacters.Items.Add("Legendary Magic Lantern")
+    End Sub
     'These Items are mostly, universal.
     'As such, not going to restrict them based on game.
     Shared Sub Items()
-
         frmMain.lstCharacters.Items.Add("--Adventures--")
         frmMain.lstCharacters.Items.Add("Anvil Rain")
         frmMain.lstCharacters.Items.Add("Ghost Pirate Swords")
@@ -6159,7 +6186,6 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Sea Trophy")
         frmMain.lstCharacters.Items.Add("Sky Trophy")
         'Chests
-        'I need to do more with these.  Can I Clone them by editing Serial?
         frmMain.lstCharacters.Items.Add("--Imaginators--")
         frmMain.lstCharacters.Items.Add("Blue Imaginite Mystery Chest")
         frmMain.lstCharacters.Items.Add("Bronze Imaginite Mystery Chest")

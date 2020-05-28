@@ -107,12 +107,13 @@
     <Compile Include="DeviceManagement.vb" />
     <Compile Include="DeviceManagementDeclarations.vb" />
     <Compile Include="Exp.vb" />
+    <Compile Include="FigureIO.vb" />
     <Compile Include="Figures.vb" />
     <Compile Include="FileIODeclarations.vb" />
-    <Compile Include="frmCrystal.Designer.vb">
-      <DependentUpon>frmCrystal.vb</DependentUpon>
+    <Compile Include="frmCrystals.Designer.vb">
+      <DependentUpon>frmCrystals.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmCrystal.vb">
+    <Compile Include="frmCrystals.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLog.Designer.vb">
@@ -173,8 +174,8 @@
     <EmbeddedResource Include="Area.resx">
       <DependentUpon>Area.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCrystal.resx">
-      <DependentUpon>frmCrystal.vb</DependentUpon>
+    <EmbeddedResource Include="frmCrystals.resx">
+      <DependentUpon>frmCrystals.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLog.resx">
       <DependentUpon>frmLog.vb</DependentUpon>

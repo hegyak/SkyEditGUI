@@ -1,18 +1,12 @@
 ﻿Imports System.ComponentModel
-Imports System.IO
 Imports SkyReader_GUI.DeviceManagement
+Imports SkyReader_GUI.FigureIO
 'TODO Chart
-'Determine how Traps are Different.
-'Edit Trap contents.
+'Fix Trap CRC
 
-'Determine how Vehicles are Different
-'Edit Vehicles
+'Finish Vehicle Editor
 
-'Stop the message box for Unknown Figure from happening twice.
-
-'Test the Imaginator Chest.  In Particular the Serial Changing like Amiibos do.  Does that allow for Endless Items?
-
-'Crystals Editing and Cloning
+'Crystals Editing
 
 'Properly set the Imaginator Figure Bytes that are required to be 0x0.
 
@@ -54,481 +48,17 @@ Imports SkyReader_GUI.DeviceManagement
 Public Class frmMain
     'The AES and CRC16CCIT functions have been seperated into classes for clarity.
     'The Skylander Methods were put into seperate classes for clarity.
-
-    'We need to make BR and FS public shared so other Classes can access it
-    Public Shared fs As FileStream
-    Public Shared br As BinaryReader
-    Public Shared WholeFile(1023) As Byte
-    Public Shared blnEncrypted As Boolean = False
-    Dim File As String
-    'Dim frmLog As New frmLog
+    'Should these be here?  Probably not.  Probably in Figure or FigureIO
     Public Shared Area0 As Byte
     Public Shared Area1 As Byte
 
-    Public Shared blnTrap As Boolean = False
-    Public Shared BlnVehicle As Boolean = False
-
 #Region " File Read/Write "
-    Sub Load_File()
-        'AES.HexMath()
-        'AES.Header()
-        'Exit Sub
-        BlnVehicle = False
-        blnTrap = False
-        lblWebCode.Text = ""
-        'Let's test Decryption
-        Dim result As DialogResult = ofdSky.ShowDialog()
-        If result = DialogResult.OK Then
-            ' Test result.
-            File = ofdSky.FileName
-        Else
-            'Do Nothing
-            Exit Sub
-        End If
 
-        Try
-            fs = New FileStream(File, FileMode.Open)
-        Catch ex As Exception
-            'frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & "Unable to Open " & File
-            'frmLog.Show()
-            Exit Sub
-        End Try
 
-        If fs.Length = 1024 Then
-        ElseIf fs.Length = 2048 Then
-            'SWAP
-            'MessageBox.Show("Sorry, this program does not handle a Maxlander Swap Force Dump.")
-            'frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & "Sorry, this program does not handle a Maxlander Swap Force Dump."
-            'frmLog.Show()
-            Exit Sub
-        Else
-            'frmLog.rtxLog.Text = frmLog.rtxLog.Text & Date.Now & "The Figure must be 1 Kilobyte."
-            'frmLog.Show()
-            fs.Close()
-            Exit Sub
-        End If
-        'Reset the Form, Just in Case
-        cmbGame.SelectedIndex = 0
-        cmbHat.SelectedIndex = 0
-        br = New BinaryReader(fs)
-        'Put the whole file into an array.
-        WholeFile = br.ReadBytes(1024)
-        br.Close() 'close the Binary Reader
-        fs.Close() ' close the FileStream
-        blnEncrypted = False
-
-        'We can get the Figure's ID and Variant ID without Needing Encryption/Decryption
-        'Get Figure ID and Alter Ego/Variant
-        Figures.GetFigureID_AlterEgo_Variant()
-
-        'Because traps are writing bytes to where the Nickname would normally show up, we Do NOT attempt to Decrypt here.
-        If blnTrap = False Then
-            'Get Nickname
-            'We also verify if Encrypted or not.
-            Nickname.GetNickname()
-        End If
-
-
-
-        If blnEncrypted = True Then
-            Decrypt()
-        End If
-
-        'Calculate the Checksums
-        CRC16CCITT.Checksums()
-
-
-
-        'Determine if we are going to use Area 0 or Area 1
-        Figures.Area0orArea1()
-
-        frmArea.Area0_1()
-
-        'We break here if Vehicle, Crystal, Item or Trap
-
-        If BlnVehicle = True Then
-            Dim frmVehicles As New frmVehicles
-            frmVehicles.Show()
-            Hide()
-            Exit Sub
-        End If
-        If blnTrap = True Then
-            Application.DoEvents()
-            Dim frmTraps As New frmTraps
-            frmTraps.Show()
-            Hide()
-            Exit Sub
-        End If
-        'Get the Current Skill Path.
-        Skills.GetSkillPath()
-
-        'Get the Current Hero Points value for Areas A and B.  Show the Larger Value.
-        Hero.GetHero()
-
-        'Get the Current Gold values for Areas A and B.  Show the Larger Value.
-        Gold.GetGold()
-
-        'Get EXP
-        Exp.GetEXP()
-
-        'Get the Current Heroic Challenges value for Areas A and B.  Show the Larger Value.
-        Challenges.GetChallenges()
-
-        'Show us what Figure we got.
-        'Show us the Figures ID and Variant ID
-        'Figures.ShowID()
-
-        'Mostly complete Detection
-        Figures.FigureItOut()
-
-        'Select the Hat
-        Hats.ReadHats()
-        'btnSaveAs.Enabled = True
-        'btnWrite.Enabled = True
-
-        Web_Code.Load()
-        'btnSaveAs.Enabled = True
-        'btnWrite.Enabled = True
-
-        System_ID.ReadSystem_ID()
-
-    End Sub
-    Sub LoadData()
-        blnEncrypted = False
-        'Get Nickname
-        'We also verify if Encrypted or not.
-        Nickname.GetNickname()
-
-        If blnEncrypted = True Then
-            Decrypt()
-        End If
-        cmbHat.SelectedIndex = 0
-
-        'Calculate the Checksums
-        CRC16CCITT.Checksums()
-
-        'Determine if we are going to use Area 0 or Area 1
-        Figures.Area0orArea1()
-
-        frmArea.Area0_1()
-        'Get the Current Skill Path.
-        Skills.GetSkillPath()
-
-
-
-        'Get the Current Hero Points value for Areas A and B.  Show the Larger Value.
-        Hero.GetHero()
-
-        'Get the Current Gold values for Areas A and B.  Show the Larger Value.
-        Gold.GetGold()
-
-        'Get EXP
-        Exp.GetEXP()
-
-        'Get the Current Heroic Challenges value for Areas A and B.  Show the Larger Value.
-        Challenges.GetChallenges()
-
-        'Get Figure ID and Alter Ego/Variant
-        Figures.GetFigureID_AlterEgo_Variant()
-
-        'Show us what Figure we got.
-        'Show us the Figures ID and Variant ID
-        'Figures.ShowID()
-
-        'Mostly complete Detection
-        Figures.FigureItOut()
-
-        'Select the Hat
-        Hats.ReadHats()
-        'btnSaveAs.Enabled = True
-        'btnWrite.Enabled = True
-        Web_Code.Load()
-
-        System_ID.ReadSystem_ID()
-    End Sub
-    Sub ReEncrypt()
-        'Get Header Bytes
-        AES.Header()
-
-        'The Following blocks (Offsets) are NOT encrypted
-        'All Offsets are in Hex and counted as such.
-        '0x000 Through 0x70
-        '0x0B0
-        '0x0F0
-        '0x130
-        '0x170
-        '0x1B0
-        '0x1F0
-        '0x230
-        '0x270
-        '0x2B0
-        '0x2F0
-        '0x330
-        '0x370
-        '0x3B0
-        '0X3F0
-
-        'Offsets that are Encrypted: (All 16 Bytes in Length)
-        '0x080 '128 'Need 08
-        '0x090 '144 'Need 09
-        '0x0A0 'Nickname A '160 'Need 0A Not A0  '150 Diff
-
-        '0x0C0 '192
-        '0x0D0 '208
-        '0x0E0 '224
-
-        '0x100 '256
-        '0x110 '272
-        '0x120 '288
-
-        '0x140 '320
-        '0x150 '336
-        '0x160 '352
-
-        '0x180 '384
-        '0x190 '400
-        '0x1A0 '416
-
-        '0x1C0 '448
-        '0x1D0 '464
-        '0x1E0 '480
-
-        '0x200 '512
-        '0x210 '528
-        '0x220 '544
-
-        '0x240 '576
-        '0x250 '592
-        '0x260 'Nickname B  '608
-
-        '0x280 '640
-        '0x290 '656
-        '0x2A0 '672
-
-        '0x2C0 '704
-        '0x2D0 '720
-        '0x2E0 '736
-
-        '0x300 '768
-        '0x310 '784
-        '0x320 '800
-
-        '0x340 '832
-        '0x350 '848
-        '0x360 '864
-
-        '0x380 '896
-        '0x390 '912
-        '0x3A0 '928
-
-        '0x3C0 '960
-        '0x3D0 '976
-        '0x3E0 '992
-
-        Dim Offsets = New Integer() {128, 144, 160, 192, 208, 224, 256, 272, 288, 320, 336, 352, 384, 400, 416, 448, 464, 480, 512, 528, 544, 576, 592, 608, 640, 656, 672, 704, 720, 736, 768, 784, 800, 832, 848, 864, 896, 912, 928, 960, 976, 992}
-        Dim AreaKey = New Byte() {&H8, &H9, &HA, &HC, &HD, &HE, &H10, &H11, &H12, &H14, &H15, &H16, &H18, &H19, &H1A, &H1C, &H1D, &H1E, &H20, &H21, &H22, &H24, &H25, &H26, &H28, &H29, &H2A, &H2C, &H2D, &H2E, &H30, &H31, &H32, &H34, &H35, &H36, &H38, &H39, &H3A, &H3C, &H3D, &H3E}
-        'MessageBox.Show(AreaKey.Length)
-        Dim AreaBytes(15) As Byte
-
-        'MessageBox.Show(Offsets.Length) '42
-
-        Dim OffsetCounter As Integer = 0
-
-        Dim Counter As Integer = 0  'Necessary to add one to the Byte array Offset
-        Dim HeadByteCounter As Integer = 0 '= 160 'Use Integer, FTW!
-        Do Until OffsetCounter = 42
-            HeadByteCounter = Offsets(OffsetCounter)
-            'MessageBox.Show(HeadByteCounter)
-            'Get Bytes from the Encrypted Offset
-            Do Until Counter = 16
-                'Fill areaBytes, with WholeFile.
-                'AreaBytes(0-15) = WholeFile(HeadByteCounter)
-                AreaBytes(Counter) = WholeFile(HeadByteCounter)
-                HeadByteCounter += 1
-                Counter += 1
-            Loop
-
-            'MessageBox.Show("ValueBytes " & BitConverter.ToString(AreaBytes))
-            'MessageBox.Show("AreaKey " & AreaKey(OffsetCounter))
-            AES.GetKey(AreaKey(OffsetCounter))
-
-            Dim Output As Byte() = AES.AESE(AreaBytes, AES.FullKey)
-
-            'Fillback Loop
-            Counter = 0
-            HeadByteCounter = Offsets(OffsetCounter) 'Use Integer, FTW!
-            'Data back in
-            Do Until Counter = 16
-                WholeFile(HeadByteCounter) = Output(Counter)
-                HeadByteCounter += 1
-                Counter += 1
-            Loop
-
-            'MessageBox.Show("Output " & BitConverter.ToString(Output))
-
-            Counter = 0
-            OffsetCounter += 1
-        Loop
-    End Sub
-    Sub Decrypt()
-        'Get Header Bytes
-        AES.Header()
-
-        'The Following blocks (Offsets) are NOT encrypted
-        'All Offsets are in Hex and counted as such.
-        '0x000 Through 0x70
-        '0x0B0
-        '0x0F0
-        '0x130
-        '0x170
-        '0x1B0
-        '0x1F0
-        '0x230
-        '0x270
-        '0x2B0
-        '0x2F0
-        '0x330
-        '0x370
-        '0x3B0
-        '0X3F0
-
-        'Offsets that are Encrypted: (All 16 Bytes in Length)
-        '0x080 '128 'Need 08
-        '0x090 '144 'Need 09
-        '0x0A0 'Nickname A '160 'Need 0A Not A0  '150 Diff
-
-        '0x0C0 '192
-        '0x0D0 '208
-        '0x0E0 '224
-
-        '0x100 '256
-        '0x110 '272
-        '0x120 '288
-
-        '0x140 '320
-        '0x150 '336
-        '0x160 '352
-
-        '0x180 '384
-        '0x190 '400
-        '0x1A0 '416
-
-        '0x1C0 '448
-        '0x1D0 '464
-        '0x1E0 '480
-
-        '0x200 '512
-        '0x210 '528
-        '0x220 '544
-
-        '0x240 '576
-        '0x250 '592
-        '0x260 'Nickname B  '608
-
-        '0x280 '640
-        '0x290 '656
-        '0x2A0 '672
-
-        '0x2C0 '704
-        '0x2D0 '720
-        '0x2E0 '736
-
-        '0x300 '768
-        '0x310 '784
-        '0x320 '800
-
-        '0x340 '832
-        '0x350 '848
-        '0x360 '864
-
-        '0x380 '896
-        '0x390 '912
-        '0x3A0 '928
-
-        '0x3C0 '960
-        '0x3D0 '976
-        '0x3E0 '992
-
-        Dim Offsets = New Integer() {128, 144, 160, 192, 208, 224, 256, 272, 288, 320, 336, 352, 384, 400, 416, 448, 464, 480, 512, 528, 544, 576, 592, 608, 640, 656, 672, 704, 720, 736, 768, 784, 800, 832, 848, 864, 896, 912, 928, 960, 976, 992}
-        Dim AreaKey = New Byte() {&H8, &H9, &HA, &HC, &HD, &HE, &H10, &H11, &H12, &H14, &H15, &H16, &H18, &H19, &H1A, &H1C, &H1D, &H1E, &H20, &H21, &H22, &H24, &H25, &H26, &H28, &H29, &H2A, &H2C, &H2D, &H2E, &H30, &H31, &H32, &H34, &H35, &H36, &H38, &H39, &H3A, &H3C, &H3D, &H3E}
-        'MessageBox.Show(AreaKey.Length)
-        Dim AreaBytes(15) As Byte
-
-        'MessageBox.Show(Offsets.Length) '42
-
-        Dim OffsetCounter As Integer = 0
-
-        Dim Counter As Integer = 0  'Necessary to add one to the Byte array Offset
-        Dim HeadByteCounter As Integer = 0 '= 160 'Use Integer, FTW!
-        Do Until OffsetCounter = 42
-            HeadByteCounter = Offsets(OffsetCounter)
-            'MessageBox.Show(HeadByteCounter)
-            'Get Bytes from the Encrypted Offset
-            Do Until Counter = 16
-                'Fill areaBytes, with WholeFile.
-                'AreaBytes(0-15) = WholeFile(HeadByteCounter)
-                AreaBytes(Counter) = WholeFile(HeadByteCounter)
-                HeadByteCounter += 1
-                Counter += 1
-            Loop
-
-            'MessageBox.Show("ValueBytes " & BitConverter.ToString(AreaBytes))
-            'MessageBox.Show("AreaKey " & AreaKey(OffsetCounter))
-            AES.GetKey(AreaKey(OffsetCounter))
-
-            Dim Output As Byte() = AES.AESD(AreaBytes, AES.FullKey)
-
-            'Fillback Loop
-            Counter = 0
-            HeadByteCounter = Offsets(OffsetCounter) 'Use Integer, FTW!
-            'Data back in
-            Do Until Counter = 16
-                WholeFile(HeadByteCounter) = Output(Counter)
-                HeadByteCounter += 1
-                Counter += 1
-            Loop
-
-            'MessageBox.Show("Output " & BitConverter.ToString(Output))
-
-            Counter = 0
-            OffsetCounter += 1
-        Loop
-        'MessageBox.Show("Nickname")
-        Nickname.GetNickname()
+    Private Sub btnRaw_Click(sender As Object, e As EventArgs) Handles btnRaw.Click
+        Raw_Write()
     End Sub
 
-    Sub Write_Data()
-        If BlnVehicle = False And blnTrap = False Then
-            'Set Data that changed.
-            Figures.EditCharacterIDVariant()
-            Challenges.WriteChallenges()
-            Exp.WriteEXP()
-            Gold.WriteGold()
-            Hero.WriteHero()
-            Nickname.SetNickname()
-            Hats.WriteHats()
-
-            If numLevel.Value >= 10 Then
-                Skills.WriteSkillPath()
-            End If
-        End If
-        'Fix Read/Write Blocks
-        Figures.Fixing_Bytes()
-        'In theory, this will fix any issues with the Edited Dumps.
-        Figures.SetArea0AndArea1()
-        'Fix the Checksums.
-        CRC16CCITT.WriteCheckSums()
-    End Sub
-    Sub Write_Vehicle()
-
-    End Sub
-    Sub Write_File()
-        Write_Data()
-        fs = New FileStream(File, FileMode.OpenOrCreate)
-        fs.Write(WholeFile, 0, WholeFile.Length)
-        fs.Flush()
-        fs.Close()
-    End Sub
 #End Region
 
 
@@ -545,12 +75,14 @@ Public Class frmMain
             lstCharacters.SelectedIndex += 1
             Exit Sub
         End If
+
         Figures.SelectFigure()
     End Sub
     'Set the Bytes here, whenever I figure it out.
     Private Sub cmbHat_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbHat.SelectedIndexChanged
         Hats.SelectHat()
     End Sub
+    'Dim CMB As Integer = 0
     Private Sub cmbGame_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbGame.SelectedIndexChanged
         lstCharacters.Items.Clear()
         chkSerial.Enabled = True
@@ -561,44 +93,35 @@ Public Class frmMain
         lblArea2Type3.Visible = True
         picArea0Type3.Visible = True
         picArea1Type3.Visible = True
-        'cmbHat.Items.Clear()
-        'btnWrite.Enabled = True
-        If cmbGame.SelectedIndex = 0 Then
+
+        If blnTrap = True And cmbGame.SelectedItem <> "Traps" Then
+            cmbGame.SelectedItem = "Traps"
+            ' Exit Sub
+        End If
+        If BlnVehicle = True And cmbGame.SelectedItem <> "Vehicles" Then
+            cmbGame.SelectedItem = "Vehicles"
+            'Exit Sub
+        ElseIf blnCrystal = True And cmbGame.SelectedItem <> "Crystals" Then
+            cmbGame.SelectedItem = "Crystals"
+            'Exit Sub
+        End If
+
+        'Adventure Packs
+
+        If cmbGame.SelectedItem = "Spyro's Adventure" Then
             'Spyro's Adventure
             Figures.SpyroAdventure()
-            'Hats.SpyroAdventureHats()
-        ElseIf cmbGame.SelectedIndex = 1 Then
+
+        ElseIf cmbGame.SelectedItem = "Giants" Then
             'Giants
             Figures.Giants()
-            'Hats.GiantsHats()
-        ElseIf cmbGame.SelectedIndex = 2 Then
+        ElseIf cmbGame.SelectedItem = "Swap Force" Then
             'Swap Force
             Figures.SwapForce()
-            'Hats.SwapForceHats()
-        ElseIf cmbGame.SelectedIndex = 3 Then
+        ElseIf cmbGame.SelectedItem = "Trap Team" Then
             'Trap Team
             Figures.TrapTeam()
-            'Hats.TrapTeamHats()
-        ElseIf cmbGame.SelectedIndex = 4 Then
-            'SuperChargers
-            Figures.SuperChargers()
-            'Hats.TrapTeamHats()
-        ElseIf cmbGame.SelectedIndex = 5 Then
-            'Imaginators
-            'Partially Disabled due to issues and complications.
-            'lstCharacters.Items.Clear()
-            Figures.Imaginators()
-            'Hats.TrapTeamHats()
-            'btnWrite.Enabled = False
-            chkSerial.Checked = False
-            chkSerial.Enabled = False
-            'Exit Sub
-        ElseIf cmbGame.SelectedIndex = 6 Then
-            'Items
-            'We don't populate the Hats since items and Traps can't wear them.
-            Figures.Items()
-            Disable_Controls()
-        ElseIf cmbGame.SelectedIndex = 7 Then
+        ElseIf cmbGame.SelectedItem = "Traps" Then
             'Traps
             Disable_Controls()
             Figures.Traps()
@@ -610,7 +133,30 @@ Public Class frmMain
             lblArea2Type3.Visible = False
             picArea0Type3.Visible = False
             picArea1Type3.Visible = False
-        ElseIf cmbGame.SelectedIndex = 8 Then
+        ElseIf cmbGame.SelectedItem = "SuperChargers" Then
+            'SuperChargers
+            Figures.SuperChargers()
+        ElseIf cmbGame.SelectedItem = "Vehicles" Then
+            'SaldeStatus.Text = "TODO: FIX"
+            Figures.Vehicles()
+        ElseIf cmbGame.SelectedItem = "Imaginators" Then
+            'Imaginators
+            Figures.Imaginators()
+            'Due to the Extra Layer of Security, changing the Figure's Serial is Disabled.
+            chkSerial.Checked = False
+            chkSerial.Enabled = False
+        ElseIf cmbGame.SelectedItem = "Imaginators Crystals" Then
+            'SaldeStatus.Text = "TODO: FIX"
+            Figures.Crystals()
+            'Due to the Extra Layer of Security, changing the Figure's Serial is Disabled.
+            chkSerial.Checked = False
+            chkSerial.Enabled = False
+        ElseIf cmbGame.SelectedItem = "Items" Then
+            'Items
+            'We don't populate the Hats since items and Traps can't wear them.
+            Figures.Items()
+            Disable_Controls()
+        ElseIf cmbGame.SelectedItem = "Adventure Packs" Then
             'Adventure Packs
             Disable_Controls()
             Figures.AdventurePacks()
@@ -619,7 +165,7 @@ Public Class frmMain
         If cmbGame.SelectedIndex < 6 Then
             'cmbHat.SelectedIndex = 0
         End If
-
+        Application.DoEvents()
         'lstCharacters.SelectedIndex = 0
     End Sub
     'Hats don't need these Controls.
@@ -635,6 +181,7 @@ Public Class frmMain
         txtName.Text = ""
         txtName.Enabled = False
     End Sub
+
     Sub Enable_Controls()
         numGold.Enabled = True
         numLevel.Enabled = True
@@ -654,105 +201,26 @@ Public Class frmMain
         Dim frmLog As New frmLog
         Hats.cmbHatFill()
         cmbSystem.SelectedIndex = 0
+#If DEBUG Then
+#Else
+        cmbGame.Items.Remove("Imaginators Crystals")
+        CrystalsToolStripMenuItem.Dispose()
+        btnCrystals.Dispose
+#End If
     End Sub
 #End Region
 
 #Region " Menu "
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+        'Goes to FigureIO to Load File
         Load_File()
     End Sub
 
     Private Sub Save_Enc_ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Save_Enc_ToolStripMenuItem.Click
-        'Save As
-        Dim dialog As New SaveFileDialog With {
-                .Filter = "Dump File (*.bin)|*.bin|All files (*.*)|*.*",
-                .FilterIndex = 1,
-                .RestoreDirectory = True,
-                .Title = "Save Encrypted Dump"
-            }
-        If (dialog.ShowDialog = DialogResult.OK) Then
-            Dim NewFile As String = dialog.FileName
-
-            If chkSerial.Checked = True Then
-                CRC16CCITT.GenerateNewSerial()
-            End If
-            Figures.EditCharacterIDVariant()
-            'We need to not break Traps if Saving a trap.
-            If blnTrap = False Then
-                Challenges.WriteChallenges()
-                Exp.WriteEXP()
-                Gold.WriteGold()
-                Hero.WriteHero()
-                Nickname.SetNickname()
-                Hats.WriteHats()
-                If numLevel.Value >= 10 Then
-                    Skills.WriteSkillPath()
-                End If
-            End If
-
-            System_ID.WriteSystem()
-
-            'In theory, this will fix any issues with the Edited Dumps.
-            Figures.SetArea0AndArea1()
-            'This corrects the Access Control Blocks and the Imaginator Byte checks
-            Figures.Fixing_Bytes()
-            'Fix the Checksums.
-            CRC16CCITT.WriteCheckSums()
-            'I need to Calculate Trap Checksums differently.
-            'And Gen 6 Crystals too.
-            ReEncrypt()
-            fs = New FileStream(NewFile, FileMode.OpenOrCreate)
-            fs.Write(WholeFile, 0, WholeFile.Length)
-            fs.Flush()
-            fs.Close()
-        End If
-
-        'Write_File()
+        Write_Encrypted_Figure()
     End Sub
     Private Sub SaveDecryptedToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Save_Dec_ToolStripMenuItem.Click
-        'Save As
-        Dim dialog As New SaveFileDialog With {
-                .Filter = "Dump File (*.bin)|*.bin|All files (*.*)|*.*",
-                .FilterIndex = 1,
-                .RestoreDirectory = True,
-                .Title = "Save Decrypted Dump",
-                .FileName = lstCharacters.SelectedItem
-            }
-        If (dialog.ShowDialog = DialogResult.OK) Then
-            Dim NewFile As String = dialog.FileName
-            'DO NOT FORGET THIS
-            If chkSerial.Checked = True Then
-                CRC16CCITT.GenerateNewSerial()
-            End If
-            Figures.EditCharacterIDVariant()
-            'We need to not break Traps if Saving a trap.
-            If blnTrap = False Then
-                Challenges.WriteChallenges()
-                Exp.WriteEXP()
-                Gold.WriteGold()
-                Hero.WriteHero()
-                Nickname.SetNickname()
-                Hats.WriteHats()
-                If numLevel.Value >= 10 Then
-                    Skills.WriteSkillPath()
-                End If
-            End If
-
-            System_ID.WriteSystem()
-
-            'In theory, this will fix any issues with the Edited Dumps.
-            Figures.SetArea0AndArea1()
-            'This corrects the Access Control Blocks and the Imaginator Byte checks
-            Figures.Fixing_Bytes()
-            'Fix the Checksums.
-            CRC16CCITT.WriteCheckSums()
-            'ReEncrypt()
-
-            fs = New FileStream(NewFile, FileMode.OpenOrCreate)
-            fs.Write(WholeFile, 0, WholeFile.Length)
-            fs.Flush()
-            fs.Close()
-        End If
+        Write_Decrypted_Figure()
     End Sub
     Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
         Close()
@@ -768,11 +236,28 @@ Public Class frmMain
         End If
     End Sub
     Private Sub WriteSkylanderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WriteSkylanderToolStripMenuItem.Click
+        If lstCharacters.SelectedIndex = -1 Then
+            SaldeStatus.Text = "No figure Selected"
+            Exit Sub
+        End If
+        'If we use Background Worker, it creates a Seperate Instance of the GUI.
+        'We actually need to SET Data here
+        If blnCrystal = False And blnTrap = False And BlnVehicle = False Then
+            Write_Data()
+        End If
+
+        'We need to Encrypt the Array Before we write
+        Encrypt()
+        SaldeStatus.Text = "Writing to Portal."
+        If bgWritePortal.IsBusy Then
+            SaldeStatus.Text = "Still Writing to Portal"
+            Exit Sub
+        End If
         bgWritePortal.RunWorkerAsync()
     End Sub
 
     'I may want see/check for a Swap Force Figure.
-    Private Sub ReadSwapperOtherHalfToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReadSwapperOtherHalfToolStripMenuItem.Click
+    Private Sub ReadSecondFigureToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReadSecondFigureToolStripMenuItem.Click
         If bgReadPortalDuo.IsBusy = False Then
             bgReadPortalDuo.RunWorkerAsync()
         Else
@@ -780,16 +265,52 @@ Public Class frmMain
             Exit Sub
         End If
     End Sub
-    Private Sub WriteSwapperOtherHalfToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WriteSwapperOtherHalfToolStripMenuItem.Click
+    Private Sub WriteSecondFigureToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WriteSecondFigureToolStripMenuItem.Click
+        If lstCharacters.SelectedIndex = -1 Then
+            SaldeStatus.Text = "No figure Selected"
+            Exit Sub
+        End If
+        'If we use Background Worker, it creates a Seperate Instance of the GUI.
+        'We actually need to SET Data here
+        If blnCrystal = False And blnTrap = False And BlnVehicle = False Then
+            Write_Data()
+        End If
+        'We need to Encrypt the Array Before we write
+        Encrypt()
+        SaldeStatus.Text = "Writing to Portal"
+        If bgWritePortalDuo.IsBusy Then
+            SaldeStatus.Text = "Still Writing to Portal"
+            Exit Sub
+        End If
         bgWritePortalDuo.RunWorkerAsync()
     End Sub
 
     Private Sub ConnectToPortalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConnectToPortalToolStripMenuItem.Click
         Portal.portalHandle = FindThePortal()
     End Sub
+    Private Sub TrapsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TrapsToolStripMenuItem.Click
+        If cmbGame.SelectedItem <> "Traps" Then
+            SaldeStatus.Text = "Please Read a Trap Figure in First."
+            Exit Sub
+        End If
+        Dim frmTraps As New frmTraps
+        frmTraps.Show()
+        Hide()
+    End Sub
 
-    Private Sub tmrSkyKey_Tick(sender As Object, e As EventArgs) Handles tmrSkyKey.Tick
-        DisableControls()
+    Private Sub VehiclesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VehiclesToolStripMenuItem.Click
+        Dim frmVehicles As New frmVehicles
+        Hide()
+        frmVehicles.Show()
+    End Sub
+
+    Private Sub CrystalsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CrystalsToolStripMenuItem.Click
+        If cmbGame.SelectedItem <> "Imaginators Crystals" Then
+            Exit Sub
+        End If
+        Dim frmCrystals As New frmCrystals
+        frmCrystals.Show()
+        Hide()
     End Sub
 
 
@@ -808,6 +329,13 @@ Public Class frmMain
         radNone.Checked = True
         txtName.Text = ""
         cmbSystem.SelectedIndex = 0
+        'Since we may be resetting from Trap 
+        lblArea1Type4.Text = "Area 0 Type 4"
+        lblArea2Type4.Text = "Area 1 Type 4"
+        lblArea1Type3.Visible = True
+        lblArea2Type3.Visible = True
+        picArea0Type3.Visible = True
+        picArea1Type3.Visible = True
 
         picHeader.BackColor = Color.Yellow
         picSerial.BackColor = Color.Yellow
@@ -836,7 +364,6 @@ Public Class frmMain
                     SaldeStatus.Text = "Portal Removed!"
                     DisablePortalControls()
                     Portal.blnPortal = False
-                    tmrPortal.Enabled = True
                 End If
             End If
         End If
@@ -849,23 +376,18 @@ Public Class frmMain
 
     Private Sub bgReadPortal_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgReadPortal.RunWorkerCompleted
         SaldeStatus.Text = "Figure Read from Portal"
-        LoadData()
+        Parse_Figure()
     End Sub
 
     Private Sub BgWritePortal_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgWritePortal.DoWork
+
         SaldeStatus.Text = "Writing to Portal"
-        If bgWritePortal.IsBusy Then
-            SaldeStatus.Text = "Still Writing to Portal"
-            Exit Sub
-        End If
         'write data to skylander in portal
         Portal.Portal_Write()
     End Sub
 
     Private Sub bgWritePortal_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgWritePortal.RunWorkerCompleted
         SaldeStatus.Text = "Figure written to Portal"
-        'We Decrypt the Figure's data again because it had to be written encrypted but we edit decrypted data.
-        Decrypt()
     End Sub
 
     Private Sub bgReadPortalDuo_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgReadPortalDuo.DoWork
@@ -873,15 +395,11 @@ Public Class frmMain
     End Sub
     Private Sub bgReadPortalDuo_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles bgReadPortalDuo.RunWorkerCompleted
         SaldeStatus.Text = "Figure Read from Portal"
-        LoadData()
+        Parse_Figure()
     End Sub
 
     Private Sub bgWritePortalDuo_DoWork(sender As Object, e As DoWorkEventArgs) Handles bgWritePortalDuo.DoWork
-        SaldeStatus.Text = "Writing to Portal"
-        If bgWritePortalDuo.IsBusy Then
-            SaldeStatus.Text = "Still Writing to Portal"
-            Exit Sub
-        End If
+        Portal.Portal_Duo_Write()
         'write data to skylander in portal
     End Sub
     'Disable the Portal Menu Controls except for Connect.
@@ -890,38 +408,22 @@ Public Class frmMain
         DisablePortalControls()
     End Sub
     Sub DisableControls()
-        'btnClearData.Enabled = False
-        'btnReset.Enabled = False
         Save_Enc_ToolStripMenuItem.Enabled = False
         DisablePortalControls()
     End Sub
     Sub DisablePortalControls()
         ReadSkylanderToolStripMenuItem.Enabled = False
         WriteSkylanderToolStripMenuItem.Enabled = False
-        ReadSwapperOtherHalfToolStripMenuItem.Enabled = False
-        WriteSwapperOtherHalfToolStripMenuItem.Enabled = False
+        ReadSecondFigureToolStripMenuItem.Enabled = False
+        WriteSecondFigureToolStripMenuItem.Enabled = False
     End Sub
 
     Public Sub unlockPortalControls()
         'SaldeStatus.Text = "Unlocked"
         ReadSkylanderToolStripMenuItem.Enabled = True
         WriteSkylanderToolStripMenuItem.Enabled = True
-        ReadSwapperOtherHalfToolStripMenuItem.Enabled = True
-        WriteSwapperOtherHalfToolStripMenuItem.Enabled = True
-    End Sub
-
-    Dim tmrFail As Integer = 0
-    Private Sub TmrPortal_Tick(sender As Object, e As EventArgs) Handles tmrPortal.Tick
-
-        If Portal.blnPortal = False Then
-            Portal.portalHandle = FindThePortal()
-        ElseIf Portal.blnPortal = True Then
-            tmrPortal.Enabled = False
-            tmrFail += 1
-        End If
-        If tmrFail = 10 Then
-            tmrPortal.Enabled = False
-        End If
+        ReadSecondFigureToolStripMenuItem.Enabled = True
+        WriteSecondFigureToolStripMenuItem.Enabled = True
     End Sub
 #End Region
 
@@ -955,6 +457,10 @@ Public Class frmMain
     End Sub
 
     Private Sub btnTraps_Click(sender As Object, e As EventArgs) Handles btnTraps.Click
+        If cmbGame.SelectedItem <> "Traps" Then
+            SaldeStatus.Text = "Please Read a Trap Figure in First."
+            Exit Sub
+        End If
         Dim frmTraps As New frmTraps
         frmTraps.Show()
         Hide()
@@ -968,23 +474,13 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub btnRaw_Click(sender As Object, e As EventArgs) Handles btnRaw.Click
-        'Save As
-        Dim dialog As New SaveFileDialog With {
-                .Filter = "Dump File (*.bin)|*.bin|All files (*.*)|*.*",
-                .FilterIndex = 1,
-                .RestoreDirectory = True,
-                .Title = "Save Decrypted Dump",
-                .FileName = lstCharacters.SelectedItem
-            }
-
-        If (dialog.ShowDialog = DialogResult.OK) Then
-            Dim NewFile As String = dialog.FileName
-            fs = New FileStream(NewFile, FileMode.OpenOrCreate)
-            fs.Write(WholeFile, 0, WholeFile.Length)
-            fs.Flush()
-            fs.Close()
+    Private Sub btnCrystals_Click(sender As Object, e As EventArgs) Handles btnCrystals.Click
+        If cmbGame.SelectedItem <> "Imaginators Crystals" Then
+            Exit Sub
         End If
+        Dim frmCrystals As New frmCrystals
+        frmCrystals.Show()
+        Hide()
     End Sub
 
     ReadOnly frmArea As New frmArea
@@ -992,4 +488,33 @@ Public Class frmMain
         frmArea.Visible = True
         frmArea.Show()
     End Sub
+
+#Region "Rainbow!"
+    Private Sub btnRainbow_Click(sender As Object, e As EventArgs) Handles btnRainbow.Click
+        'We do a Rainbow function.  Because Debugging can be fun.
+        If Portal.blnPortal = False Then
+            Exit Sub
+        End If
+        If btnRainbow.Text = "Rainbow!" Then
+            tmrRainbow.Enabled = True
+            btnRainbow.Text = "Stop!"
+        Else
+            tmrRainbow.Enabled = False
+            btnRainbow.Text = "Rainbow!"
+        End If
+    End Sub
+    Shared random As New Random()
+    Private Sub tmrRainbow_Tick(sender As Object, e As EventArgs) Handles tmrRainbow.Tick
+        random.Next()
+        Dim Red As Byte = random.Next(0, 255)
+        Dim Blue As Byte = random.Next(0, 255)
+        Dim Green As Byte = random.Next(0, 255)
+        Portal.Portal_Rainbow(Red, Blue, Green)
+    End Sub
+
+    Private Sub btnGame_Click(sender As Object, e As EventArgs) Handles btnGame.Click
+        MessageBox.Show(cmbGame.Items.Count)
+    End Sub
+#End Region
+
 End Class

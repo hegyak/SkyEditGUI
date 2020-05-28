@@ -1,4 +1,5 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
+Imports SkyReader_GUI.frmMain
 Public Class Hats
     Shared AdventureHat(1) As Byte
     Shared GiantHat(1) As Byte

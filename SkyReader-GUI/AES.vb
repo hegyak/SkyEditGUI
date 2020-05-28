@@ -1,6 +1,6 @@
 ﻿Imports System.Security.Cryptography
 Imports System.Text
-Imports SkyReader_GUI.frmMain
+Imports SkyReader_GUI.FigureIO
 Public Class AES
     'Public Shared HeaderBytes() As Byte = Nothing
     'Encryption Notes

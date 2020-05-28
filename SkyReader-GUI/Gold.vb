@@ -1,4 +1,5 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
+Imports SkyReader_GUI.frmMain
 Public Class Gold
     'Remember all values are offset 1C0
     Shared Sub GetGold()
@@ -25,7 +26,6 @@ Public Class Gold
         Catch ex As Exception
             GoldValueArea1 = 0
         End Try
-
         If GoldValueArea0 > 65000 Then
             GoldValueArea0 = 65000
         End If
@@ -46,6 +46,8 @@ Public Class Gold
     Shared Sub WriteGold()
         Dim intGold As UShort = frmMain.numGold.Value
         Dim Gold As Byte() = BitConverter.GetBytes(intGold)
+        'MessageBox.Show("G0: " & Gold(0))
+        'MessageBox.Show("G1: " & Gold(1))
         'If Area0 > Area1 Then
         'Area 0 Gold
         WholeFile(&H83) = Gold(0)

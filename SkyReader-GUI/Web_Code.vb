@@ -1,4 +1,4 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
 Public Class Web_Code
     Dim blnLoading_Web_Code As Boolean = False
     Shared Sub Load()

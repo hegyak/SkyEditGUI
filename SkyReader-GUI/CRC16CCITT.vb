@@ -1,4 +1,4 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
 Public Class CRC16CCITT
 
 	'Our Checksum that will be generated.

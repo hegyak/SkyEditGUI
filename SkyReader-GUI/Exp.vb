@@ -1,4 +1,5 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
+Imports SkyReader_GUI.frmMain
 'WARNING:
 'We don't Try and Catch here.  Due to complexity of the values
 Public Class Exp

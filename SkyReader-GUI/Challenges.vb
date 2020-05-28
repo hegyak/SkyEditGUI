@@ -1,4 +1,5 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
+Imports SkyReader_GUI.frmMain
 Public Class Challenges
 	Shared Sub GetChallenges()
 		Dim HeroicChallengesArea0(3) As Byte
@@ -55,18 +56,18 @@ Public Class Challenges
 
 		Dim Counter As Integer = 0
 
-        'ReCheck this write
+		'ReCheck this write
 
-        Do Until Counter = 4
-            WholeFile(&HD6 + Counter) = HeroicChallenges(Counter)
-            Counter += 1
-        Loop
+		Do Until Counter = 4
+			WholeFile(&HD6 + Counter) = HeroicChallenges(Counter)
+			Counter += 1
+		Loop
 
-        Counter = 0
-        Do Until Counter = 4
-            WholeFile(&H296 + Counter) = HeroicChallenges(Counter)
-            Counter += 1
-        Loop
+		Counter = 0
+		Do Until Counter = 4
+			WholeFile(&H296 + Counter) = HeroicChallenges(Counter)
+			Counter += 1
+		Loop
 
-    End Sub
+	End Sub
 End Class

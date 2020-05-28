@@ -1,4 +1,5 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
+Imports SkyReader_GUI.frmMain
 Public Class Skills
 	Shared Sub GetSkillPath()
 		Dim SkillPathArea0(1) As Byte

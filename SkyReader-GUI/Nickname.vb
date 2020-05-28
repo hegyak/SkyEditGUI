@@ -1,5 +1,6 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
 Imports System.Text
+Imports SkyReader_GUI.frmMain
 
 Public Class Nickname
 
@@ -59,7 +60,7 @@ Public Class Nickname
 		BadName1 = IsUnicode(FullName1)
 
 		If BadName1 = True And BadName0 = True Then
-			MessageBox.Show("Loaded Encrypted Figure")
+			'MessageBox.Show("Loaded Encrypted Figure")
 			blnEncrypted = True
 		End If
 

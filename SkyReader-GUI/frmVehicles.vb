@@ -1,6 +1,9 @@
-﻿Imports SkyReader_GUI.frmMain
+﻿Imports SkyReader_GUI.FigureIO
+Imports SkyReader_GUI.frmMain
 Public Class frmVehicles
     Private Sub frmVehicles_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'We want to NOT edit the Vehicle as a Figure.  So we Disable Controls here.
+        frmMain.Disable_Controls()
         'Initial Values.
 
         cmbDecoration.SelectedIndex = 0
@@ -16,10 +19,30 @@ Public Class frmVehicles
         Dim Topper_Two As Byte = WholeFile(&H259)
 
         Dim Neon_One As Byte = WholeFile(&H9A)
-        Dim Neon_Two As Byte
+        Dim Neon_Two As Byte = WholeFile(&H25A)
 
         Dim Shout_One As Byte = WholeFile(&H9B)
-        Dim Shout_Two As Byte
+        Dim Shout_Two As Byte = WholeFile(&H25B)
+
+        Dim GearBits_One(1) As Byte 'WholeFile(&H118) & WholeFile(&H119)
+        Dim Int_GearBits_One As UShort
+        Dim GearBits_Two(1) As Byte 'WholeFile(&H2D8) & WHoleFile(&H2D9)
+        Dim Int_GearBits_Two As UShort
+
+        GearBits_One(0) = WholeFile(&H118)
+        GearBits_One(1) = WholeFile(&H119)
+
+        GearBits_Two(0) = WholeFile(&H2D8)
+        GearBits_Two(1) = WholeFile(&H2D9)
+
+        'DO Math:
+        'Why do we do this?
+        'Because Unsigned Integer is 4 Bytes.  Not Two.
+        ReDim Preserve GearBits_One(3)
+        ReDim Preserve GearBits_Two(3)
+        Int_GearBits_One = BitConverter.ToUInt32(GearBits_One, 0)
+        Int_GearBits_Two = BitConverter.ToUInt32(GearBits_Two, 0)
+
 
 
         'I need to read data here:
@@ -29,16 +52,19 @@ Public Class frmVehicles
             Topper_One = Topper_One
             Neon_One = Neon_One
             Shout_One = Shout_One
+            Int_GearBits_One = Int_GearBits_One
         ElseIf Area1 > Area0 Then
             Deco_One = Deco_Two
             Topper_One = Topper_Two
             Neon_One = Neon_Two
             Shout_One = Shout_Two
+            Int_GearBits_One = Int_GearBits_Two
         ElseIf Area0 = Area1 Then
             Deco_One = Deco_One
             Topper_One = Topper_One
             Neon_One = Neon_One
             Shout_One = Shout_One
+            Int_GearBits_One = Int_GearBits_One
         End If
         'We wait for the Application to load all the Values into their Comboboxes.
         Application.DoEvents()
@@ -60,7 +86,11 @@ Public Class frmVehicles
         End Try
         Try
             cmbShout.SelectedIndex = Convert.ToInt32(Shout_One)
-            'MessageBox.Show(Shout_One)
+        Catch ex As Exception
+
+        End Try
+        Try
+            numGearbits.Value = Int_GearBits_One
         Catch ex As Exception
 
         End Try
@@ -1046,6 +1076,15 @@ Public Class frmVehicles
             Case Else
                 MessageBox.Show("This is what it's like to go FURTHER BEYOND!")
         End Select
+
+        Dim intGearBits As UShort = numGearbits.Value
+        Dim GearBits As Byte() = BitConverter.GetBytes(intGearBits)
+        WholeFile(&H118) = GearBits(0)
+        WholeFile(&H119) = GearBits(1)
+
+        WholeFile(&H2D8) = GearBits(0)
+        WholeFile(&H2D9) = GearBits(1)
+
     End Sub
 
     Private Sub frmVehicles_Closing(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing

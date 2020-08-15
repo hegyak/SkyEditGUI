@@ -410,7 +410,7 @@ Public Class Figures
                     CharacterID(1) = &H0
                     CharacterVariant(0) = &H3
                     CharacterVariant(1) = &H16
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Legendary Chill" Then
+                ElseIf frmMain.lstCharacters.SelectedItem Is "Legendary LightCore Chill" Then
                     '6A00
                     '0316
                     CharacterID(0) = &H6A
@@ -915,7 +915,7 @@ Public Class Figures
                     CharacterID(1) = &H7
                     CharacterVariant(0) = &H2
                     CharacterVariant(1) = &H24
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Enchanted Star Strike" Then
+                ElseIf frmMain.lstCharacters.SelectedItem Is "Enchanted LightCore Star Strike" Then
                     'LightCore
                     'C10B
                     '0226
@@ -1106,7 +1106,7 @@ Public Class Figures
                     CharacterID(1) = &H7
                     CharacterVariant(0) = &H3
                     CharacterVariant(1) = &H24
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Legendary Grim Creeper" Then
+                ElseIf frmMain.lstCharacters.SelectedItem Is "Legendary LightCore Grim Creeper" Then
                     'C50B
                     '0326
                     CharacterID(0) = &HC5
@@ -1574,13 +1574,13 @@ Public Class Figures
                     CharacterID(1) = &H1
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H30
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Clear Thunderbolt" Then
+                'ElseIf frmMain.lstCharacters.SelectedItem Is "Clear Thunderbolt" Then
                     'C301
                     '1D30
-                    CharacterID(0) = &HC3
-                    CharacterID(1) = &H1
-                    CharacterVariant(0) = &H1D
-                    CharacterVariant(1) = &H30
+                    'CharacterID(0) = &HC3
+                    'CharacterID(1) = &H1
+                    'CharacterVariant(0) = &H1D
+                    'CharacterVariant(1) = &H30
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Cobra Cadabra" Then
                     'D501
                     '0030
@@ -2948,13 +2948,13 @@ Public Class Figures
                     CharacterID(1) = &H0
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H20
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Platinum Hidden Treasure" Then
+                'ElseIf frmMain.lstCharacters.SelectedItem Is "Platinum Hidden Treasure" Then
                     'C900
                     '0000
-                    CharacterID(0) = &HC9
-                    CharacterID(1) = &H0
-                    CharacterVariant(0) = &H0
-                    CharacterVariant(1) = &H0
+                    'CharacterID(0) = &HC9
+                    'CharacterID(1) = &H0
+                    'CharacterVariant(0) = &H0
+                    'CharacterVariant(1) = &H0
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Blue Imaginite Mystery Chest" Then
                     'Figure: EB00
                     'Variant: 1750
@@ -3817,8 +3817,8 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Hand of Fate"
                 Case "C900"
                     'Hidden Treasure (Platinum)
-                    frmMain.cmbGame.SelectedItem = "Items"
-                    frmMain.lstCharacters.SelectedItem = "Platinum Hidden Treasure"
+                    'frmMain.cmbGame.SelectedItem = "Items"
+                    'frmMain.lstCharacters.SelectedItem = "Platinum Hidden Treasure"
                 Case "CE00"
                     'Winged Boots
                     frmMain.cmbGame.SelectedItem = "Items"
@@ -4016,8 +4016,8 @@ Public Class Figures
                     'Legendary Bouncer
                     frmMain.lstCharacters.SelectedItem = "Legendary Bouncer"
                 Case "6A00"
-                    'Legendary Chill
-                    frmMain.lstCharacters.SelectedItem = "Legendary Chill"
+                    'Legendary LightCore Chill
+                    frmMain.lstCharacters.SelectedItem = "Legendary LightCore Chill"
                 Case "0A00"
                     'Legendary Ignitor
                     frmMain.lstCharacters.SelectedItem = "Legendary Ignitor"
@@ -4272,7 +4272,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Anvil Rain"
                 Case "3001"
                     'Volcanic Vault
-                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Volcanic Vault"
                 Case "800C"
                     'Battle Hammer
@@ -4363,8 +4363,8 @@ Public Class Figures
             frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "C10B"
-                    'Enchanted Star Strike
-                    frmMain.lstCharacters.SelectedItem = "Enchanted Star Strike"
+                    'Enchanted LightCore Star Strike
+                    frmMain.lstCharacters.SelectedItem = "Enchanted LightCore Star Strike"
             End Select
         ElseIf Var = "0324" Then
             frmMain.cmbGame.SelectedItem = "Swap Force"
@@ -4389,8 +4389,8 @@ Public Class Figures
             frmMain.cmbGame.SelectedItem = "Swap Force"
             Select Case Fig
                 Case "C50B"
-                    'Legendary Grim Creeper
-                    frmMain.lstCharacters.SelectedItem = "Legendary Grim Creeper"
+                    'Legendary LightCore Grim Creeper
+                    frmMain.lstCharacters.SelectedItem = "Legendary LightCore Grim Creeper"
             End Select
         ElseIf Var = "0528" Then
             frmMain.cmbGame.SelectedItem = "Swap Force"
@@ -4480,7 +4480,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Arkeyan Crossbow"
                 Case "E60C"
                     'Fiery Forge
-                    frmMain.cmbGame.SelectedItem = "Adventure Packs"
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Fiery Forge"
             End Select
         ElseIf Var = "0030" Then
@@ -4652,12 +4652,12 @@ Public Class Figures
                     frmMain.cmbGame.SelectedItem = "Adventure Packs"
                     frmMain.lstCharacters.SelectedItem = "Nightmare Express"
             End Select
-        ElseIf Var = "1D30" Then
-            Select Case Fig
-                Case "C301"
+        'ElseIf Var = "1D30" Then
+            'Select Case Fig
+                'Case "C301"
                     'Clear Thunderbolt
-                    frmMain.lstCharacters.SelectedItem = "Clear Thunderbolt"
-            End Select
+                    'frmMain.lstCharacters.SelectedItem = "Clear Thunderbolt"
+            'End Select
         ElseIf Var = "0138" Then
             frmMain.cmbGame.SelectedItem = "Trap Team"
             Select Case Fig
@@ -4853,14 +4853,17 @@ Public Class Figures
                 Case "940C"
                     frmMain.lstCharacters.SelectedItem = "Jet Stream"
                 Case "AF0D"
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Kaos Trophy"
                 Case "AD0D"
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Land Trophy"
                 Case "960C"
                     frmMain.lstCharacters.SelectedItem = "Reef Ripper"
                 Case "A50C"
                     frmMain.lstCharacters.SelectedItem = "Sea Shadow"
                 Case "AE0D"
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Sea Trophy"
                 Case "990C"
                     frmMain.lstCharacters.SelectedItem = "Shark Tank"
@@ -4869,6 +4872,7 @@ Public Class Figures
                 Case "A00C"
                     frmMain.lstCharacters.SelectedItem = "Sky Slicer"
                 Case "AC0D"
+                    frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Sky Trophy"
                 Case "A70C"
                     frmMain.lstCharacters.SelectedItem = "Soda Skimmer"
@@ -4892,7 +4896,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Missile-Tow Dive-Clops"
             End Select
         ElseIf Var = "0244" Then
-            frmMain.cmbGame.SelectedItem = "SuperChargers"
+            frmMain.cmbGame.SelectedItem = "Vehicles"
             BlnVehicle = True
             Select Case Fig
                 Case "A80C"
@@ -4933,7 +4937,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Steel Plated Smash Hit"
             End Select
         ElseIf Var = "0440" Then
-            frmMain.cmbGame.SelectedItem = "SuperChargers"
+            frmMain.cmbGame.SelectedItem = "Vehicles"
             BlnVehicle = True
             Select Case Fig
                 Case "970C"
@@ -4974,7 +4978,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Frightful Fiesta"
             End Select
         ElseIf Var = "1E44" Then
-            frmMain.cmbGame.SelectedItem = "Vehicle"
+            frmMain.cmbGame.SelectedItem = "Vehicles"
             BlnVehicle = True
             Select Case Fig
                 Case "980C"
@@ -4991,7 +4995,7 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Legendary Hurricane Jet-Vac"
             End Select
         ElseIf Var = "0344" Then
-            frmMain.cmbGame.SelectedItem = "Vehicle"
+            frmMain.cmbGame.SelectedItem = "Vehicles"
             BlnVehicle = True
             Select Case Fig
                 Case "A40C"
@@ -5649,7 +5653,7 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Jade Flashwing")
         frmMain.lstCharacters.Items.Add("Jet-Vac")
         frmMain.lstCharacters.Items.Add("Legendary Bouncer")
-        frmMain.lstCharacters.Items.Add("Legendary Chill")
+        frmMain.lstCharacters.Items.Add("Legendary LightCore Chill")
         frmMain.lstCharacters.Items.Add("Legendary Ignitor")
         frmMain.lstCharacters.Items.Add("Legendary Jet-Vac")
         frmMain.lstCharacters.Items.Add("Legendary Slam Bam")
@@ -5721,7 +5725,7 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Dune Bug")
         frmMain.lstCharacters.Items.Add("Enchanted Hoot Loop (Bottom)")
         frmMain.lstCharacters.Items.Add("Enchanted Hoot Loop (Top)")
-        frmMain.lstCharacters.Items.Add("Enchanted Star Strike")
+        frmMain.lstCharacters.Items.Add("Enchanted LightCore Star Strike")
         frmMain.lstCharacters.Items.Add("Fire Bone Hot Dog")
         frmMain.lstCharacters.Items.Add("Fire Kraken (Bottom)")
         frmMain.lstCharacters.Items.Add("Fire Kraken (Top)")
@@ -5746,7 +5750,7 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Lava Barf Eruptor")
         frmMain.lstCharacters.Items.Add("Legendary Free Ranger (Bottom)")
         frmMain.lstCharacters.Items.Add("Legendary Free Ranger (Top)")
-        frmMain.lstCharacters.Items.Add("Legendary Grim Creeper")
+        frmMain.lstCharacters.Items.Add("Legendary LightCore Grim Creeper")
         frmMain.lstCharacters.Items.Add("Legendary Night Shift (Bottom)")
         frmMain.lstCharacters.Items.Add("Legendary Night Shift (Top)")
         frmMain.lstCharacters.Items.Add("Legendary Zoo Lou")
@@ -5811,7 +5815,7 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Breeze")
         frmMain.lstCharacters.Items.Add("Bushwhack")
         frmMain.lstCharacters.Items.Add("Chopper")
-        frmMain.lstCharacters.Items.Add("Clear Thunderbolt")
+        'frmMain.lstCharacters.Items.Add("Clear Thunderbolt")
         frmMain.lstCharacters.Items.Add("Cobra Cadabra")
         frmMain.lstCharacters.Items.Add("Dark Food Fight")
         frmMain.lstCharacters.Items.Add("Dark Snap Shot")
@@ -5915,7 +5919,6 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Legendary Astroblast")
         frmMain.lstCharacters.Items.Add("Legendary Bone Bash Roller Brawl")
         frmMain.lstCharacters.Items.Add("Legendary Hurricane Jet-Vac")
-        frmMain.lstCharacters.Items.Add("Legendary Sun Runner")
         frmMain.lstCharacters.Items.Add("Missile-Tow Dive-Clops")
         frmMain.lstCharacters.Items.Add("Nightfall")
         frmMain.lstCharacters.Items.Add("Power Blue Splat")
@@ -5932,11 +5935,6 @@ Public Class Figures
 
         'frmMain.lstCharacters.Items.Add("--Villain Vehicles--")
         'frmMain.lstCharacters.Items.Add("--Pandergast Vehicles--")
-        frmMain.lstCharacters.Items.Add("--Trophies--")
-        frmMain.lstCharacters.Items.Add("Kaos Trophy")
-        frmMain.lstCharacters.Items.Add("Land Trophy")
-        frmMain.lstCharacters.Items.Add("Sea Trophy")
-        frmMain.lstCharacters.Items.Add("Sky Trophy")
     End Sub
     Shared Sub Imaginators()
         'Characters
@@ -5952,12 +5950,12 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Chain Reaction")
         frmMain.lstCharacters.Items.Add("Chompy Mage")
         frmMain.lstCharacters.Items.Add("Chopscotch")
-        frmMain.lstCharacters.Items.Add("Clear Starcast")
+        'frmMain.lstCharacters.Items.Add("Clear Starcast")
         frmMain.lstCharacters.Items.Add("Crash Bandicoot")
         frmMain.lstCharacters.Items.Add("Dark Golden Queen")
         frmMain.lstCharacters.Items.Add("Dark King Pen")
         frmMain.lstCharacters.Items.Add("Dark Wolfgang")
-        frmMain.lstCharacters.Items.Add("Dec-Ember")
+        'frmMain.lstCharacters.Items.Add("Dec-Ember")
         frmMain.lstCharacters.Items.Add("Dr. Krankcase")
         frmMain.lstCharacters.Items.Add("Dr. Neo Cortex")
         frmMain.lstCharacters.Items.Add("Egg Bomber Air Strike")
@@ -5976,12 +5974,12 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Mystical Bad Juju")
         frmMain.lstCharacters.Items.Add("Mystical Tae Kwon Crow")
         frmMain.lstCharacters.Items.Add("Mysticat")
-        frmMain.lstCharacters.Items.Add("Orange Chain Reaction")
+        'frmMain.lstCharacters.Items.Add("Orange Chain Reaction")
         frmMain.lstCharacters.Items.Add("Pain-Yatta")
-        frmMain.lstCharacters.Items.Add("Pink Barbella")
+        'frmMain.lstCharacters.Items.Add("Pink Barbella")
         frmMain.lstCharacters.Items.Add("Pit Boss")
         frmMain.lstCharacters.Items.Add("Ro-Bow")
-        frmMain.lstCharacters.Items.Add("Rock Candy Pain-Yatta")
+        'frmMain.lstCharacters.Items.Add("Rock Candy Pain-Yatta")
         frmMain.lstCharacters.Items.Add("Solar Flare Aurora")
         frmMain.lstCharacters.Items.Add("Starcast")
         frmMain.lstCharacters.Items.Add("Steel Plated Hood Sickle")
@@ -6097,6 +6095,7 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Clown Cruiser")
         frmMain.lstCharacters.Items.Add("Dark Clown Cruiser")
         frmMain.lstCharacters.Items.Add("Jet Stream")
+        frmMain.lstCharacters.Items.Add("Legendary Sun Runner")
         frmMain.lstCharacters.Items.Add("Nitro Stealth Stinger")
         frmMain.lstCharacters.Items.Add("Sky Slicer")
         frmMain.lstCharacters.Items.Add("Stealth Stinger")
@@ -6160,12 +6159,13 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Sky-Iron Shield")
         frmMain.lstCharacters.Items.Add("Sparx the Dragonfly")
         frmMain.lstCharacters.Items.Add("Time Twister Hourglass")
+        frmMain.lstCharacters.Items.Add("Volcanic Vault")
         frmMain.lstCharacters.Items.Add("Winged Boots")
         frmMain.lstCharacters.Items.Add("--Giants--")
         frmMain.lstCharacters.Items.Add("Dragonfire Cannon")
         frmMain.lstCharacters.Items.Add("Scorpion Striker")
         frmMain.lstCharacters.Items.Add("Golden Dragonfire Cannon")
-        frmMain.lstCharacters.Items.Add("Platinum Hidden Treasure")
+        'frmMain.lstCharacters.Items.Add("Platinum Hidden Treasure")
         frmMain.lstCharacters.Items.Add("--Swap Force--")
         frmMain.lstCharacters.Items.Add("Arkeyan Crossbow")
         frmMain.lstCharacters.Items.Add("Battle Hammer")
@@ -6199,9 +6199,7 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Dragon's Peak")
         frmMain.lstCharacters.Items.Add("Empire of Ice")
         frmMain.lstCharacters.Items.Add("Pirate Seas")
-        frmMain.lstCharacters.Items.Add("Volcanic Vault")
         frmMain.lstCharacters.Items.Add("--Swap Force--")
-        frmMain.lstCharacters.Items.Add("Fiery Forge")
         frmMain.lstCharacters.Items.Add("Sheep Wreck Island")
         frmMain.lstCharacters.Items.Add("Tower of Time")
         frmMain.lstCharacters.Items.Add("--Trap Team--")

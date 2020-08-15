@@ -2371,20 +2371,6 @@ Public Class Figures
                     CharacterID(1) = &HC
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H40
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Kaos Trophy" Then
-                    'AF0D
-                    '0040
-                    CharacterID(0) = &HAF
-                    CharacterID(1) = &HD
-                    CharacterVariant(0) = &H0
-                    CharacterVariant(1) = &H40
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Land Trophy" Then
-                    'AD0D
-                    '0040
-                    CharacterID(0) = &HAD
-                    CharacterID(1) = &HD
-                    CharacterVariant(0) = &H0
-                    CharacterVariant(1) = &H40
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Lava Lance Eruptor" Then
                     '5D0D
                     '0041
@@ -2490,13 +2476,6 @@ Public Class Figures
                     CharacterID(1) = &HC
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H40
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Sea Trophy" Then
-                    'AE0D
-                    '0040
-                    CharacterID(0) = &HAE
-                    CharacterID(1) = &HD
-                    CharacterVariant(0) = &H0
-                    CharacterVariant(1) = &H40
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Shark Shooter Terrafin" Then
                     '580D
                     '0041
@@ -2523,13 +2502,6 @@ Public Class Figures
                     '0040
                     CharacterID(0) = &HA0
                     CharacterID(1) = &HC
-                    CharacterVariant(0) = &H0
-                    CharacterVariant(1) = &H40
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Sky Trophy" Then
-                    'AC0D
-                    '0040
-                    CharacterID(0) = &HAC
-                    CharacterID(1) = &HD
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H40
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Smash Hit" Then
@@ -4830,27 +4802,43 @@ Public Class Figures
                     frmMain.lstCharacters.SelectedItem = "Turbo Charge Donkey Kong"
             End Select
         ElseIf Var = "0040" Then
-            frmMain.cmbGame.SelectedItem = "Vehicles"
-            BlnVehicle = True
             Select Case Fig
                 Case "A80C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Barrel Blaster"
                 Case "970C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Burn-Cycle"
                 Case "A909"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Buzz Wing"
                 Case "A90C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     'Buzz Wing
                     frmMain.lstCharacters.SelectedItem = "Buzz Wing"
                 Case "A10C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Clown Cruiser"
                 Case "9B0C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Crypt Crusher"
                 Case "9F0C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Dive Bomber"
                 Case "A20C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Gold Rusher"
                 Case "940C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Jet Stream"
                 Case "AF0D"
                     frmMain.cmbGame.SelectedItem = "Items"
@@ -4859,32 +4847,54 @@ Public Class Figures
                     frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Land Trophy"
                 Case "960C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Reef Ripper"
                 Case "A50C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Sea Shadow"
                 Case "AE0D"
                     frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Sea Trophy"
                 Case "990C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Shark Tank"
                 Case "A30C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Shield Striker"
                 Case "A00C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Sky Slicer"
                 Case "AC0D"
                     frmMain.cmbGame.SelectedItem = "Items"
                     frmMain.lstCharacters.SelectedItem = "Sky Trophy"
                 Case "A70C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Soda Skimmer"
                 Case "A60C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Splatter Splasher"
                 Case "9C0C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Stealth Stinger"
                 Case "A40C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Sun Runner"
                 Case "9A0C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Thump Truck"
                 Case "950C"
+                    frmMain.cmbGame.SelectedItem = "Vehicles"
+                    BlnVehicle = True
                     frmMain.lstCharacters.SelectedItem = "Tomb Buggy"
             End Select
         ElseIf Var = "0E45" Then

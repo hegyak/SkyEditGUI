@@ -2871,6 +2871,13 @@ Public Class Figures
                     CharacterID(1) = &H0
                     CharacterVariant(0) = &H6
                     CharacterVariant(1) = &H12
+                ElseIf frmMain.lstCharacters.SelectedItem Is "Fiery Forge" Then
+                    'E60C
+                    '0622
+                    CharacterID(0) = &HE6
+                    CharacterID(1) = &HC
+                    CharacterVariant(0) = &H6
+                    CharacterVariant(1) = &H22
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Golden Dragonfire Cannon" Then
                     'D000
                     '0216
@@ -3063,6 +3070,13 @@ Public Class Figures
                     CharacterID(0) = &H84
                     CharacterID(1) = &HC
                     '0020
+                    CharacterVariant(0) = &H0
+                    CharacterVariant(1) = &H20
+                ElseIf frmMain.lstCharacters.SelectedItem Is "Volcanic Vault" Then
+                    '3001
+                    '0020
+                    CharacterID(0) = &H30
+                    CharacterID(1) = &H1
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H20
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Winged Boots" Then
@@ -3544,13 +3558,6 @@ Public Class Figures
                     CharacterID(1) = &H1
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H50
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Fiery Forge" Then
-                    'E60C
-                    '0622
-                    CharacterID(0) = &HE6
-                    CharacterID(1) = &HC
-                    CharacterVariant(0) = &H6
-                    CharacterVariant(1) = &H22
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Gryphon Park Observatory" Then
                     CharacterID(0) = &H36
                     CharacterID(1) = &H1
@@ -3610,13 +3617,6 @@ Public Class Figures
                     '0020
                     CharacterID(0) = &HE5
                     CharacterID(1) = &HC
-                    CharacterVariant(0) = &H0
-                    CharacterVariant(1) = &H20
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Volcanic Vault" Then
-                    '3001
-                    '0020
-                    CharacterID(0) = &H30
-                    CharacterID(1) = &H1
                     CharacterVariant(0) = &H0
                     CharacterVariant(1) = &H20
                 End If

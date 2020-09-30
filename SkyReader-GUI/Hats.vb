@@ -435,7 +435,7 @@ Public Class Hats
         'MessageBox.Show(Hat(0))
         Try
             If Hat(0) = &H0 Then
-                frmMain.cmbHat.SelectedItem = "None"
+                frmMain.cmbHat.SelectedItem = "No Hat"
             ElseIf Hat(0) = &HE Then
                 frmMain.cmbHat.SelectedItem = "Anvil Hat"
             ElseIf Hat(0) = &H2C Then

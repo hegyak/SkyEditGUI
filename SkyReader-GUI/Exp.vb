@@ -296,6 +296,10 @@ Public Class Exp
                 WholeFile(&H119) = EXP3(1)
                 WholeFile(&H11A) = EXP3(2)
                 'MessageBox.Show("Area0")
+			Else
+				WholeFile(&H118) = &H0
+           		WholeFile(&H119) = &H0
+        		WholeFile(&H11A) = &H0
             End If
         Else
             WholeFile(&H113) = &H0
@@ -317,6 +321,10 @@ Public Class Exp
                 WholeFile(&H2D8) = EXP3(0)
                 WholeFile(&H2D9) = EXP3(1)
                 WholeFile(&H2DA) = EXP3(2)
+        	Else
+				WholeFile(&H2D8) = &H0
+           		WholeFile(&H2D9) = &H0
+        		WholeFile(&H2DA) = &H0
             End If
         Else
             WholeFile(&H2D3) = &H0

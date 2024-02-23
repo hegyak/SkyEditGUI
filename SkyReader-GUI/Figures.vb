@@ -844,8 +844,8 @@ Public Class Figures
                     '0528
                     CharacterID(0) = &H10
                     CharacterID(1) = &H0
-                    CharacterVariant(0) = &H5
-                    CharacterVariant(1) = &H28
+                    CharacterVariant(0) = &H2
+                    CharacterVariant(1) = &H2c
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Dark Slobber Tooth" Then
                     'BA0B
                     '0224
@@ -1120,7 +1120,7 @@ Public Class Figures
                     CharacterID(0) = &HF4
                     CharacterID(1) = &H3
                     CharacterVariant(0) = &H3
-                    CharacterVariant(1) = &H4
+                    CharacterVariant(1) = &H24
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Legendary Night Shift (Top)" Then
                     'Swap Character
                     'DC07

@@ -419,11 +419,11 @@ Public Class Figures
                     CharacterVariant(1) = &H16
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Legendary Ignitor" Then
                     '0A00
-                    '0316
+                    '031c
                     CharacterID(0) = &HA
                     CharacterID(1) = &H0
                     CharacterVariant(0) = &H3
-                    CharacterVariant(1) = &H16
+                    CharacterVariant(1) = &H1c
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Legendary Jet-Vac" Then
                     '6400
                     '0314
@@ -517,11 +517,11 @@ Public Class Figures
                     CharacterVariant(1) = &H12
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Polar Whirlwind" Then
                     '0000
-                    '0216
+                    '021c
                     CharacterID(0) = &H0
                     CharacterID(1) = &H0
                     CharacterVariant(0) = &H2
-                    CharacterVariant(1) = &H16
+                    CharacterVariant(1) = &H1c
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Pop Fizz" Then
                     '6C00
                     '0010
@@ -841,7 +841,7 @@ Public Class Figures
                     CharacterVariant(1) = &H24
                 ElseIf frmMain.lstCharacters.SelectedItem Is "Dark Mega Ram Spyro" Then
                     '1000
-                    '0528
+                    '022c
                     CharacterID(0) = &H10
                     CharacterID(1) = &H0
                     CharacterVariant(0) = &H2
@@ -3922,6 +3922,9 @@ Public Class Figures
                 Case "1200"
                     'Royal Double Trouble
                     frmMain.lstCharacters.SelectedItem = "Royal Double Trouble"
+                Case "0000"
+                    'Polar Whirlwind
+                    frmMain.lstCharacters.SelectedItem = "Polar Whirlwind"
             End Select
         ElseIf Var = "0214" Then
             frmMain.cmbGame.SelectedItem = "Giants"
@@ -3945,9 +3948,6 @@ Public Class Figures
                 Case "6600"
                     'Granite Crusher
                     frmMain.lstCharacters.SelectedItem = "Granite Crusher"
-                Case "0000"
-                    'Polar Whirlwind
-                    frmMain.lstCharacters.SelectedItem = "Polar Whirlwind"
                 Case "6D00"
                     'Scarlet Ninjini
                     frmMain.lstCharacters.SelectedItem = "Scarlet Ninjini"
@@ -3973,6 +3973,9 @@ Public Class Figures
                 Case "1A00"
                     'Legendary Stealth Elf
                     frmMain.lstCharacters.SelectedItem = "Legendary Stealth Elf"
+                Case "0A00"
+                    'Legendary Ignitor
+                    frmMain.lstCharacters.SelectedItem = "Legendary Ignitor"
             End Select
         ElseIf Var = "0314" Then
             frmMain.cmbGame.SelectedItem = "Giants"
@@ -3990,9 +3993,6 @@ Public Class Figures
                 Case "6A00"
                     'Legendary LightCore Chill
                     frmMain.lstCharacters.SelectedItem = "Legendary LightCore Chill"
-                Case "0A00"
-                    'Legendary Ignitor
-                    frmMain.lstCharacters.SelectedItem = "Legendary Ignitor"
             End Select
         ElseIf Var = "0612" Then
             frmMain.cmbGame.SelectedItem = "Giants"
@@ -4269,6 +4269,9 @@ Public Class Figures
                 Case "1A00"
                     'Dark Stealth Elf
                     frmMain.lstCharacters.SelectedItem = "Dark Stealth Elf"
+                Case "1000"
+                    'Dark Mega Ram Spyro
+                    frmMain.lstCharacters.SelectedItem = "Dark Mega Ram Spyro"
                 Case "1300"
                     'Springtime Trigger Happy
                     frmMain.lstCharacters.SelectedItem = "Springtime Trigger Happy"
@@ -4376,9 +4379,6 @@ Public Class Figures
                 Case "6A00"
                     'Blizzard Chill
                     frmMain.lstCharacters.SelectedItem = "Blizzard Chill"
-                Case "1000"
-                    'Dark Mega Ram Spyro
-                    frmMain.lstCharacters.SelectedItem = "Dark Mega Ram Spyro"
                 Case "0069"
                     'Fire Bone Hot Dog
                     frmMain.lstCharacters.SelectedItem = "Fire Bone Hot Dog"
@@ -5461,12 +5461,6 @@ Public Class Figures
             Select Case Fig
                 Case "D400"
                     frmMain.lstCharacters.SelectedItem = "Breezy Bird (Toucan)"
-            End Select
-        ElseIf Var = "0304" Then
-            frmMain.cmbGame.SelectedItem = "Swap Force"
-            Select Case Fig
-                Case "F403"
-                    frmMain.lstCharacters.SelectedItem = "Legendary Night Shift (Bottom)"
             End Select
         ElseIf Var = "0350" Then
             frmMain.cmbGame.SelectedItem = "Imaginators"

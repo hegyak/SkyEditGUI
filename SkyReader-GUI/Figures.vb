@@ -2839,7 +2839,6 @@ Public Class Figures
                     'Wolfgang
                     CharacterID(0) = &H66
                     CharacterID(1) = &H2
-                    'Chests
                 End If
             Case 6
                 'Items
@@ -2934,7 +2933,7 @@ Public Class Figures
                     'CharacterID(1) = &H0
                     'CharacterVariant(0) = &H0
                     'CharacterVariant(1) = &H0
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Blue Imaginite Mystery Chest" Then
+                ElseIf frmMain.lstCharacters.SelectedItem Is "Blue Imaginite Mystery Chest (CTT)" Then
                     'Figure: EB00
                     'Variant: 1750
                     'Blue Mystery Chest
@@ -2966,7 +2965,7 @@ Public Class Figures
                     CharacterID(1) = &H0
                     CharacterVariant(0) = &H2
                     CharacterVariant(1) = &H50
-                ElseIf frmMain.lstCharacters.SelectedItem Is "Platnium Imaginite Mystery Chest" Then
+                ElseIf frmMain.lstCharacters.SelectedItem Is "Blue Imaginite Mystery Chest (LIM)" Then
                     'Figure: EB00
                     'Variant: 1950
                     'Blue Mystery Chest
@@ -5441,19 +5440,19 @@ Public Class Figures
             frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "EB00"
-                    frmMain.lstCharacters.SelectedItem = "Blue Mystery Chest"
+                    frmMain.lstCharacters.SelectedItem = "Blue Imaginite Mystery Chest (CTT)"
             End Select
         ElseIf Var = "0150" Then
             frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "EB00"
-                    frmMain.lstCharacters.SelectedItem = "Bronze Mystery Chest"
+                    frmMain.lstCharacters.SelectedItem = "Bronze Imaginite Mystery Chest"
             End Select
         ElseIf Var = "0250" Then
             frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "EB00"
-                    frmMain.lstCharacters.SelectedItem = "Silver Mystery Chest"
+                    frmMain.lstCharacters.SelectedItem = "Silver Imaginite Mystery Chest"
             End Select
         ElseIf Var = "D400" Then
             frmMain.cmbGame.SelectedItem = "Traps"
@@ -5466,13 +5465,13 @@ Public Class Figures
             frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "EB00"
-                    frmMain.lstCharacters.SelectedItem = "Gold Mystery Chest"
+                    frmMain.lstCharacters.SelectedItem = "Gold Imaginite Mystery Chest"
             End Select
         ElseIf Var = "1950" Then
             frmMain.cmbGame.SelectedItem = "Imaginators"
             Select Case Fig
                 Case "EB00"
-                    frmMain.lstCharacters.SelectedItem = "Platnium Mystery Chest"
+                    frmMain.lstCharacters.SelectedItem = "Blue Imaginite Mystery Chest (LIM)"
             End Select
         ElseIf Var = "0752" Then
             frmMain.cmbGame.SelectedItem = "Imaginators"
@@ -6191,7 +6190,8 @@ Public Class Figures
         frmMain.lstCharacters.Items.Add("Sky Trophy")
         'Chests
         frmMain.lstCharacters.Items.Add("--Imaginators--")
-        frmMain.lstCharacters.Items.Add("Blue Imaginite Mystery Chest")
+        frmMain.lstCharacters.Items.Add("Blue Imaginite Mystery Chest (CTT)")
+        frmMain.lstCharacters.Items.Add("Blue Imaginite Mystery Chest (LIM)")
         frmMain.lstCharacters.Items.Add("Bronze Imaginite Mystery Chest")
         frmMain.lstCharacters.Items.Add("Gold Imaginite Mystery Chest")
         frmMain.lstCharacters.Items.Add("Silver Imaginite Mystery Chest")
